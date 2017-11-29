@@ -1,0 +1,13 @@
+<div *ngIf="item">
+  <item-card [item]="item"></item-card>
+  <item-linker [item]="item"></item-linker>
+  <h3>{{item.name}} edit</h3>
+  <div>
+    <label>name: </label>
+    <input [(ngModel)]="item.name" placeholder="name" />
+  </div>
+
+
+  <button (click)="goBack()">Back</button>
+  <button (click)="save()">Save</button>
+</div>

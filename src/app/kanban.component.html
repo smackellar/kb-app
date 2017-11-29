@@ -1,0 +1,27 @@
+<style>
+.draggable {
+  border: 1px solid #ccc;
+  margin: 1rem;
+  padding: 1rem;
+  width: 6rem;
+  cursor: move;
+}
+
+.drop-target {
+  border: 1px dashed #ebebeb;
+  margin: 1rem;
+  padding: 1rem;
+  width: 6rem;
+}
+</style>
+<!-- <div>
+  <div [myDraggable]="{data: 'Draggable A'}" class="draggable">Draggable A</div>
+  <div [myDraggable]="{data: 'Draggable B'}" class="draggable">Draggable B</div>
+  <div myDropTarget (myDrop)="onDrop($event)" class="drop-target">Accepts Draggable A or B</div>
+  <div [myDropTarget]="{zone:'another'}" class="drop-target">Can't drop here</div>
+</div> -->
+<div class="cat-container">
+  <div class="cat-area" *ngFor="let cat of cats"  myDropTarget (myDrop)="onDrop($event, cat)">{{cat}}
+    <div *ngFor="let item of items"><item-card *ngIf="item.status == cat" [item]="item"></item-card></div>
+  </div>
+</div>

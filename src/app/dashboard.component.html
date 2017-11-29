@@ -1,0 +1,4 @@
+<span *ngFor="let item of items">
+<item-card [item]="item"></item-card>
+<a [routerLink]="['/detail', item.id]">Edit</a>
+</span>

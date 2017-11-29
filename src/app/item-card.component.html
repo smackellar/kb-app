@@ -1,0 +1,18 @@
+<div *ngIf="item" class="item-card" [myDraggable]="{data: item.id}">
+  <div><strong>{{item.name}}</strong> ({{item.id}})</div>
+  <div><i>{{item.status}}</i></div>
+  <div *ngIf="expand" class="taglinks">
+    <label>Tags:</label>
+    <ul>
+      <li *ngFor="let tag of item.tags">{{tag}}</li>
+      <li *ngIf="!item.tags">No tags</li>
+    </ul>
+  </div>
+  <div *ngIf="expand" class="taglinks">
+    <label>Links:</label>
+    <ul class="taglinks">
+      <li *ngFor="let link of item.links">{{link}}</li>
+      <li *ngIf="!item.links">No items</li>
+    </ul>
+  </div>
+</div>

@@ -4,17 +4,42 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { DashboardComponent } from './dashboard.component'
+import { KanbanComponent } from './kanban.component'
+import { ItemDetailComponent }  from './item-detail.component';
+import { ItemCardComponent }  from './item-card.component';
+import { ItemLinkerComponent }  from './item-linker.component';
+
+import { AppRoutingModule }     from './app-routing.module';
+
+import { ItemService } from './item.service'
+import { DragService } from './drag.service';
+
+import { DraggableDirective } from './draggable.directive';
+import { DropTargetDirective } from './drop-target.directive';
+
+// Imports for loading & configuring the in-memory web api
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService }  from './in-memory-data.service';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    InMemoryWebApiModule.forRoot(InMemoryDataService),
+    AppRoutingModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    ItemDetailComponent,
+    ItemCardComponent,
+    ItemLinkerComponent,
+    DashboardComponent,
+    KanbanComponent,
+    DraggableDirective, DropTargetDirective
+  ],
+  providers: [ ItemService, DragService ],
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }
