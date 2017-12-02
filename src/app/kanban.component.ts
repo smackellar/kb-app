@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common'
+import { Component, OnInit, Input } from '@angular/core';
 
 import { Item } from './item';
 import { ItemService } from './item.service';
@@ -13,27 +12,48 @@ import { ItemService } from './item.service';
 export class KanbanComponent implements OnInit {
 
   items: Item[] = [];
-  x:string = 'arse';
-  cats: string[] = ['Open','Closed','Doing'];
-  private location: Location
+  @Input() catSelect: string = 'status';
+  cats: string[] = [];
+  catTypes: string[] = ['status','colour'];
 
   constructor(private itemService: ItemService) { }
 
   ngOnInit(): void {
       this.itemService.getItems()
-        .then(items => this.items = items);
+        .then(items => this.setItems(items));
   }
 
-  private addCat(status: string){
-    if(this.cats.indexOf(status)<0){
-      this.cats.push(status);
+  private setItems(items){
+    this.items = items;
+    this.updateCats();
+  }
+
+  private updateCats(): void {
+    this.cats = [];
+    for (let item of this.items){
+      this.addCat(item[this.catSelect]);
     }
   }
 
+  private addCat(catVal: string){
+    console.log("catVal: " + catVal);
+    if(this.cats.indexOf(catVal)<0){
+      this.cats.push(catVal);
+    }
+  }
+
+  updateCatType(newCatSelect): void {
+    console.log("changing:" + this.catSelect + " to " + newCatSelect);
+    this.catSelect = newCatSelect;
+    this.updateCats();
+  }
+
   onDrop(event : any, cat : string): void {
+    // loop through items to find the one that needs to be updated
     for (let item of this.items){
       if (item.id == parseInt(event)){
-        item.status = cat;
+        item[this.catSelect] = cat;
+        console.log(item[this.catSelect]);
         this.updateItem(item);
       }
     }
