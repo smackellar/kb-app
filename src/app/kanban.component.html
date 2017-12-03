@@ -19,6 +19,7 @@ Organise by:
 <select [ngModel]="catTypeSelectName" (change)="updateCatType($event.target.value)">
     <option *ngFor="let catType of catTypes" [value]="catType.name">{{catType.name}}</option>
 </select>
+Add cat: <input [(ngModel)]="newCat"> <button (click)="addCat()">Add</button>
 <div class="cat-container">
   <div class="cat-area" *ngFor="let cat of catTypeSelect.cats"  myDropTarget (myDrop)="onDrop($event, cat)">{{cat}}
     <div *ngFor="let item of items"><item-card *ngIf="item[catTypeSelectName] == cat" [item]="item"></item-card></div>

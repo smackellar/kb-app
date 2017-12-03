@@ -20,6 +20,7 @@ export class KanbanComponent implements OnInit {
   ];
   @Input() catTypeSelect: CatType = this.catTypes[0];
   @Input() catTypeSelectName: string = this.catTypes[0].name;
+  @Input() newCat: string = "";
 
   constructor(private itemService: ItemService) { }
 
@@ -56,6 +57,14 @@ export class KanbanComponent implements OnInit {
     console.log(this.catTypeSelectName);
     console.log("changing:" + this.catTypeSelectName + " to " + newCatSelect);
     this.setCatTypeSelect(newCatSelect);
+  }
+
+  addCat(): void {
+    console.log("New cat: " + this.newCat);
+    if (this.newCat.length > 0 && this.catTypeSelect.cats.indexOf(this.newCat) < 0){
+      this.catTypeSelect.cats.push(this.newCat);
+      this.newCat = "";
+    }
   }
 
   onDrop(event : any, cat : string): void {
