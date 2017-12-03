@@ -19,7 +19,7 @@ export class KanbanComponent implements OnInit {
     new CatType('colour')
   ];
   @Input() catTypeSelect: CatType = this.catTypes[0];
-  @Input() catTypeSelectName: string = this.catTypes[0].name;
+  // @Input() catTypeSelectName: string = this.catTypes[0].name;
   @Input() newCat: string = "";
 
   constructor(private itemService: ItemService) { }
@@ -31,32 +31,15 @@ export class KanbanComponent implements OnInit {
 
   private setItems(items){
     this.items = items;
-    this.updateCats();
+    this.initCatsFromItems();
   }
 
-  private updateCats(): void {
+  private initCatsFromItems(): void {
     for (let item of this.items){
       for (let catType of this.catTypes){
         catType.addCat(item[catType.name]);
       }
     }
-  }
-
-  private setCatTypeSelect(catTypeName: string): void {
-    for (let catType of this.catTypes){
-      if (catType.name == catTypeName){
-        this.catTypeSelect = catType;
-        this.catTypeSelectName = this.catTypeSelect.name;
-      }
-    }
-  }
-
-
-  updateCatType(newCatSelect: string): void {
-    console.log(newCatSelect);
-    console.log(this.catTypeSelectName);
-    console.log("changing:" + this.catTypeSelectName + " to " + newCatSelect);
-    this.setCatTypeSelect(newCatSelect);
   }
 
   addCat(): void {
@@ -71,8 +54,8 @@ export class KanbanComponent implements OnInit {
     // loop through items to find the one that needs to be updated
     for (let item of this.items){
       if (item.id == parseInt(event)){
-        item[this.catTypeSelectName] = cat;
-        console.log(item[this.catTypeSelectName]);
+        item[this.catTypeSelect.name] = cat;
+        console.log(item[this.catTypeSelect.name]);
         this.updateItem(item);
       }
     }
