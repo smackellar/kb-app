@@ -14,17 +14,13 @@
   width: 6rem;
 }
 </style>
-<!-- <div>
-  <div [myDraggable]="{data: 'Draggable A'}" class="draggable">Draggable A</div>
-  <div [myDraggable]="{data: 'Draggable B'}" class="draggable">Draggable B</div>
-  <div myDropTarget (myDrop)="onDrop($event)" class="drop-target">Accepts Draggable A or B</div>
-  <div [myDropTarget]="{zone:'another'}" class="drop-target">Can't drop here</div>
-</div> -->
-<select [ngModel]="catSelect" (change)="updateCatType($event.target.value)">
-    <option *ngFor="let catType of catTypes" [value]="catType">{{catType}}</option>
+
+Organise by:
+<select [ngModel]="catTypeSelectName" (change)="updateCatType($event.target.value)">
+    <option *ngFor="let catType of catTypes" [value]="catType.name">{{catType.name}}</option>
 </select>
 <div class="cat-container">
-  <div class="cat-area" *ngFor="let cat of cats"  myDropTarget (myDrop)="onDrop($event, cat)">{{cat}}
-    <div *ngFor="let item of items"><item-card *ngIf="item[catSelect] == cat" [item]="item"></item-card></div>
+  <div class="cat-area" *ngFor="let cat of catTypeSelect.cats"  myDropTarget (myDrop)="onDrop($event, cat)">{{cat}}
+    <div *ngFor="let item of items"><item-card *ngIf="item[catTypeSelectName] == cat" [item]="item"></item-card></div>
   </div>
 </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 import { Item } from './item';
+import { CatType } from './cat-type';
 import { ItemService } from './item.service';
 
 @Component({
@@ -12,9 +13,13 @@ import { ItemService } from './item.service';
 export class KanbanComponent implements OnInit {
 
   items: Item[] = [];
-  @Input() catSelect: string = 'status';
   cats: string[] = [];
-  catTypes: string[] = ['status','colour'];
+  catTypes: CatType[] = [
+    new CatType('status'),
+    new CatType('colour')
+  ];
+  @Input() catTypeSelect: CatType = this.catTypes[0];
+  @Input() catTypeSelectName: string = this.catTypes[0].name;
 
   constructor(private itemService: ItemService) { }
 
@@ -29,31 +34,36 @@ export class KanbanComponent implements OnInit {
   }
 
   private updateCats(): void {
-    this.cats = [];
     for (let item of this.items){
-      this.addCat(item[this.catSelect]);
+      for (let catType of this.catTypes){
+        catType.addCat(item[catType.name]);
+      }
     }
   }
 
-  private addCat(catVal: string){
-    console.log("catVal: " + catVal);
-    if(this.cats.indexOf(catVal)<0){
-      this.cats.push(catVal);
+  private setCatTypeSelect(catTypeName: string): void {
+    for (let catType of this.catTypes){
+      if (catType.name == catTypeName){
+        this.catTypeSelect = catType;
+        this.catTypeSelectName = this.catTypeSelect.name;
+      }
     }
   }
 
-  updateCatType(newCatSelect): void {
-    console.log("changing:" + this.catSelect + " to " + newCatSelect);
-    this.catSelect = newCatSelect;
-    this.updateCats();
+
+  updateCatType(newCatSelect: string): void {
+    console.log(newCatSelect);
+    console.log(this.catTypeSelectName);
+    console.log("changing:" + this.catTypeSelectName + " to " + newCatSelect);
+    this.setCatTypeSelect(newCatSelect);
   }
 
   onDrop(event : any, cat : string): void {
     // loop through items to find the one that needs to be updated
     for (let item of this.items){
       if (item.id == parseInt(event)){
-        item[this.catSelect] = cat;
-        console.log(item[this.catSelect]);
+        item[this.catTypeSelectName] = cat;
+        console.log(item[this.catTypeSelectName]);
         this.updateItem(item);
       }
     }
