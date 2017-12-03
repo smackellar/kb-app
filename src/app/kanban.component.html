@@ -22,6 +22,7 @@ Organise by:
 Add cat: <input [(ngModel)]="newCat"> <button (click)="addCat()">Add</button>
 <div class="cat-container">
   <div class="cat-area" *ngFor="let cat of catTypeSelect.cats"  myDropTarget (myDrop)="onDrop($event, cat)">{{cat}}
+    <button (click)="removeCat(cat)" *ngIf="catTypeSelect.cats.length>1">Remove</button>
     <div *ngFor="let item of items"><item-card *ngIf="item[catTypeSelect.name] == cat" [item]="item"></item-card></div>
   </div>
 </div>

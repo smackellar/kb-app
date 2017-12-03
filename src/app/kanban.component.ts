@@ -50,6 +50,25 @@ export class KanbanComponent implements OnInit {
     }
   }
 
+  removeCat(catToRemove: string): void {
+    console.log("Remove cat: " + catToRemove);
+    // check at least one cat
+    if (this.catTypeSelect.cats.length == 1){
+      console.log("Last remaining cat - do not remove");
+      return;
+    }
+
+    // update items to first cat
+    this.items.map(item => {
+        if (item[this.catTypeSelect.name] == catToRemove){
+          item[this.catTypeSelect.name] = this.catTypeSelect.cats[this.catTypeSelect.cats.indexOf(catToRemove)==0? 1:0];
+        }
+        return item;
+    });
+    // remove the cat
+    this.catTypeSelect.cats.splice(this.catTypeSelect.cats.indexOf(catToRemove),1);
+  }
+
   onDrop(event : any, cat : string): void {
     // loop through items to find the one that needs to be updated
     for (let item of this.items){
