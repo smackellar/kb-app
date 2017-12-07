@@ -59,12 +59,14 @@ export class KanbanComponent implements OnInit {
     }
 
     // update items to first cat
-    this.items.map(item => {
-        if (item[this.catTypeSelect.name] == catToRemove){
-          item[this.catTypeSelect.name] = this.catTypeSelect.cats[this.catTypeSelect.cats.indexOf(catToRemove)==0? 1:0];
-        }
-        return item;
-    });
+    for (let item of this.items){
+      if (item[this.catTypeSelect.name] == catToRemove){
+        item[this.catTypeSelect.name] = (this.catTypeSelect.cats[0] == item[this.catTypeSelect.name] ? this.catTypeSelect.cats[1] : this.catTypeSelect.cats[0]);
+        this.updateItem(item);
+      }
+
+    }
+
     // remove the cat
     this.catTypeSelect.cats.splice(this.catTypeSelect.cats.indexOf(catToRemove),1);
   }
