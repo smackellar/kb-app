@@ -42,12 +42,22 @@ export class KanbanComponent implements OnInit {
     }
   }
 
+  private findUniqueCatName(name: string): string {
+    var suffixCount = 0;
+    while(this.catTypeSelect.cats.indexOf(suffixCount == 0 ? name : name + " (" + suffixCount + ")") > 0){
+      suffixCount++;
+      console.log(name + " (" + suffixCount + ")");
+    }
+    return suffixCount == 0 ? name : name + " (" + suffixCount + ")";
+  }
+
   addCat(): void {
     console.log("New cat: " + this.newCat);
-    if (this.newCat.length > 0 && this.catTypeSelect.cats.indexOf(this.newCat) < 0){
-      this.catTypeSelect.cats.push(this.newCat);
-      this.newCat = "";
+    if (this.newCat.length == 0) {
+      this.newCat = "New " + this.catTypeSelect.name;
     }
+    this.catTypeSelect.cats.push(this.findUniqueCatName(this.newCat));
+    this.newCat = "";
   }
 
   removeCat(catToRemove: string): void {
@@ -64,7 +74,6 @@ export class KanbanComponent implements OnInit {
         item[this.catTypeSelect.name] = (this.catTypeSelect.cats[0] == item[this.catTypeSelect.name] ? this.catTypeSelect.cats[1] : this.catTypeSelect.cats[0]);
         this.updateItem(item);
       }
-
     }
 
     // remove the cat
