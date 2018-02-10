@@ -1,0 +1,11 @@
+.cat-area {
+  width:320px;
+  background-color:aliceblue;
+  display:inline-block;
+  border: 2px dashed navy;
+  padding:5px
+}
+.cat-area:hover {
+  background-color:#fff;
+  border-style: solid;
+}
