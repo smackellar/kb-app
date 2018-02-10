@@ -2,10 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard.component'
 import { KanbanComponent } from './kanban.component'
+import { KanbanCat } from './kanban-cat.component'
 import { ItemDetailComponent }  from './item-detail.component';
 import { ItemCardComponent }  from './item-card.component';
 import { ItemLinkerComponent }  from './item-linker.component';
@@ -37,6 +39,7 @@ import { InMemoryDataService }  from './in-memory-data.service';
     ItemLinkerComponent,
     DashboardComponent,
     KanbanComponent,
+    KanbanCat,
     DraggableDirective, DropTargetDirective
   ],
   providers: [ ItemService, DragService ],

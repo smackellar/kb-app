@@ -1,4 +1,13 @@
-<div *ngIf="item" class="item-card" [myDraggable]="{data: item.id}">
+<style>
+.draggable {
+  border: 1px solid #ccc;
+  cursor: move;
+  padding: 5px;
+}
+
+</style>
+
+<div *ngIf="item" class="item-card draggable" [myDraggable]="{data: item.id}">
   <div><strong>{{item.name}}</strong> ({{item.id}})</div>
   <div><i>{{item.status}}</i></div>
   <div><i>{{item.colour}}</i></div>

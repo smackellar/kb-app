@@ -18,8 +18,8 @@ export class KanbanComponent implements OnInit {
     new CatType('status'),
     new CatType('colour')
   ];
+  newCats: string[] = [];
   @Input() catTypeSelect: CatType = this.catTypes[0];
-  // @Input() catTypeSelectName: string = this.catTypes[0].name;
   @Input() newCat: string = "";
 
   constructor(private itemService: ItemService) { }
