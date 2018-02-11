@@ -40,16 +40,10 @@ export class KanbanCat implements OnInit {
 
     this.cat.name = newCatName;
 
-    // FIX!!
-    // // update category
-    // this.catTypeSelect.cats[this.catTypeSelect.cats.indexOf(this.origCat)] = newCat;
-    // // update items
-    // for (let item of this.items){
-    //   if (item[this.catTypeSelect.name] == this.origCat){
-    //     item[this.catTypeSelect.name] = newCat;
-    //   }
-    // }
-
+    // update items
+    for (let item of this.cat.items){
+      item[this.catTypeSelect.name] = this.cat.name;
+    }
   }
 
   removeCat(catToRemove: string): void {

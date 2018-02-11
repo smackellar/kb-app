@@ -5,4 +5,5 @@ export class Cat {
   constructor(name: string) {
     this.name = name;
   }
+
 }

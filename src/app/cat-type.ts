@@ -6,7 +6,6 @@ export class CatType {
   cats: Cat[] = [];
   constructor(name: string, items: Item[]) {
     this.name = name;
-
   }
 
   setItems(items: Item[]){
