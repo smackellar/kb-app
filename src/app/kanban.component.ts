@@ -14,12 +14,9 @@ export class KanbanComponent implements OnInit {
 
   items: Item[] = [];
   cats: string[] = [];
-  catTypes: CatType[] = [
-    new CatType('status', this.items),
-    new CatType('colour', this.items)
-  ];
+  catTypes: CatType[];
   newCats: string[] = [];
-  @Input() catTypeSelect: CatType = this.catTypes[0];
+  @Input() catTypeSelect;
   @Input() newCat: string = "";
 
   constructor(private itemService: ItemService) { }
@@ -31,11 +28,16 @@ export class KanbanComponent implements OnInit {
 
   private initItems(items){
     this.items = items;
-    this.catTypeSelect.setItems(this.items);
+    this.catTypes = [
+      new CatType('status', this.items),
+      new CatType('colour', this.items)
+    ];
+    this.catTypeSelect = this.catTypes[0];
+    // this.catTypeSelect.setItems(this.items);
   }
 
   updateCatTypeSelect(): void {
-    this.catTypeSelect.setItems(this.items);
+    // this.catTypeSelect.setItems(this.items);
   }
 
   addCat(): void {
