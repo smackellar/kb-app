@@ -30,16 +30,11 @@ export class CatType {
   refreshItem(item: Item){
     console.log("Refresh item cat " + item[this.name]);
     for (let cat of this.cats){
-      console.log("Check cat " + cat.name);
-      // remove the item if in wrong place
-      if (cat.items.includes(item) && item[this.name] != cat.name){
-        console.log("Removing item from " + cat.name);
-        cat.items.splice(cat.items.indexOf(item),1);
-      }
-      // add the item if missing
-      if (!cat.items.includes(item) && item[this.name] == cat.name){
-        console.log("Adding item to " + cat.name);
-        cat.items.push(item);
+      let itemInCat = cat.items.find(i => i.id == item.id);
+      if (itemInCat)
+        cat.items.splice(cat.items.indexOf(itemInCat),1);
+      if (item[this.name] == cat.name){
+          cat.items.push(item);
       }
     }
   }

@@ -60,15 +60,6 @@ export class KanbanCat implements OnInit {
       return;
     }
 
-    // update items to first cat
-    for (let item of this.items){
-      if (item[this.catTypeSelect.name] == catToRemove){
-        item[this.catTypeSelect.name] = (this.catTypeSelect.cats[0] == item[this.catTypeSelect.name] ? this.catTypeSelect.cats[1] : this.catTypeSelect.cats[0]);
-        this.updateItem(item);
-      }
-    }
-
-    // remove the cat - SHOULD BE IN CatType
     this.catTypeSelect.cats.splice(this.catTypeSelect.cats.indexOf(catToRemove),1);
   }
 
