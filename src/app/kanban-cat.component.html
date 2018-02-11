@@ -1,7 +1,7 @@
 <div class="cat-area"  myDropTarget (myDrop)="onDrop($event, cat)">
-<input [(ngModel)]="cat">
+<input [(ngModel)]="catName">
 <button (click)="removeCat(cat)" *ngIf="catTypeSelect.cats.length>1">Remove</button>
-<div *ngFor="let item of items">
-  <item-card *ngIf="item[catTypeSelect.name] == cat" [item]="item"></item-card>
+<div *ngFor="let item of cat.items">
+  <item-card [item]="item"></item-card>
 </div>
 </div>

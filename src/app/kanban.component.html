@@ -16,7 +16,7 @@
 </style>
 
 Organise by:
-<select [(ngModel)]="catTypeSelect">
+<select [(ngModel)]="catTypeSelect" (change)="updateCatTypeSelect()">
     <option *ngFor="let catType of catTypes" [ngValue]="catType">{{catType.name}}</option>
 </select>
 Add cat: <input [(ngModel)]="newCat"> <button (click)="addCat()">Add</button>

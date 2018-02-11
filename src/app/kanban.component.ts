@@ -15,8 +15,8 @@ export class KanbanComponent implements OnInit {
   items: Item[] = [];
   cats: string[] = [];
   catTypes: CatType[] = [
-    new CatType('status'),
-    new CatType('colour')
+    new CatType('status', this.items),
+    new CatType('colour', this.items)
   ];
   newCats: string[] = [];
   @Input() catTypeSelect: CatType = this.catTypes[0];
@@ -26,20 +26,16 @@ export class KanbanComponent implements OnInit {
 
   ngOnInit(): void {
       this.itemService.getItems()
-        .then(items => this.setItems(items));
+        .then(items => this.initItems(items));
   }
 
-  private setItems(items){
+  private initItems(items){
     this.items = items;
-    this.initCatsFromItems();
+    this.catTypeSelect.setItems(this.items);
   }
 
-  private initCatsFromItems(): void {
-    for (let item of this.items){
-      for (let catType of this.catTypes){
-        catType.addCat(item[catType.name]);
-      }
-    }
+  updateCatTypeSelect(): void {
+    this.catTypeSelect.setItems(this.items);
   }
 
   addCat(): void {
@@ -47,12 +43,7 @@ export class KanbanComponent implements OnInit {
       console.log("Category is empty" + this.newCat);
       return;
     }
-    if (this.catTypeSelect.cats.includes(this.newCat)) {
-      console.log("Category exists: " + this.newCat);
-      return;
-    }
-    this.catTypeSelect.cats.push(this.newCat);
-    this.newCat = "";
+    this.catTypeSelect.addCatIfNew(this.newCat);
   }
 
 }

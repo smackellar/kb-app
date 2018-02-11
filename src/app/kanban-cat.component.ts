@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, ElementRef } from '@angular/core';
 
 import { Item } from './item';
+import { Cat } from './cat';
 import { CatType } from './cat-type';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Rx';
@@ -15,33 +16,39 @@ import { ItemService } from './item.service';
 export class KanbanCat implements OnInit {
 
   @Input() items;
-  @Input() cat;
+  @Input() cat : Cat;
   @Input() catTypeSelect;
-  origCat: string;
+  origCatName: string;
+  catName: string;
+
   ngOnInit(): void {
-    this.origCat = this.cat;
+    this.catName = this.cat.name;
+    this.origCatName = this.catName;
   }
 
   constructor(private itemService: ItemService, private elementRef: ElementRef) {
     const eventStream = Observable.fromEvent(elementRef.nativeElement, 'keyup')
-        .map(() => this.cat)
+        .map(() => this.catName)
         .debounceTime(500)
         .distinctUntilChanged();
 
     eventStream.subscribe(input => this.updateCat(input));
 }
 
-  updateCat(newCat: string){
-    console.log("update " + this.origCat + " to " + newCat);
+  updateCat(newCatName: string){
+    console.log("update " + this.origCatName + " to " + newCatName);
 
-    // update category
-    this.catTypeSelect.cats[this.catTypeSelect.cats.indexOf(this.origCat)] = newCat;
-    // update items
-    for (let item of this.items){
-      if (item[this.catTypeSelect.name] == this.origCat){
-        item[this.catTypeSelect.name] = newCat;
-      }
-    }
+    this.cat.name = newCatName;
+
+    // FIX!!
+    // // update category
+    // this.catTypeSelect.cats[this.catTypeSelect.cats.indexOf(this.origCat)] = newCat;
+    // // update items
+    // for (let item of this.items){
+    //   if (item[this.catTypeSelect.name] == this.origCat){
+    //     item[this.catTypeSelect.name] = newCat;
+    //   }
+    // }
 
   }
 
@@ -61,16 +68,18 @@ export class KanbanCat implements OnInit {
       }
     }
 
-    // remove the cat
+    // remove the cat - SHOULD BE IN CatType
     this.catTypeSelect.cats.splice(this.catTypeSelect.cats.indexOf(catToRemove),1);
   }
 
-  onDrop(event : any, cat : string): void {
+  onDrop(event : any, cat : Cat): void {
     // loop through items to find the one that needs to be updated
     for (let item of this.items){
       if (item.id == parseInt(event)){
-        item[this.catTypeSelect.name] = cat;
-        console.log(item[this.catTypeSelect.name]);
+        item[this.catTypeSelect.name] = cat.name;
+        // keep category manager in sync
+        this.catTypeSelect.refreshItem(item);
+        // persist
         this.updateItem(item);
       }
     }
