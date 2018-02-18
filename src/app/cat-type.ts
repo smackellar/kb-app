@@ -19,7 +19,6 @@ export class CatType {
   addCatIfNew(newCatName: string): Cat {
     let catFound: Cat = this.cats.find(cat => cat.name == newCatName);
     if (!catFound){
-      console.log("Cat " + newCatName + " new");
       catFound = new Cat(newCatName);
       this.cats.push(catFound);
     }
