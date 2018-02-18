@@ -24,4 +24,5 @@
       <li *ngIf="!item.links">No items</li>
     </ul>
   </div>
+  <a *ngIf="editable" [routerLink]="['/detail', item.id]">Edit</a>
 </div>

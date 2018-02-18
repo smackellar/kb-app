@@ -1,7 +1,7 @@
 <div *ngIf="item">
+  <h3>{{item.name}} edit</h3>
   <item-card [item]="item"></item-card>
   <item-linker [item]="item"></item-linker>
-  <h3>{{item.name}} edit</h3>
   <div>
     <label>name: </label>
     <input [(ngModel)]="item.name" placeholder="name" />
