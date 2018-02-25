@@ -1,0 +1,8 @@
+<select [(ngModel)]="defSelect"  (change)="updateDefSelect()">
+  <option *ngFor="let def of defs" [ngValue]="def">{{def}}</option>
+</select>
+<nav>
+  <a routerLink="/{{defSelect}}/dashboard" routerLinkActive="active">Dashboard</a>
+  <a routerLink="/{{defSelect}}/kanban" routerLinkActive="active">Kanban</a>
+</nav>
+<router-outlet></router-outlet>

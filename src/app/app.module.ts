@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
+import { DefSelectorComponent } from './def-selector.component';
 import { DashboardComponent } from './dashboard.component'
 import { KanbanComponent } from './kanban.component'
 import { KanbanCat } from './kanban-cat.component'
@@ -34,11 +35,12 @@ import { InMemoryDataService }  from './in-memory-data.service';
   ],
   declarations: [
     AppComponent,
+    DefSelectorComponent,
+    DashboardComponent,
+    KanbanComponent,
     ItemDetailComponent,
     ItemCardComponent,
     ItemLinkerComponent,
-    DashboardComponent,
-    KanbanComponent,
     KanbanCat,
     DraggableDirective, DropTargetDirective
   ],

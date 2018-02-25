@@ -9,14 +9,21 @@ import { Item } from './item';
 export class ItemService {
 
   private itemsUrl = 'api/items';  // URL to web api
+  defSelect: string = "hero";
+  items: Promise<Item[]>;
 
   constructor(private http: Http) { }
 
   getItems(): Promise<Item[]> {
-    return this.http.get(this.itemsUrl)
+    return this.items;
+  }
+
+  private initItems(): void {
+    this.items = this.http.get(this.itemsUrl+'?cat=' + this.defSelect)
                .toPromise()
                .then(response => response.json().data as Item[])
                .catch(this.handleError);
+
   }
 
   private handleError(error: any): Promise<any> {
@@ -31,6 +38,16 @@ export class ItemService {
       .toPromise()
       .then(response => response.json().data as Item)
       .catch(this.handleError);
+  }
+
+  setDefSelect(defSelect: string){
+    console.log(defSelect);
+    this.defSelect = defSelect;
+    this.initItems();
+  }
+
+  getDefSelect(){
+    return this.defSelect;
   }
 
   private headers = new Headers({'Content-Type': 'application/json'});

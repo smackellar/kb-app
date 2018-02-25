@@ -15,6 +15,8 @@
 }
 </style>
 
+<h1>{{defSelect}}</h1>
+
 Organise by:
 <div *ngIf="catTypeSelect">
 <select [(ngModel)]="catTypeSelect" (change)="updateCatTypeSelect()">

@@ -3,6 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Item } from './item';
 import { CatType } from './cat-type';
 import { ItemService } from './item.service';
+import { ActivatedRoute, Router, Params } from '@angular/router';
 
 @Component({
   selector: 'my-kanban',
@@ -18,12 +19,16 @@ export class KanbanComponent implements OnInit {
   newCats: string[] = [];
   @Input() catTypeSelect;
   @Input() newCat: string = "";
+  // @Input() defSelect;
 
-  constructor(private itemService: ItemService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private itemService: ItemService) { }
 
   ngOnInit(): void {
-      this.itemService.getItems()
-        .then(items => this.initItems(items));
+    this.itemService.getItems()
+      .then(items => this.initItems(this.items = items));
+
   }
 
   private initItems(items){

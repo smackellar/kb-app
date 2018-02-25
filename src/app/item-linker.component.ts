@@ -15,7 +15,7 @@ export class ItemLinkerComponent {
     constructor(private itemService: ItemService) { }
 
     ngOnInit(): void {
-        this.itemService.getItems()
+        this.itemService.getItems(undefined)
           .then(items => this.items = items);
     }
 
