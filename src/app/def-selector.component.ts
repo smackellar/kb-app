@@ -24,6 +24,7 @@ export class DefSelectorComponent implements OnInit {
   }
 
   updateDefSelect(): void {
+    this.itemService.setDefSelect(this.defSelect);
     this.router.navigate([this.defSelect]);
   }
 

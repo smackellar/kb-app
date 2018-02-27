@@ -41,7 +41,7 @@ export class ItemService {
   }
 
   setDefSelect(defSelect: string){
-    console.log(defSelect);
+    console.log("def select : " + defSelect);
     this.defSelect = defSelect;
     this.initItems();
   }

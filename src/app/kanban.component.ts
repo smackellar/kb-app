@@ -19,7 +19,6 @@ export class KanbanComponent implements OnInit {
   newCats: string[] = [];
   @Input() catTypeSelect;
   @Input() newCat: string = "";
-  // @Input() defSelect;
 
   constructor(
     private route: ActivatedRoute,
@@ -28,6 +27,7 @@ export class KanbanComponent implements OnInit {
   ngOnInit(): void {
     this.itemService.getItems()
       .then(items => this.initItems(this.items = items));
+      console.log("defType = " + this.route.snapshot.params['defType']);
 
   }
 
