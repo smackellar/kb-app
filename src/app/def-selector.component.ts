@@ -25,7 +25,7 @@ export class DefSelectorComponent implements OnInit {
 
   updateDefSelect(): void {
     this.itemService.setDefSelect(this.defSelect);
-    this.router.navigate([this.defSelect]);
+    this.router.navigateByUrl("/" + this.defSelect + "/" + (this.route.snapshot.url.toString().indexOf("kanban") ? "kanban" : "dashboard" ));
   }
 
 }
