@@ -27,8 +27,6 @@ export class KanbanComponent implements OnInit {
   ngOnInit(): void {
     this.itemService.getItems()
       .then(items => this.initItems(this.items = items));
-      console.log("defType = " + this.route.snapshot.params['defType']);
-
   }
 
   private initItems(items){

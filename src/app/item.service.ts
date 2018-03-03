@@ -12,9 +12,12 @@ export class ItemService {
   defSelect: string = "hero";
   items: Promise<Item[]>;
 
-  constructor(private http: Http) { }
+  constructor(private http: Http) {
+    this.initItems();
+  }
 
   getItems(): Promise<Item[]> {
+console.log("getting items");
     return this.items;
   }
 
@@ -41,7 +44,7 @@ export class ItemService {
   }
 
   setDefSelect(defSelect: string){
-    console.log("def select : " + defSelect);
+    console.log("set def select in item service : " + defSelect);
     this.defSelect = defSelect;
     this.initItems();
   }

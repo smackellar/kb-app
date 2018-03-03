@@ -17,6 +17,8 @@ import { AppRoutingModule }     from './app-routing.module';
 
 import { ItemService } from './item.service'
 import { DragService } from './drag.service';
+import { TypeDefService } from './type-def.service';
+import { DefCurrentService } from './def-current.service';
 
 import { DraggableDirective } from './draggable.directive';
 import { DropTargetDirective } from './drop-target.directive';
@@ -44,7 +46,7 @@ import { InMemoryDataService }  from './in-memory-data.service';
     KanbanCat,
     DraggableDirective, DropTargetDirective
   ],
-  providers: [ ItemService, DragService ],
+  providers: [ ItemService, DragService, TypeDefService, DefCurrentService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

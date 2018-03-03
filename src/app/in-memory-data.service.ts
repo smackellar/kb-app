@@ -15,6 +15,11 @@ export class InMemoryDataService implements InMemoryDbService {
       {cat: 'hero', id: 19, name: 'Magma', status: "Doing", colour: "Green"},
       {cat: 'hero', id: 20, name: 'Tornado', status: "Closed", colour: "Green"}
     ];
-    return {items};
+
+    let typeDefs = [
+      {id: 1, name: 'other', catTypes: ["status"]},
+      {id: 2, name: 'hero', catTypes: ["colour", "status"]}
+    ];
+    return {items, typeDefs};
   }
 }

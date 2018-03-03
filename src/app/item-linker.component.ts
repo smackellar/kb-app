@@ -19,7 +19,6 @@ export class ItemLinkerComponent {
           .then(items => this.items = items);
     }
 
-
     onSelectChange(linkId: string){
       console.log(this.item.id + " - " + linkId);
       this.itemService.addLink(this.item, parseInt(linkId));
