@@ -4,6 +4,7 @@ import { Item } from './item';
 import { CatType } from './cat-type';
 import { ItemService } from './item.service';
 import { ActivatedRoute, Router, Params } from '@angular/router';
+import { DefCurrentService } from './def-current.service';
 
 @Component({
   selector: 'my-kanban',
@@ -22,11 +23,17 @@ export class KanbanComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private defCurrentService: DefCurrentService,
     private itemService: ItemService) { }
 
   ngOnInit(): void {
-    this.itemService.getItems()
-      .then(items => this.initItems(this.items = items));
+    this.defCurrentService.getSubject().subscribe(def => {
+       if (def) {
+         console.log("from subscription: " + def.name);
+         this.itemService.getItems(def)
+             .then(items => this.initItems(this.items = items));
+       }
+    });
   }
 
   private initItems(items){
@@ -36,11 +43,6 @@ export class KanbanComponent implements OnInit {
       new CatType('colour', this.items)
     ];
     this.catTypeSelect = this.catTypes[0];
-    // this.catTypeSelect.setItems(this.items);
-  }
-
-  updateCatTypeSelect(): void {
-    // this.catTypeSelect.setItems(this.items);
   }
 
   addCat(): void {

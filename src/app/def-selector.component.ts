@@ -25,18 +25,19 @@ export class DefSelectorComponent implements OnInit {
   ngOnInit(): void {
     console.log(this);
     this.typeDefService.getTypeDefs()
-      .then(typeDefs => this.setTypeDefs(typeDefs));
+      .then(typeDefs => this.initTypeDefs(typeDefs));
   }
 
-  private setTypeDefs(typeDefs: TypeDef[]): void{
+  private initTypeDefs(typeDefs: TypeDef[]): void{
     this.typeDefs = typeDefs
     this.defSelect = this.typeDefs.find(def => (def.id = this.route.snapshot.params['defType']));
+    this.updateDefSelect();
     console.log("defType = " + this.route.snapshot.params['defType']);
     console.log("current = " + this.defSelect.name);
   }
 
   updateDefSelect(): void {
-    this.itemService.setDefSelect(this.defSelect.name);
+    // this.itemService.setDefSelect(this.defSelect.name);
     // use the current def service
     this.defCurrentService.typeDef = this.defSelect;
     this.router.navigateByUrl("/" + this.defSelect.id + "/" + (this.route.snapshot.url.toString().indexOf("kanban") ? "kanban" : "dashboard" ));

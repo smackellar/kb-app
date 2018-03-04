@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Item } from './item';
 import { ItemService } from './item.service';
+import { DefCurrentService } from './def-current.service';
 
 @Component({
   selector: 'my-dashboard',
@@ -14,11 +15,19 @@ export class DashboardComponent implements OnInit {
 
   items: Item[] = [];
 
-  constructor(private itemService: ItemService) { }
+  constructor(
+    private defCurrentService: DefCurrentService,
+    private itemService: ItemService
+  ) { }
 
   ngOnInit(): void {
-      this.itemService.getItems()
-        .then(items => this.items = items);
+    this.defCurrentService.getSubject().subscribe(def => {
+       if (def) {
+         console.log("from subscription: " + def.name);
+         this.itemService.getItems(def)
+             .then(items => (this.items = items));
+       }
+    });
   }
 
 }

@@ -1,9 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-
 import { Item } from './item';
-//import { ITEMS } from './mock-items';
+import { TypeDef } from './type-def';
 
 @Injectable()
 export class ItemService {
@@ -12,20 +11,21 @@ export class ItemService {
   defSelect: string = "hero";
   items: Promise<Item[]>;
 
-  constructor(private http: Http) {
+  constructor(
+    private http: Http
+  ) {
     this.initItems();
   }
 
-  getItems(): Promise<Item[]> {
-console.log("getting items");
-    return this.items;
-  }
-
-  private initItems(): void {
-    this.items = this.http.get(this.itemsUrl+'?cat=' + this.defSelect)
+  getItems(typeDef: TypeDef): Promise<Item[]> {
+    console.log("getting items");
+    return this.http.get(this.itemsUrl+'?type=' + typeDef.name)
                .toPromise()
                .then(response => response.json().data as Item[])
                .catch(this.handleError);
+  }
+
+  private initItems(): void {
 
   }
 
@@ -41,16 +41,6 @@ console.log("getting items");
       .toPromise()
       .then(response => response.json().data as Item)
       .catch(this.handleError);
-  }
-
-  setDefSelect(defSelect: string){
-    console.log("set def select in item service : " + defSelect);
-    this.defSelect = defSelect;
-    this.initItems();
-  }
-
-  getDefSelect(){
-    return this.defSelect;
   }
 
   private headers = new Headers({'Content-Type': 'application/json'});

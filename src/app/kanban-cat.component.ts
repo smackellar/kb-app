@@ -6,6 +6,7 @@ import { CatType } from './cat-type';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Rx';
 import { ItemService } from './item.service';
+import { DefCurrentService } from './def-current.service';
 
 @Component({
   selector: 'cat',
@@ -26,7 +27,11 @@ export class KanbanCat implements OnInit {
     this.origCatName = this.catName;
   }
 
-  constructor(private itemService: ItemService, private elementRef: ElementRef) {
+  constructor(
+    private itemService: ItemService,
+    private defCurrentService: DefCurrentService,
+    private elementRef: ElementRef
+  ) {
     const eventStream = Observable.fromEvent(elementRef.nativeElement, 'keyup')
         .map(() => this.catName)
         .debounceTime(500)
@@ -72,7 +77,7 @@ export class KanbanCat implements OnInit {
 
 
   updateItem(item: Item){
-    this.itemService.update(item).then(() => this.itemService.getItems()
+    this.itemService.update(item).then(() => this.itemService.getItems(this.defCurrentService.typeDef)
       .then(items => this.items = items));
   }
 

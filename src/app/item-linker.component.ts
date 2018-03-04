@@ -15,8 +15,8 @@ export class ItemLinkerComponent {
     constructor(private itemService: ItemService) { }
 
     ngOnInit(): void {
-        this.itemService.getItems()
-          .then(items => this.items = items);
+        // this.itemService.getItems()
+        //   .then(items => this.items = items);
     }
 
     onSelectChange(linkId: string){

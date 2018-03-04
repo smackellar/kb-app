@@ -5,6 +5,9 @@ import { ActivatedRoute, Params } from '@angular/router';
 
 import { Item }         from './item';
 import { ItemService }  from './item.service';
+import { DefCurrentService }  from './def-current.service';
+
+
 @Component({
   selector: 'item-card',
   templateUrl: './item-card.component.html',
@@ -17,6 +20,7 @@ export class ItemCardComponent implements OnInit {
 
   constructor(
     private itemService: ItemService,
+    private defCurrentService: DefCurrentService,
     private route: ActivatedRoute,
     private location: Location
 
