@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import { Item } from './item';
 import { CatType } from './cat-type';
+import { TypeDef } from './type-def';
 import { ItemService } from './item.service';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { DefCurrentService } from './def-current.service';
@@ -31,17 +32,21 @@ export class KanbanComponent implements OnInit {
        if (def) {
          console.log("from subscription: " + def.name);
          this.itemService.getItems(def)
-             .then(items => this.initItems(this.items = items));
+             .then(items => this.initItems(items, def));
+             this.catTypes = [];
+          for (let catTypeLabel of def.catTypes){
+            this.catTypes.push(new CatType(catTypeLabel, this.items));
+          }
        }
     });
   }
 
-  private initItems(items){
+  private initItems(items: Item[], def: TypeDef){
     this.items = items;
-    this.catTypes = [
-      new CatType('status', this.items),
-      new CatType('colour', this.items)
-    ];
+    this.catTypes = [];
+     for (let catTypeLabel of def.catTypes){
+       this.catTypes.push(new CatType(catTypeLabel, this.items));
+     }
     this.catTypeSelect = this.catTypes[0];
   }
 
