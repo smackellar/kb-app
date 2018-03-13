@@ -10,6 +10,7 @@
 <div *ngIf="item" class="item-card draggable" [myDraggable]="{data: item.id}">
   <div><strong>{{item.name}}</strong> ({{item.id}})</div>
   <div><i>{{item.status}}</i>, <i>{{item.colour}}</i></div>
+  <div>fields:<i *ngFor="let field of item.fields">{{item.field}}</i></div>
   <div *ngIf="expand" class="taglinks">
     <label>Tags:</label>
     <ul>

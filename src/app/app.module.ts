@@ -12,6 +12,7 @@ import { KanbanCat } from './kanban-cat.component'
 import { ItemDetailComponent }  from './item-detail.component';
 import { ItemCardComponent }  from './item-card.component';
 import { ItemLinkerComponent }  from './item-linker.component';
+import { TypeDefViewComponent } from './type-def-view.component';
 
 import { AppRoutingModule }     from './app-routing.module';
 
@@ -43,8 +44,10 @@ import { InMemoryDataService }  from './in-memory-data.service';
     ItemDetailComponent,
     ItemCardComponent,
     ItemLinkerComponent,
+    TypeDefViewComponent,
     KanbanCat,
-    DraggableDirective, DropTargetDirective
+    DraggableDirective,
+    DropTargetDirective
   ],
   providers: [ ItemService, DragService, TypeDefService, DefCurrentService ],
   bootstrap: [ AppComponent ]
