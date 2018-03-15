@@ -1,8 +1,4 @@
 typedefview
 <ul *ngFor="let field of typeDef.fields">
-  <li>{{field}}</li>
-</ul>
-<hr>
-<ul *ngFor="let catType of typeDef.catTypes">
-  <li>{{catType}}</li>
+  <li><input type="checkbox" [checked]="typeDef.catTypes.indexOf(field)>-1" (change)="toggleCatField(field)"> {{field}}</li>
 </ul>

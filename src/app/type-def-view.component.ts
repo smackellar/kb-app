@@ -22,4 +22,14 @@ export class TypeDefViewComponent implements OnInit {
     this.defCurrentService.getSubject().subscribe(def => this.typeDef = def);
   }
 
+  toggleCatField(field): void {
+    let catTypes = this.typeDef.catTypes;
+    if (catTypes.indexOf(field) >- 1){
+      catTypes.splice(catTypes.indexOf(field),0);
+    } else {
+      catTypes.push(field);
+    }
+    console.log(field);
+  }
+
 }
