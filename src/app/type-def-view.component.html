@@ -1,4 +1,7 @@
 typedefview
 <ul *ngFor="let field of typeDef.fields">
-  <li><input type="checkbox" [checked]="typeDef.catTypes.indexOf(field)>-1" (change)="toggleCatField(field)"> {{field}}</li>
+  <li>
+    <input type="checkbox" [checked]="typeDef.catTypes.indexOf(field)>-1" (change)="toggleCatField(field)">
+    <input type="input" [value]="field" (change)="updateLabel(typeDef.fields.indexOf(field),$event.target.value)">
+  </li>
 </ul>
