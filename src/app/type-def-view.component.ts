@@ -25,10 +25,8 @@ export class TypeDefViewComponent implements OnInit {
   toggleCatField(field): void {
     let catTypes = this.typeDef.catTypes;
     if (catTypes.indexOf(field) > -1){
-      console.log("- cat type: " + field);
       catTypes.splice(catTypes.indexOf(field),1);
     } else {
-      console.log("+ cat type: " + field);
       catTypes.push(field);
     }
     this.defCurrentService.typeDef = this.typeDef;

@@ -10,7 +10,6 @@ export class CatType {
   }
 
   setItems(items: Item[]){
-    console.log("Initialise catType: " + this.name + " - " + items.length)
     for (let item of items){
       this.addCatIfNew(item[this.name]).items.push(item);
     }
