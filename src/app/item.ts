@@ -1,8 +1,14 @@
+import { FieldDef } from './field-def';
+
 export class Item {
   id: number;
-  name: string;
+  type: number;
+  values: any[];
   private _tags: string;
   tagList: Array<string>;
   links: Array<number>;
-  status: string;
+
+  getValue(fieldIndex: number): any {
+    return this.values[fieldIndex];
+  }
 }

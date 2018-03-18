@@ -8,22 +8,9 @@
 </style>
 
 <div *ngIf="item" class="item-card draggable" [myDraggable]="{data: item.id}">
-  <div><strong>{{item.name}}</strong> ({{item.id}})</div>
-  <div><i>{{item.status}}</i>, <i>{{item.colour}}</i></div>
-  <div>fields:<i *ngFor="let field of item.fields">{{item.field}}</i></div>
-  <div *ngIf="expand" class="taglinks">
-    <label>Tags:</label>
-    <ul>
-      <li *ngFor="let tag of item.tags">{{tag}}</li>
-      <li *ngIf="!item.tags">No tags</li>
-    </ul>
-  </div>
-  <div *ngIf="expand" class="taglinks">
-    <label>Links:</label>
-    <ul class="taglinks">
-      <li *ngFor="let link of item.links">{{link}}</li>
-      <li *ngIf="!item.links">No items</li>
-    </ul>
-  </div>
+  <div><strong>{{item.values[0]}}</strong> ({{item.id}})</div>
+  <div>fields:<i *ngFor="let field of defSelect.fields">
+    <span *ngIf="field.isListable">{{field.name}}</span>
+  </i></div>
   <a *ngIf="editable" [routerLink]="['/', defCurrentService.typeDef.id, 'detail', item.id]">Edit</a>
 </div>

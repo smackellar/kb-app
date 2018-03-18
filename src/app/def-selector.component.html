@@ -5,6 +5,8 @@
   <a routerLink="/{{defSelect.id}}/dashboard" routerLinkActive="active">Dashboard</a>
   <a routerLink="/{{defSelect.id}}/kanban" routerLinkActive="active">Kanban</a>
   <a routerLink="/{{defSelect.id}}/def" routerLinkActive="active">Def</a>
-  <span *ngFor="let catType of defSelect.catTypes">{{catType}}</span>
+  <span *ngFor="let field of defSelect.fields">
+    <span *ngIf="field.isListable">{{field.name}}</span>
+  </span>
 </nav>
 <router-outlet></router-outlet>

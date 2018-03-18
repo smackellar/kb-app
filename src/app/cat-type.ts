@@ -1,17 +1,24 @@
 import { Cat }         from './cat';
 import { Item }         from './item';
-
+import { TypeDef }         from './type-def';
+import { FieldDef }         from './field-def';
+/*
+** represents a categorisable (listable) field and the values
+** and does all the management stuff
+*/
 export class CatType {
-  name: string;
+  // name: string;
+  def: TypeDef;
+  field: FieldDef; // the field that is categorised
   cats: Cat[] = [];
-  constructor(name: string, items: Item[]) {
-    this.name = name;
+  constructor(field: FieldDef, items: Item[]) {
+    this.field = field;
     this.setItems(items);
   }
 
   setItems(items: Item[]){
     for (let item of items){
-      this.addCatIfNew(item[this.name]).items.push(item);
+      this.addCatIfNew(item[this.field.name]).items.push(item);
     }
   }
 
@@ -26,12 +33,11 @@ export class CatType {
 
   // Check if any items are not where they should be
   refreshItem(item: Item){
-    console.log("Refresh item cat " + item[this.name]);
     for (let cat of this.cats){
       let itemInCat = cat.items.find(i => i.id == item.id);
       if (itemInCat)
         cat.items.splice(cat.items.indexOf(itemInCat),1);
-      if (item[this.name] == cat.name){
+      if (item.getValue(this.def.fields.indexOf(this.field)) == cat.name){
           cat.items.push(item);
       }
     }

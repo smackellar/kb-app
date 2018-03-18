@@ -1,6 +1,7 @@
+import { FieldDef } from './field-def';
+
 export class TypeDef {
   id: number;
   name: string;
-  catTypes: string[];
-  fields: string[];
+  fields: FieldDef[];
 }

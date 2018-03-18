@@ -19,7 +19,7 @@ export class ItemService {
 
   getItems(typeDef: TypeDef): Promise<Item[]> {
     console.log("getting items");
-    return this.http.get(this.itemsUrl+'?type=' + typeDef.name)
+    return this.http.get(this.itemsUrl+'?type=' + typeDef.id)
                .toPromise()
                .then(response => response.json().data as Item[])
                .catch(this.handleError);

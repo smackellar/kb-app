@@ -23,21 +23,12 @@ export class TypeDefViewComponent implements OnInit {
   }
 
   toggleCatField(field): void {
-    let catTypes = this.typeDef.catTypes;
-    if (catTypes.indexOf(field) > -1){
-      catTypes.splice(catTypes.indexOf(field),1);
-    } else {
-      catTypes.push(field);
-    }
+    field.isListable = !field.isListable;
     this.pushToService();
   }
 
-  updateLabel(index, field): void {
-    console.log(index + " - " + field);
-    let oldField = this.typeDef.fields[index];
-    this.typeDef.fields[index] = field;
-    // should really keep the cats up to date too - this is where it gets messy
-    this.typeDef.catTypes[this.typeDef.catTypes.indexOf(oldField)] = field;
+  updateLabel(field, newName): void {
+    field.name = newName;
     this.pushToService();
   }
 

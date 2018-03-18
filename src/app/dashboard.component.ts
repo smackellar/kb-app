@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Item } from './item';
+import { TypeDef } from './type-def';
 import { ItemService } from './item.service';
 import { DefCurrentService } from './def-current.service';
 
@@ -14,6 +15,7 @@ import { DefCurrentService } from './def-current.service';
 export class DashboardComponent implements OnInit {
 
   items: Item[] = [];
+  defSelect: TypeDef;
 
   constructor(
     private defCurrentService: DefCurrentService,
@@ -23,6 +25,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.defCurrentService.getSubject().subscribe(def => {
        if (def) {
+         this.defSelect = def;
          console.log("from subscription: " + def.name);
          this.itemService.getItems(def)
              .then(items => (this.items = items));
