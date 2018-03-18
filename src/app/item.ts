@@ -3,7 +3,7 @@ import { FieldDef } from './field-def';
 export class Item {
   id: number;
   type: number;
-  values: any[];
+  values: {};
   private _tags: string;
   tagList: Array<string>;
   links: Array<number>;

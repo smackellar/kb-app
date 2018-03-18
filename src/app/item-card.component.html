@@ -9,8 +9,8 @@
 
 <div *ngIf="item" class="item-card draggable" [myDraggable]="{data: item.id}">
   <div><strong>{{item.values[0]}}</strong> ({{item.id}})</div>
-  <div>fields:<i *ngFor="let field of defSelect.fields">
-    <span *ngIf="field.isListable">{{field.name}}</span>
-  </i></div>
+  <div *ngFor="let field of defSelect.fields">
+    <span *ngIf="field.isListable">{{field.name}} <b>{{item.values[field.id]}}</b></span>
+  </div>
   <a *ngIf="editable" [routerLink]="['/', defCurrentService.typeDef.id, 'detail', item.id]">Edit</a>
 </div>
