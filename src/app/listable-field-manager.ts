@@ -1,5 +1,6 @@
 import { Cat }         from './cat';
 import { Item }         from './item';
+import { ItemUtils }         from './item-utils';
 import { TypeDef }         from './type-def';
 import { FieldDef }         from './field-def';
 /*
@@ -9,32 +10,35 @@ import { FieldDef }         from './field-def';
 export class ListableFieldManager {
   def: TypeDef;
   field: FieldDef; // the field that is categorised
-  listableValues: any[];
+  listableValues: any[] = [];
+  itemUtils: ItemUtils;
+  itemsByValue = {};
 
   constructor(field: FieldDef, items: Item[]) {
+    this.itemUtils = new ItemUtils();
     this.field = field;
     this.setItems(items);
   }
 
   setItems(items: Item[]){
     for (let item of items){
-      let value = item
-      this.addCatIfNew(item[this.field.name]).items.push(item);
+      let value = this.itemUtils.getValueByField(item, this.field);
+      if (this.listableValues.indexOf(value) == -1){
+        this.listableValues.push(value);
+      }
+      // categorise items by value
+      if (!this.itemsByValue[value]){
+        this.itemsByValue[value] = [];
+      }
+      this.itemsByValue[value].push(item);
+    }
+    for (let lv of this.listableValues){
+      console.log("manager vals: " + lv);
     }
   }
 
-  addCatIfNew(value: any): any {
-    // create a new value if none exists
-    if (this.listableValues.indexOf(value) == -1){
-      this.listableValues.push({value : []});
-    }
-    return this.listableValues[this.listableValues.indexOf(value)];
-    // let valueFound: any = this.listableValues. cats.find(cat => cat.name == newCatName);
-    // if (!catFound){
-    //   catFound = new Cat(newCatName);
-    //   this.cats.push(catFound);
-    // }
-    // return catFound;
+  public getItemsByValue(value: any){
+    return this.itemsByValue[value];
   }
 
   // Check if any items are not where they should be

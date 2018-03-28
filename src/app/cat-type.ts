@@ -37,9 +37,9 @@ export class CatType {
       let itemInCat = cat.items.find(i => i.id == item.id);
       if (itemInCat)
         cat.items.splice(cat.items.indexOf(itemInCat),1);
-      if (item.getValue(this.def.fields.indexOf(this.field)) == cat.name){
-          cat.items.push(item);
-      }
+      // if (item.getValue(this.def.fields.indexOf(this.field)) == cat.name){
+      //     cat.items.push(item);
+      // }
     }
   }
 }

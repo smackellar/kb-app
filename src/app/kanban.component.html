@@ -15,15 +15,18 @@
 }
 </style>
 
-<h1>{{defSelect}}</h1>
+<div *ngIf="defSelect">
+<h1>{{defSelect.name}}</h1>
 
 Organise by:
-<div *ngIf="catTypeSelect">
-<select [(ngModel)]="catTypeSelect">
-    <option *ngFor="let catType of catTypes" [ngValue]="catType">{{catType.name}}</option>
-</select>
-<input placeholder="New {{catTypeSelect.name}}" [(ngModel)]="newCat"> <button (click)="addCat()">Add</button>
-<div *ngIf="catTypeSelect" class="cat-container">
-  <cat *ngFor="let cat of catTypeSelect.cats" [catTypeSelect]="catTypeSelect" [cat]="cat" [items]="items"></cat>
-</div>
+<div *ngIf="fieldSelect">
+  <select [(ngModel)]="fieldSelect" (change)="setField()">
+      <option *ngFor="let field of defSelect.fields" [ngValue]="field">{{field.name}}</option>
+  </select>
+  <input placeholder="New {{fieldSelect.name}}" [(ngModel)]="newCat"> <button (click)="addCat()">Add</button>
+  <div>
+  <div class="cat-container">
+    <kanban-list *ngFor="let val of listManager.listableValues" [manager]="listManager" [val]="val" [defSelect]="defSelect"></kanban-list>
+  </div>
+  </div>
 </div>

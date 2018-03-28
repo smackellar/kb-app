@@ -38,7 +38,7 @@ export class KanbanCat implements OnInit {
         .distinctUntilChanged();
 
     eventStream.subscribe(input => this.updateCat(input));
-}
+  }
 
   updateCat(newCatName: string){
     console.log("update " + this.origCatName + " to " + newCatName);
@@ -74,7 +74,6 @@ export class KanbanCat implements OnInit {
       }
     }
   }
-
 
   updateItem(item: Item){
     this.itemService.update(item).then(() => this.itemService.getItems(this.defCurrentService.typeDef)

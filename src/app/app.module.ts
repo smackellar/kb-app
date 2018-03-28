@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { DefSelectorComponent } from './def-selector.component';
 import { DashboardComponent } from './dashboard.component'
 import { KanbanComponent } from './kanban.component'
-import { KanbanCat } from './kanban-cat.component'
+import { KanbanListComponent } from './kanban-list.component'
 import { ItemDetailComponent }  from './item-detail.component';
 import { ItemCardComponent }  from './item-card.component';
 import { ItemLinkerComponent }  from './item-linker.component';
@@ -45,7 +45,7 @@ import { InMemoryDataService }  from './in-memory-data.service';
     ItemCardComponent,
     ItemLinkerComponent,
     TypeDefViewComponent,
-    KanbanCat,
+    KanbanListComponent,
     DraggableDirective,
     DropTargetDirective
   ],
