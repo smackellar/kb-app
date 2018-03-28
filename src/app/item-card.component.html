@@ -7,7 +7,7 @@
 
 </style>
 
-<div *ngIf="item" class="item-card draggable" [myDraggable]="{data: item.id}">
+<div *ngIf="item" class="item-card draggable" [myDraggable]="{data: item}">
   <div><i>{{item.id}}</i></div>
   <div *ngFor="let field of defSelect.fields">
     <span *ngIf="field.isListable">{{field.name}} <b>{{item.values[field.id]}}</b></span>

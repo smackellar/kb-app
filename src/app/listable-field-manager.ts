@@ -1,4 +1,3 @@
-import { Cat }         from './cat';
 import { Item }         from './item';
 import { ItemUtils }         from './item-utils';
 import { TypeDef }         from './type-def';

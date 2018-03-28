@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 import { Item } from './item';
-import { CatType } from './cat-type';
 import { TypeDef } from './type-def';
 import { FieldDef } from './field-def';
 import { ListableFieldManager } from './listable-field-manager';
