@@ -2,8 +2,8 @@ import { InMemoryDbService } from 'angular-in-memory-web-api';
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     let items = [
-      {type: 1, id: 11, values: {1: 'Mr. Nice',2: "Open", 3: "Red", 4:['one','two','three'], 5: [20]}},
-      {type: 1, id: 12, values: {1: 'Narco', 2: "Closed", 3: "Amber", 4: ['tits','arse','fanny'], 5: [14,15]}},
+      {type: 1, id: 1, values: {1: 'Mr. Nice',2: "Open", 3: "Red", 4:['one','two','three'], 5: [20]}},
+      {type: 1, id: 2, values: {1: 'Narco', 2: "Closed", 3: "Amber", 4: ['tits','arse','fanny'], 5: [14,15]}},
       {type: 2, id: 11, values: {1: 'Narco', 2: "Closed", 3: "Red", 4: ['tits','arse','fanny'], 5: [14,15]}},
       {type: 2, id: 12, values: {1: 'Mr. Nice', 2: "Open", 3: "Red", 4: ['one','two','three'], 5: [20]}},
       {type: 2, id: 13, values: {1: 'xx', 2: "Open", 3: "Red"}},

@@ -23,7 +23,7 @@ Organise by:
   <select [(ngModel)]="fieldSelect" (change)="setField()">
       <option *ngFor="let field of defSelect.fields" [ngValue]="field">{{field.name}}</option>
   </select>
-  <input placeholder="New {{fieldSelect.name}}" [(ngModel)]="newCat"> <button (click)="addCat()">Add</button>
+  <input placeholder="New {{fieldSelect.name}}" [(ngModel)]="newList"> <button (click)="addList()">Add</button>
   <div>
   <div class="cat-container">
     <span *ngFor="let list of lists">

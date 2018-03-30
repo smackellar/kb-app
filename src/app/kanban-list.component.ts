@@ -24,13 +24,12 @@ export class KanbanListComponent implements OnInit {
   @Input() defSelect: TypeDef;
   @Input() manager: ListableFieldManager;
   @Output() listUpdater: EventEmitter <Item> = new EventEmitter();
-  origVal: any;
-  catName: string;
-  // listItems: Item[];
+  listName: string;
   itemUtils: ItemUtils;
+  origListValue: any;
 
   ngOnInit(): void {
-    this.origVal = this.list.value;
+    this.initListName();
   }
 
   constructor(
@@ -40,33 +39,30 @@ export class KanbanListComponent implements OnInit {
   ) {
 
     const eventStream = Observable.fromEvent(elementRef.nativeElement, 'keyup')
-        .map(() => this.catName)
+        .map(() => this.listName)
         .debounceTime(500)
         .distinctUntilChanged();
 
     eventStream.subscribe(input => this.updateCat(input));
   }
 
-  updateCat(newCatName: string){
-    // console.log("update " + this.origCatName + " to " + newCatName);
-    //
-    // this.cat.name = newCatName;
-    //
-    // // update items
-    // for (let item of this.cat.items){
-    //   item[this.catTypeSelect.name] = this.cat.name;
-    // }
+  private updateCat(newCatName: string){
+    console.log("update " + this.list.value + " to " + newCatName);
+    this.manager.updateListName(this.list.value, newCatName);
+    this.initListName();
+  }
+  private initListName(){
+    this.listName = this.list.value;
   }
 
-  removeCat(catToRemove: string): void {
-    console.log("Remove cat: " + catToRemove);
+  removeList(list: ListValItems): void {
     // check at least one cat
-    // if (this.catTypeSelect.cats.length == 1){
-    //   console.log("Last remaining cat - do not remove");
-    //   return;
-    // }
-    //
-    // this.catTypeSelect.cats.splice(this.catTypeSelect.cats.indexOf(catToRemove),1);
+    if (this.manager.lists.length == 1){
+      console.log("Last remaining list - do not remove");
+      return;
+    }
+    console.log("Remove list: " + list.value);
+    this.manager.removeList(list);
   }
 
   onDrop(event : any, value : any): void {

@@ -4,21 +4,25 @@ import { ListValItems }         from './list-val-items';
 import { ItemUtils }         from './item-utils';
 import { TypeDef }         from './type-def';
 import { FieldDef }         from './field-def';
+
+import { ItemService } from './item.service';
+
 /*
 ** represents a categorisable (listable) field and the values
 ** and does all the management stuff
 */
-@Injectable()
 export class ListableFieldManager {
   def: TypeDef;
   field: FieldDef; // the field that is categorised
   itemUtils: ItemUtils;
   lists: ListValItems[] = [];
+  itemService: ItemService;
 
-  constructor(field: FieldDef, items: Item[]) {
+  constructor(itemService: ItemService, field: FieldDef, items: Item[]) {
     this.itemUtils = new ItemUtils();
     this.field = field;
     this.setItems(items);
+    this.itemService = itemService;
   }
 
   setItems(items: Item[]){
@@ -28,20 +32,19 @@ export class ListableFieldManager {
       let list = this.getList(value);
       list.addItem(item);
     }
-
-    for (let lv of this.lists){
-      console.log("manager vals2: " + lv.value);
-    }
   }
 
   private getList(value: any){
-    let list: ListValItems = this.lists.find(listItem => (listItem.value == value));
+    let list: ListValItems = this.findList(value);
     if (!list){
-      console.log("new list for " + value);
       list = new ListValItems(value);
       this.lists.push(list);
     }
     return list;
+  }
+
+  private findList(value: any){
+    return this.lists.find(listItem => (listItem.value == value));
   }
 
   // Check if any items are not where they should be
@@ -59,6 +62,40 @@ export class ListableFieldManager {
         list.addItem(item);
       }
     }
+  }
 
+  // remove empty lists
+  removeList(list: ListValItems){
+    if (list && list.items.length == 0){
+      this.lists.splice(this.lists.indexOf(list),1);
+    }
+  }
+
+  addList(value: any){
+    // check if exists
+    if (this.getList(value)){
+      console.log("List already exists: " + value);
+      return;
+    }
+    this.lists.push(new ListValItems(value));
+  }
+
+  updateListName(oldValue: any, newValue: any){
+    let list: ListValItems = this.getList(oldValue);
+    if (!list){
+      console.log("List not found: " + oldValue);
+    }
+    // check if the name exists already
+    if (this.findList(newValue)){
+      console.log("List exists: " + newValue);
+      return;
+    }
+
+    // update the list and its contents
+    list.value = newValue;
+    for (let item of list.items){
+      item.values[this.field.id] = newValue;
+      this.itemService.update(item);
+    }
   }
 }

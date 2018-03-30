@@ -20,10 +20,9 @@ export class KanbanComponent implements OnInit {
 
   items: Item[] = [];
   @Input() fieldSelect: FieldDef;
-  @Input() newCat: string = "";
+  @Input() newList: string = "";
   defSelect: TypeDef;
   listManager: ListableFieldManager;
-  // listableValues: any[];
   lists: ListValItems[];
 
   constructor(
@@ -54,18 +53,10 @@ export class KanbanComponent implements OnInit {
       this.fieldSelect = def.fields.filter(f => f.isListable)[0];
     }
     this.setField();
-    // this.listableValues = this.listManager.listableValues;
-  }
-
-  addCat(): void {
-    if (this.newCat.length == 0){
-      console.log("Category is empty" + this.newCat);
-      return;
-    }
   }
 
   setField(): void {
-    this.listManager = new ListableFieldManager(this.fieldSelect, this.items);
+    this.listManager = new ListableFieldManager(this.itemService, this.fieldSelect, this.items);
     this.getLists();
   }
 
@@ -78,6 +69,14 @@ export class KanbanComponent implements OnInit {
     this.listManager.refreshItem(item);
     //this.initItems();
     this.getLists();
+  }
+  addList(value: any): void {
+    if (this.newList.length == 0){
+      console.log("List name is blank");
+      return;
+    }
+    this.listManager.addList(this.newList);
+    this.newList = ""; // reset input field
   }
 
 }
