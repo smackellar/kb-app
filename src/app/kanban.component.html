@@ -26,7 +26,9 @@ Organise by:
   <input placeholder="New {{fieldSelect.name}}" [(ngModel)]="newCat"> <button (click)="addCat()">Add</button>
   <div>
   <div class="cat-container">
-    <kanban-list *ngFor="let val of listManager.listableValues" [manager]="listManager" [val]="val" [defSelect]="defSelect"></kanban-list>
+    <span *ngFor="let list of lists">
+      <kanban-list (listUpdater)="updateList($event)" [(manager)]="listManager" [list]="list" [defSelect]="defSelect"></kanban-list>
+    </span>
   </div>
   </div>
 </div>

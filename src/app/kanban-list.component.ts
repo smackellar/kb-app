@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, Output, ElementRef, EventEmitter } from '@angular/core';
 
 import { Item } from './item';
+import { ListValItems } from './list-val-items';
 import { ItemUtils } from './item-utils';
 import { ListableFieldManager } from './listable-field-manager';
 import { TypeDef } from './type-def';
@@ -18,17 +19,18 @@ import { DefCurrentService } from './def-current.service';
 
 export class KanbanListComponent implements OnInit {
 
-  @Input() val : any;
+  // @Input() val : any;
+  @Input() list: ListValItems;
   @Input() defSelect: TypeDef;
   @Input() manager: ListableFieldManager;
+  @Output() listUpdater: EventEmitter <Item> = new EventEmitter();
   origVal: any;
   catName: string;
-  listItems: Item[];
+  // listItems: Item[];
   itemUtils: ItemUtils;
 
   ngOnInit(): void {
-    this.origVal = this.val;
-    this.listItems = this.manager.getItemsByValue(this.val);
+    this.origVal = this.list.value;
   }
 
   constructor(
@@ -68,13 +70,19 @@ export class KanbanListComponent implements OnInit {
   }
 
   onDrop(event : any, value : any): void {
+    console.log("item to update: " + event.values[this.manager.field.id] + " to " + value);
     event.values[this.manager.field.id] = value;
+    console.log("updated item: " + event);
+    // update item and tell the parent
     this.updateItem(event);
+    this.listUpdater.emit(event);
   }
 
   updateItem(item: Item){
-    this.itemService.update(item).then(() => this.itemService.getItems(this.defCurrentService.typeDef)
-      .then(items => this.manager.setItems(items)));
+    this.itemService.update(item)
+      .then(() => this.itemService.getItems(this.defCurrentService.typeDef)
+        // .then(items => this.manager.setItems(items))
+      );
   }
 
 }

@@ -3,6 +3,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Item } from './item';
 import { TypeDef } from './type-def';
 import { FieldDef } from './field-def';
+import { ListValItems }         from './list-val-items';
+
 import { ListableFieldManager } from './listable-field-manager';
 import { ItemService } from './item.service';
 import { ActivatedRoute, Router, Params } from '@angular/router';
@@ -17,13 +19,12 @@ import { DefCurrentService } from './def-current.service';
 export class KanbanComponent implements OnInit {
 
   items: Item[] = [];
-  cats: string[] = [];
-  // catTypes: CatType[];
   @Input() fieldSelect: FieldDef;
   @Input() newCat: string = "";
-  // catTypeSelect: CatType;
   defSelect: TypeDef;
   listManager: ListableFieldManager;
+  // listableValues: any[];
+  lists: ListValItems[];
 
   constructor(
     private route: ActivatedRoute,
@@ -35,24 +36,25 @@ export class KanbanComponent implements OnInit {
        if (def) {
          console.log("from subscription: " + def.name);
          this.defSelect = def;
-         this.itemService.getItems(def)
-             .then(items => this.initItems(items, def));
-             // this.catTypes = [];
-          // update category types - BROKEN
-          // for (let catTypeLabel of def.catTypes){
-          //   this.catTypes.push(new CatType(catTypeLabel, this.items));
-          // }
+         this.initItems();
        }
     });
   }
 
-  private initItems(items: Item[], def: TypeDef){
-    // put
+  initItems(){
+    this.itemService.getItems(this.defSelect)
+        .then(items => this.initItemsForDef(items, this.defSelect));
+  }
+
+  private initItemsForDef(items: Item[], def: TypeDef){
     this.items = items;
 
     // first find a field (will break if none)
-    this.fieldSelect = def.fields.filter(f => f.isListable)[0];
+    if (!this.fieldSelect){
+      this.fieldSelect = def.fields.filter(f => f.isListable)[0];
+    }
     this.setField();
+    // this.listableValues = this.listManager.listableValues;
   }
 
   addCat(): void {
@@ -63,8 +65,19 @@ export class KanbanComponent implements OnInit {
   }
 
   setField(): void {
-    console.log("update field");
     this.listManager = new ListableFieldManager(this.fieldSelect, this.items);
+    this.getLists();
+  }
+
+  getLists(): void {
+    this.lists = this.listManager.lists;
+  }
+
+  updateList(item: Item): void {
+    console.log("UPDATE LIST EVENT");
+    this.listManager.refreshItem(item);
+    //this.initItems();
+    this.getLists();
   }
 
 }

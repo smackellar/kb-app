@@ -1,8 +1,8 @@
-<div class="cat-area"  myDropTarget (myDrop)="onDrop($event, val)">
+<div class="cat-area"  myDropTarget (myDrop)="onDrop($event, list.value)">
 <input [(ngModel)]="fieldName">
-<button (click)="removeCat(val)" *ngIf="listItems.length>1">Remove</button>
-<h3>{{val}}</h3>
-<div *ngFor="let item of listItems">
+<button (click)="removeCat(val)" *ngIf="list.items.length==0">Remove</button>
+<h3>{{list.value}}</h3>
+<div *ngFor="let item of list.items">
   <item-card [item]="item" [defSelect]="defSelect"></item-card>
 </div>
 </div>
