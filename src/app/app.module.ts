@@ -13,6 +13,7 @@ import { ItemDetailComponent }  from './item-detail.component';
 import { ItemCardComponent }  from './item-card.component';
 import { ItemLinkerComponent }  from './item-linker.component';
 import { TypeDefViewComponent } from './type-def-view.component';
+import { FieldListablePipe } from './field-listable.pipe';
 
 import { AppRoutingModule }     from './app-routing.module';
 
@@ -47,7 +48,8 @@ import { InMemoryDataService }  from './in-memory-data.service';
     TypeDefViewComponent,
     KanbanListComponent,
     DraggableDirective,
-    DropTargetDirective
+    DropTargetDirective,
+    FieldListablePipe
   ],
   providers: [ ItemService, DragService, TypeDefService, DefCurrentService ],
   bootstrap: [ AppComponent ]

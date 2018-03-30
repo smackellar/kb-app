@@ -28,7 +28,7 @@ export class DefCurrentService {
   set typeDef(typeDef: TypeDef){
     this._currentTypeDef = typeDef;
     this.subject.next(typeDef);
-    this.setFieldDef(undefined);
+    this.setFieldDef(null);
   }
 
   setFieldDef(fieldDef: FieldDef){

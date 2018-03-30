@@ -21,14 +21,10 @@
 Organise by:
 <div *ngIf="fieldSelect">
   <select [(ngModel)]="fieldSelect" (change)="setField()">
-      <option *ngFor="let field of defSelect.fields" [ngValue]="field">{{field.name}}</option>
+      <option *ngFor="let field of defSelect.fields | isListable" [ngValue]="field">{{field.name}}</option>
   </select>
   <input placeholder="New {{fieldSelect.name}}" [(ngModel)]="newList"> <button (click)="addList()">Add</button>
-  <div>
   <div class="cat-container">
-    <span *ngFor="let list of lists">
-      <kanban-list (listUpdater)="updateList($event)" [(manager)]="listManager" [list]="list" [defSelect]="defSelect"></kanban-list>
-    </span>
-  </div>
+      <kanban-list *ngFor="let list of lists" (listUpdater)="updateList($event)" [(manager)]="listManager" [list]="list" [defSelect]="defSelect"></kanban-list>
   </div>
 </div>

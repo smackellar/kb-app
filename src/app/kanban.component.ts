@@ -36,9 +36,9 @@ export class KanbanComponent implements OnInit {
          console.log("from subscription: " + def.name);
          this.defSelect = def;
          this.initItems();
+         this.fieldSelect = this.defCurrentService.getFieldDef();
        }
     });
-    this.fieldSelect = this.defCurrentService.getFieldDef();
   }
 
   initItems(){
@@ -50,7 +50,7 @@ export class KanbanComponent implements OnInit {
     this.items = items;
 
     // first find a field (will break if none)
-    if (!this.fieldSelect){
+    if (!this.fieldSelect || !this.fieldSelect.isListable){
       this.fieldSelect = def.fields.filter(f => f.isListable)[0];
     }
     this.setField();

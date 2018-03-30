@@ -26,7 +26,6 @@ export class DashboardComponent implements OnInit {
     this.defCurrentService.getSubject().subscribe(def => {
        if (def) {
          this.defSelect = def;
-         console.log("from subscription: " + def.name);
          this.itemService.getItems(def)
              .then(items => (this.items = items));
        }
