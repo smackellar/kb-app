@@ -38,6 +38,7 @@ export class KanbanComponent implements OnInit {
          this.initItems();
        }
     });
+    this.fieldSelect = this.defCurrentService.getFieldDef();
   }
 
   initItems(){
@@ -57,6 +58,7 @@ export class KanbanComponent implements OnInit {
 
   setField(): void {
     this.listManager = new ListableFieldManager(this.itemService, this.fieldSelect, this.items);
+    this.defCurrentService.setFieldDef(this.fieldSelect);
     this.getLists();
   }
 
