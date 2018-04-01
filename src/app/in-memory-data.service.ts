@@ -19,15 +19,15 @@ export class InMemoryDataService implements InMemoryDbService {
 
     let typeDefs = [
       {id: 1, name: 'other', fields: [
-        {id: 1, name: "name", isListable: true},
-        {id: 2, name: "status", isListable: true},
-        {id: 3, name: "colour"},
+        {id: 1, name: "name", isCardable: true},
+        {id: 2, name: "status", isCardable: true, isListable: true},
+        {id: 3, name: "colour", isCardable: true, isListable: true},
         {id: 4, name: "tags"}
       ]},
       {id: 2, name: 'hero', fields: [
-        {id: 1, name: "name", isListable: true},
-        {id: 2, name: "status", isListable: true},
-        {id: 3, name: "colour"}
+        {id: 1, name: "name", isCardable: true},
+        {id: 2, name: "status", isCardable: true, isListable: true},
+        {id: 3, name: "colour", isCardable: true, isListable: true}
       ]}];
 
     return {items, typeDefs};
