@@ -3,6 +3,6 @@
 <button (click)="removeList(list)" *ngIf="list.items.length==0">Remove</button>
 <h3>{{list.value}}</h3>
 <div *ngFor="let item of list.items">
-  <item-card [item]="item" [defSelect]="defSelect"></item-card>
+  <item-card [item]="item"></item-card>
 </div>
 </div>

@@ -18,7 +18,7 @@ export class ItemCardComponent implements OnInit {
   @Input() item: Item;
   @Input() expand: boolean;
   editable: boolean = false;
-  @Input() defSelect: TypeDef;
+  defSelect: TypeDef;
 
   constructor(
     private itemService: ItemService,
@@ -31,6 +31,7 @@ export class ItemCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.editable = this.route.snapshot.url[0].path!="detail";
+    this.defSelect = this.defCurrentService.typeDef;
   }
 
 }
