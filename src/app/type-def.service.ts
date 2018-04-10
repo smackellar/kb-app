@@ -28,15 +28,6 @@ export class TypeDefService {
     return Promise.reject(error.message || error);
   }
 
-
-  // getTypeDef(id: number): Promise<TypeDef> {
-  //   const url = `${this.typeDefsUrl}/${id}`;
-  //   return this.http.get(url)
-  //     .toPromise()
-  //     .then(response => response.json().data as TypeDef)
-  //     .catch(this.handleError);
-  // }
-  //
   private headers = new Headers({'Content-Type': 'application/json'});
   update(typeDef: TypeDef): Promise<TypeDef> {
     const url = `${this.typeDefsUrl}/${typeDef.id}`;
@@ -45,6 +36,23 @@ export class TypeDefService {
       .toPromise()
       .then(() => typeDef)
       .catch(this.handleError);
+  }
+
+  add(name: string){
+    let newTypeDef: TypeDef = new TypeDef();
+    newTypeDef.name = name;
+    let maxId:number = 0;
+    this.getTypeDefs().then(response =>
+      {response.forEach(def => {
+        console.log(def.id);
+        if (def.id > maxId) maxId = def.id;
+      });
+      maxId++;
+      newTypeDef.id = maxId;;
+      console.log("Adding new type:" + newTypeDef.id);
+      this.update(newTypeDef);
+    }
+    );
   }
 
 }

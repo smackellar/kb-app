@@ -1,6 +1,8 @@
-<select [(ngModel)]="defSelect"  (change)="updateDefSelect()">
+<!--select [(ngModel)]="defSelect"  (change)="updateDefSelect()">
   <option *ngFor="let def of typeDefs" [ngValue]="def">{{def.name}}</option>
-</select>
+</select-->
+<button class="btn btn-sm btn-primary" *ngFor="let def of typeDefs" (click)="setDefSelect(def)" style="margin-right:5px">{{def.name}} ({{def.id}}) {{defSelect==def?"*":""}}</button>
+<button class="btn btn-sm btn-success" (click)="addDef()">Add</button>
 <nav *ngIf="defSelect">
   <a routerLink="/{{defSelect.id}}/dashboard" routerLinkActive="active">Dashboard</a>
   <a routerLink="/{{defSelect.id}}/kanban" routerLinkActive="active">Kanban</a>

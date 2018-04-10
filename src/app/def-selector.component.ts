@@ -30,16 +30,23 @@ export class DefSelectorComponent implements OnInit {
 
   private initTypeDefs(typeDefs: TypeDef[]): void{
     this.typeDefs = typeDefs
-    this.defSelect = this.typeDefs.find(def => (def.id = this.route.snapshot.params['defType']));
+    this.defSelect = this.typeDefs.find(def => (def.id == this.route.snapshot.params['defType']));
     this.updateDefSelect();
-    console.log("defType = " + this.route.snapshot.params['defType']);
-    console.log("current = " + this.defSelect.name);
   }
 
+  setDefSelect(defSelect: TypeDef): void {
+    // use the current def service
+    this.defSelect = defSelect;
+    this.updateDefSelect();
+  }
   updateDefSelect(): void {
     // use the current def service
     this.defCurrentService.typeDef = this.defSelect;
     this.router.navigateByUrl("/" + this.defSelect.id + "/" + (this.route.snapshot.url.toString().indexOf("kanban") ? "kanban" : "dashboard" ));
+  }
+
+  addDef(): void {
+    this.typeDefService.add("New def");
   }
 
 }
