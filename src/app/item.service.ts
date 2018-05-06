@@ -50,6 +50,14 @@ export class ItemService {
     });
   }
 
+  delete(item): Promise<void> {
+    const url = `${this.itemsUrl}/${item.id}`;
+    return this.http.delete(url)
+      .toPromise()
+      .then(() => console.log("Deleting: " + item.id))
+      .catch(this.handleError);
+  }
+
   getItem(id: number): Promise<Item> {
     if (id == -1){ // assume new Item
       return new Promise<Item>((resolve, reject) => {

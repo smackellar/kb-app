@@ -27,6 +27,11 @@ export class ItemDetailComponent implements OnInit {
     this.itemService.update(this.item)
       .then(() => this.goBack());
   }
+  delete(): void {
+    this.itemService.delete(this.item)
+    .then(() => this.location.back());
+
+  }
   goBack(): void {
     this.location.back();
   }
