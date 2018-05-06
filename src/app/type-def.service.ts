@@ -3,6 +3,7 @@ import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 import { TypeDef } from './type-def';
+import { FieldDef } from './field-def';
 //import { typeDefS } from './mock-typeDefs';
 
 @Injectable()
@@ -63,6 +64,18 @@ export class TypeDefService {
     return this.update(newTypeDef);
   }
   );
+  }
+
+  addField(typeDef: TypeDef, name: string): void{
+    let maxId = 0;
+    for (let field of typeDef.fields){
+      if (field.id > maxId) maxId = field.id;
+    }
+    let newField = new FieldDef();
+    newField.id = maxId + 1;
+    newField.name = name;
+    newField.isCardable = true;
+    typeDef.fields.push(newField);
   }
 
 }
