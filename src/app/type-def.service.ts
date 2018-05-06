@@ -44,6 +44,7 @@ export class TypeDefService {
 
   add(name: string): Promise<TypeDef>{
     let newTypeDef: TypeDef = new TypeDef();
+    newTypeDef.fields = [];
     newTypeDef.name = name;
     let maxId:number = 0;
     return this.getTypeDefs().then(response =>

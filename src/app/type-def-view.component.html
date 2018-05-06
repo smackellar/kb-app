@@ -5,4 +5,5 @@
     <input type="input" [(value)]="field.name" (change)="updateLabel(field,$event.target.value)">
   </li>
 </ul>
-<input type="input" [(value)]="newFieldName"><button (click)="addField()">Add field</button>
+<input type="input" [(ngModel)]="newFieldName">
+<button (click)="addField()" class="btn btn-sm btn-success">Add field</button>

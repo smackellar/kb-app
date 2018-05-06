@@ -13,7 +13,7 @@ import { TypeDefService } from './type-def.service';
 export class TypeDefViewComponent implements OnInit {
 
   @Input() typeDef: TypeDef;
-  @Input() newFieldName: string = "xxx";
+  @Input() newFieldName: string = "";
 
   constructor(
     private defCurrentService: DefCurrentService, private typeDefService: TypeDefService
@@ -40,6 +40,7 @@ export class TypeDefViewComponent implements OnInit {
       return;
     this.typeDefService.addField(this.typeDef, this.newFieldName);
     this.typeDefService.update(this.typeDef);
+    this.newFieldName = "";
   }
 
   private pushToService(): void {
