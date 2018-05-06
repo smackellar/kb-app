@@ -5,4 +5,8 @@ export class Item {
   private _tags: string;
   tagList: Array<string>;
   links: Array<number>;
+
+  constructor(){
+    this.values = {};
+  }
 }

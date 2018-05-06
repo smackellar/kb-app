@@ -47,24 +47,23 @@ export class TypeDefService {
     newTypeDef.fields = [];
     newTypeDef.name = name;
     let maxId:number = 0;
-    return this.getTypeDefs().then(response =>
+    return this.getTypeDefs()
+    .then(response =>
       {response.forEach(def => {
         console.log(def.id);
         if (def.id > maxId) maxId = def.id;
       });
       maxId++;
-      newTypeDef.id = maxId;;
-      console.log("Adding new type:" + newTypeDef.id);
       // return this.update(newTypeDef)    .then(() => newTypeDef)
       //     .catch(this.handleError);;
       // this.initTypeDefs();
+    })
+    .then(response => {
+      newTypeDef.id = maxId;
+      console.log("Adding new type:" + newTypeDef.id);
+      return this.update(newTypeDef);
     }
-  ).then(response => {
-    newTypeDef.id = maxId;
-    console.log("Adding new type:" + newTypeDef.id);
-    return this.update(newTypeDef);
-  }
-  );
+    );
   }
 
   addField(typeDef: TypeDef, name: string): void{

@@ -59,4 +59,9 @@ export class DefSelectorComponent implements OnInit {
     // this.ngOnInit(); // will have timing issues
   }
 
+  addItem(): void {
+    this.itemService.newItem(this.defSelect)
+    .then(item => (this.router.navigateByUrl("/" + this.defSelect.id + "/detail/" + item.id)));
+  }
+
 }

@@ -8,7 +8,6 @@ import { TypeDef } from './type-def';
 export class ItemService {
 
   private itemsUrl = 'api/items';  // URL to web api
-  defSelect: string = "hero";
   items: Promise<Item[]>;
 
   constructor(
@@ -34,8 +33,29 @@ export class ItemService {
     return Promise.reject(error.message || error);
   }
 
+  newItem(typeDef: TypeDef): Promise<Item>{
+    let newItem: Item = new Item();
+    newItem.type = typeDef.id;
+    let maxId = 0;
+    return this.getItems(typeDef)
+    .then(items => {
+      for (let item of items){
+        if (item.id > maxId) maxId = item.id;
+      }
+    })
+    .then(response => {
+      newItem.id = maxId + 1;
+      console.log("adding item: " + newItem.id);
+      return this.update(newItem);
+    });
+  }
 
   getItem(id: number): Promise<Item> {
+    if (id == -1){ // assume new Item
+      return new Promise<Item>((resolve, reject) => {
+        resolve(new Item());
+      });
+    };
     const url = `${this.itemsUrl}/${id}`;
     return this.http.get(url)
       .toPromise()
