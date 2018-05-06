@@ -2,7 +2,8 @@
   <h3>{{item.name}} edit</h3>
   <item-card [item]="item"></item-card>
   <!--item-linker [item]="item"></item-linker-->
-  <div *ngFor="let field of defSelect.fields">{{field.name}} <input [(value)]="item.values[field.id]" (change)="updateField($event.target.value, field.id)">
+  <div *ngFor="let field of defSelect.fields">{{field.name}}
+    <input value="{{item.values[field.id]}}" (change)="updateField($event.target.value, field.id)">
   </div>
 
   <button class="btn btn-sm btn-secondary" (click)="goBack()">Back</button>
