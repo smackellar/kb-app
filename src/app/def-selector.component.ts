@@ -23,15 +23,20 @@ export class DefSelectorComponent implements OnInit {
     private defCurrentService: DefCurrentService) { }
 
   ngOnInit(): void {
-    console.log(this);
-    this.typeDefService.getTypeDefs()
-      .then(typeDefs => this.initTypeDefs(typeDefs));
+    this.initTypeDefs();
   }
 
-  private initTypeDefs(typeDefs: TypeDef[]): void{
-    this.typeDefs = typeDefs
-    this.defSelect = this.typeDefs.find(def => (def.id == this.route.snapshot.params['defType']));
-    this.updateDefSelect();
+  private initTypeDefs(): void{
+    this.typeDefService.getTypeDefs()
+      .then(typeDefs => {
+        console.log("Getting types: " + typeDefs.length);
+        this.typeDefs = typeDefs;
+        if (!this.defSelect){
+          this.defSelect = this.typeDefs.find(def => (def.id == this.route.snapshot.params['defType']));
+          this.updateDefSelect();
+        }
+      }
+    );
   }
 
   setDefSelect(defSelect: TypeDef): void {
@@ -46,7 +51,12 @@ export class DefSelectorComponent implements OnInit {
   }
 
   addDef(): void {
-    this.typeDefService.add("New def");
+    this.typeDefService.add("New def").then(typeDef => {
+      console.log("New def returned: " + typeDef.id);
+      // this.initTypeDefs();
+      this.typeDefs.push(typeDef);
+    });
+    // this.ngOnInit(); // will have timing issues
   }
 
 }

@@ -12,11 +12,14 @@ export class TypeDefService {
   typeDefs: Promise<TypeDef[]>;
 
   constructor(private http: Http) {
+    this.initTypeDefs();
+  }
+
+  private initTypeDefs(){
     this.typeDefs = this.http.get(this.typeDefsUrl)
                .toPromise()
                .then(response => response.json().data as TypeDef[])
                .catch(this.handleError);
-
   }
 
   getTypeDefs(): Promise<TypeDef[]> {
@@ -38,11 +41,11 @@ export class TypeDefService {
       .catch(this.handleError);
   }
 
-  add(name: string){
+  add(name: string): Promise<TypeDef>{
     let newTypeDef: TypeDef = new TypeDef();
     newTypeDef.name = name;
     let maxId:number = 0;
-    this.getTypeDefs().then(response =>
+    return this.getTypeDefs().then(response =>
       {response.forEach(def => {
         console.log(def.id);
         if (def.id > maxId) maxId = def.id;
@@ -50,9 +53,16 @@ export class TypeDefService {
       maxId++;
       newTypeDef.id = maxId;;
       console.log("Adding new type:" + newTypeDef.id);
-      this.update(newTypeDef);
+      // return this.update(newTypeDef)    .then(() => newTypeDef)
+      //     .catch(this.handleError);;
+      // this.initTypeDefs();
     }
-    );
+  ).then(response => {
+    newTypeDef.id = maxId;
+    console.log("Adding new type:" + newTypeDef.id);
+    return this.update(newTypeDef);
+  }
+  );
   }
 
 }
