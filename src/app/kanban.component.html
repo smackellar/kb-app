@@ -16,8 +16,6 @@
 </style>
 
 <div *ngIf="defSelect">
-<h1>{{defSelect.name}}</h1>
-
 Organise by:
 <div *ngIf="fieldSelect">
   <select [(ngModel)]="fieldSelect" (change)="setField()">

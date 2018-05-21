@@ -8,6 +8,7 @@
   <button *ngIf="!editMode" class="btn btn-sm btn-primary" (click)="editMode=!editMode">Change name</button>
   <input *ngIf="editMode" type="input" value="{{defSelect.name}}" (change)="updateName($event.target.value)"><button *ngIf="editMode"  class="btn btn-sm btn-primary" (click)="editMode = !editMode">Update</button>
   <button *ngIf="defSelect && typeDefs.length>1" class="btn btn-sm btn-danger" (click)="removeDefSelect()">Delete {{defSelect.name}}</button>
+  <button class="btn btn-sm btn-success" (click)="addItem()">Add item</button>
 </div>
 <nav *ngIf="defSelect">
   <a routerLink="/{{defSelect.id}}/dashboard" routerLinkActive="active">Dashboard</a>
@@ -17,5 +18,4 @@
     <span *ngIf="field.isListable">{{field.name}}</span>
   </span>
 </nav>
-<button class="btn btn-sm btn-primary" (click)="addItem()">Add item</button>
 <router-outlet></router-outlet>
