@@ -1,3 +1,4 @@
+<perspective-selector></perspective-selector>
 <ul *ngFor="let field of typeDef.fields">
   <li>
     <input type="checkbox" [checked]="field.isListable" (change)="toggleCatField(field)">

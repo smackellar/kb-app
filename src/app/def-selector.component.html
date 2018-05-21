@@ -11,9 +11,6 @@
   <button class="btn btn-sm btn-success" (click)="addItem()">Add item</button>
 </div>
 <nav *ngIf="defSelect">
-  <a routerLink="/{{defSelect.id}}/dashboard" routerLinkActive="active">Dashboard</a>
-  <a routerLink="/{{defSelect.id}}/kanban" routerLinkActive="active">Kanban</a>
-  <a routerLink="/{{defSelect.id}}/def" routerLinkActive="active">Def</a>
   <span *ngFor="let field of defSelect.fields">
     <span *ngIf="field.isListable">{{field.name}}</span>
   </span>

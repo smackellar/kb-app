@@ -13,7 +13,6 @@ export class ListValItems {
   addItem(item: Item){
     if (!this.findItem(item)){
       this.items.push(item);
-      console.log("added: " + item.id + " to " + this.value);
     }
   }
 

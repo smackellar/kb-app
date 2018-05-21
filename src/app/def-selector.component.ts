@@ -25,9 +25,6 @@ export class DefSelectorComponent implements OnInit {
 
   ngOnInit(): void {
     this.initTypeDefs();
-    this.route.url.subscribe(url =>{
-     console.log(url);
-});
   }
 
   private initTypeDefs(): void{

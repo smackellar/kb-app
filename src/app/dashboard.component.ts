@@ -30,6 +30,7 @@ export class DashboardComponent implements OnInit {
              .then(items => (this.items = items));
        }
     });
+
   }
 
 }
