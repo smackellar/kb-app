@@ -14,6 +14,7 @@ export class DefSelectorComponent implements OnInit {
 
   typeDefs: TypeDef[] = [];
   @Input() defSelect: TypeDef;
+  editMode: boolean = false;
 
   constructor(
     private router: Router,
@@ -24,6 +25,9 @@ export class DefSelectorComponent implements OnInit {
 
   ngOnInit(): void {
     this.initTypeDefs();
+    this.route.url.subscribe(url =>{
+     console.log(url);
+});
   }
 
   private initTypeDefs(): void{
@@ -32,9 +36,16 @@ export class DefSelectorComponent implements OnInit {
         console.log("Getting types: " + typeDefs.length);
         this.typeDefs = typeDefs;
         if (!this.defSelect){
-          this.defSelect = this.typeDefs.find(def => (def.id == this.route.snapshot.params['defType']));
-          this.updateDefSelect();
+          let defId = this.route.snapshot.params['defType'];
+          if (defId){
+            this.defSelect = this.typeDefs.find(def => (def.id == defId));
+          }
+          // if (!this.defSelect){
+          //   this.defSelect = this.typeDefs[0];
+          // }
         }
+        if (this.defSelect)
+          this.updateDefSelect();
       }
     );
   }
@@ -59,9 +70,25 @@ export class DefSelectorComponent implements OnInit {
     // this.ngOnInit(); // will have timing issues
   }
 
+  removeDefSelect(): void {
+    this.typeDefService.delete(this.defSelect)
+    .then(() => {
+      console.log("Deleted: " + this.defSelect.name);
+      // this.defSelect = undefined;
+      this.router.navigateByUrl("/defs");
+    });
+  }
+
   addItem(): void {
     this.itemService.newItem(this.defSelect)
     .then(item => (this.router.navigateByUrl("/" + this.defSelect.id + "/detail/" + item.id)));
+  }
+
+  updateName(name): void {
+    this.defSelect.name = name;
+    this.typeDefService.update(this.defSelect).then(typeDef => {
+
+    });
   }
 
 }

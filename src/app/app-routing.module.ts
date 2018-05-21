@@ -8,7 +8,15 @@ import { DefSelectorComponent }  from './def-selector.component';
 import { TypeDefViewComponent }  from './type-def-view.component';
 
 const routes: Routes = [
-  {path: ':defType',
+  { path: '',
+    redirectTo: '/defs',
+    pathMatch: 'full'
+  },
+  { path: 'defs',
+    component: DefSelectorComponent,
+    data: { title: 'Heroes List' }
+  },
+  { path: ':defType',
     component: DefSelectorComponent,
     children: [
       { path: 'detail/:id', component: ItemDetailComponent },

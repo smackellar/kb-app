@@ -66,6 +66,15 @@ export class TypeDefService {
     );
   }
 
+  delete(typeDef: TypeDef): Promise<void>{
+    const url = `${this.typeDefsUrl}/${typeDef.id}`;
+    return this.http
+      .delete(url)
+      .toPromise()
+      .then(() => console.log("Deleting: " + typeDef.id))
+      .catch(this.handleError);
+  }
+
   addField(typeDef: TypeDef, name: string): void{
     let maxId = 0;
     for (let field of typeDef.fields){
