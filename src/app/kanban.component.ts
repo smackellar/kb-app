@@ -36,7 +36,10 @@ export class KanbanComponent implements OnInit {
          console.log("from subscription: " + def.name);
          this.defSelect = def;
          this.initItems();
-         this.fieldSelect = this.defCurrentService.getFieldDef();
+         for (let field of this.defSelect.fields){
+           if (field.isListable)
+            this.fieldSelect = field;
+         }
        }
     });
   }
@@ -58,7 +61,6 @@ export class KanbanComponent implements OnInit {
 
   setField(): void {
     this.listManager = new ListableFieldManager(this.itemService, this.fieldSelect, this.items);
-    this.defCurrentService.setFieldDef(this.fieldSelect);
     this.getLists();
   }
 

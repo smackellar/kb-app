@@ -13,8 +13,7 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   { path: 'defs',
-    component: DefSelectorComponent,
-    data: { title: 'Heroes List' }
+    component: DefSelectorComponent
   },
   { path: ':defType',
     component: DefSelectorComponent,
