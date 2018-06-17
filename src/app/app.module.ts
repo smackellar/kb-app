@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { DefSelectorComponent } from './def-selector.component';
+import { DefCreatorComponent } from './def-creator.component';
 import { PerspectiveSelectorComponent } from './perspective-selector.component';
 import { DashboardComponent } from './dashboard.component'
 import { KanbanComponent } from './kanban.component'
@@ -42,6 +43,7 @@ import { InMemoryDataService }  from './in-memory-data.service';
     AppComponent,
     PerspectiveSelectorComponent,
     DefSelectorComponent,
+    DefCreatorComponent,
     DashboardComponent,
     KanbanComponent,
     ItemDetailComponent,

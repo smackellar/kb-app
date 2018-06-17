@@ -42,24 +42,26 @@ export class DefSelectorComponent implements OnInit {
           // }
         }
         if (this.defSelect)
-          this.updateDefSelect();
+          this.updateSelectedDef();
       }
     );
   }
 
-  setDefSelect(defSelect: TypeDef): void {
+  selectDef(defSelect: TypeDef): void {
     // use the current def service
     this.defSelect = defSelect;
-    this.updateDefSelect();
+    this.updateSelectedDef();
   }
-  updateDefSelect(): void {
+  updateSelectedDef(): void {
     // use the current def service
     this.defCurrentService.typeDef = this.defSelect;
     this.router.navigateByUrl("/" + this.defSelect.id + "/" + (this.route.snapshot.url.toString().indexOf("kanban") ? "kanban" : "dashboard" ));
   }
 
   addDef(): void {
-    this.typeDefService.add("New def").then(typeDef => {
+    let newTypeDef = new TypeDef()
+    newTypeDef.name = "New Def";
+    this.typeDefService.add(newTypeDef).then(typeDef => {
       console.log("New def returned: " + typeDef.id);
       // this.initTypeDefs();
       this.typeDefs.push(typeDef);
@@ -67,20 +69,12 @@ export class DefSelectorComponent implements OnInit {
     // this.ngOnInit(); // will have timing issues
   }
 
-  removeDefSelect(): void {
-    this.typeDefService.delete(this.defSelect)
-    .then(() => {
-      console.log("Deleted: " + this.defSelect.name);
-      // this.defSelect = undefined;
-      this.router.navigateByUrl("/defs");
-    });
-  }
-
   addItem(): void {
     this.itemService.newItem(this.defSelect)
     .then(item => (this.router.navigateByUrl("/" + this.defSelect.id + "/detail/" + item.id)));
   }
 
+  // REFACTOR OUT to def selector
   updateName(name): void {
     this.defSelect.name = name;
     this.typeDefService.update(this.defSelect).then(typeDef => {

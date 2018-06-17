@@ -33,7 +33,6 @@ export class KanbanComponent implements OnInit {
   ngOnInit(): void {
     this.defCurrentService.getSubject().subscribe(def => {
        if (def) {
-         console.log("from subscription: " + def.name);
          this.defSelect = def;
          this.initItems();
          for (let field of this.defSelect.fields){

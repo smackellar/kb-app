@@ -6,6 +6,8 @@ import { Item } from './item';
 */
 export class ItemUtils {
   getValueByField(item: Item, field: FieldDef): any {
+    if (!field)
+      return undefined;
     return item.values[field.id];
   }
 }

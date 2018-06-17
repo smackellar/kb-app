@@ -1,5 +1,5 @@
-<a routerLink="/defs" class="btn btn-sm btn-primary" style="margin-right:5px">Home</a>
-<button class="btn btn-sm btn-primary" *ngFor="let def of typeDefs" (click)="setDefSelect(def)" style="margin-right:5px">{{def.name}} ({{def.id}}) {{defSelect==def?"*":""}}</button>
+<button routerLink="/defs" class="btn btn-sm btn-primary" style="margin-right:5px">Home</button>
+<button class="btn btn-sm btn-primary" *ngFor="let def of typeDefs" (click)="selectDef(def)" style="margin-right:5px">{{def.name}} ({{def.id}}) {{defSelect==def?"*":""}}</button>
 <button class="btn btn-sm btn-success" (click)="addDef()">Add type</button>
 <div *ngIf="defSelect">
   <h2>
@@ -7,7 +7,6 @@
   </h2>
   <button *ngIf="!editMode" class="btn btn-sm btn-primary" (click)="editMode=!editMode">Change name</button>
   <input *ngIf="editMode" type="input" value="{{defSelect.name}}" (change)="updateName($event.target.value)"><button *ngIf="editMode"  class="btn btn-sm btn-primary" (click)="editMode = !editMode">Update</button>
-  <button *ngIf="defSelect && typeDefs.length>1" class="btn btn-sm btn-danger" (click)="removeDefSelect()">Delete {{defSelect.name}}</button>
   <button class="btn btn-sm btn-success" (click)="addItem()">Add item</button>
 </div>
 <nav *ngIf="defSelect">

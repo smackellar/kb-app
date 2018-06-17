@@ -42,24 +42,20 @@ export class TypeDefService {
       .catch(this.handleError);
   }
 
-  add(name: string): Promise<TypeDef>{
-    let newTypeDef: TypeDef = new TypeDef();
-    newTypeDef.fields = [];
-    newTypeDef.name = name;
+  add(newTypeDef: TypeDef): Promise<TypeDef>{
     let maxId:number = 0;
     return this.getTypeDefs()
     .then(response =>
       {response.forEach(def => {
-        console.log(def.id);
         if (def.id > maxId) maxId = def.id;
       });
-      maxId++;
       // return this.update(newTypeDef)    .then(() => newTypeDef)
       //     .catch(this.handleError);;
       // this.initTypeDefs();
     })
     .then(response => {
-      newTypeDef.id = maxId;
+      newTypeDef.id = maxId + 1;
+      newTypeDef.fields = [];
       console.log("Adding new type:" + newTypeDef.id);
       return this.update(newTypeDef);
     }
