@@ -7,6 +7,7 @@ import { TypeDef } from './type-def';
 @Injectable()
 export class ItemService {
 
+  private headers = new Headers({'Content-Type': 'application/json'});
   private itemsUrl = 'api/items';  // URL to web api
   items: Promise<Item[]>;
 
@@ -54,7 +55,7 @@ export class ItemService {
     const url = `${this.itemsUrl}/${item.id}`;
     return this.http.delete(url)
       .toPromise()
-      .then(() => console.log("Deleting: " + item.id))
+      .then(() => console.log("Deleting item: " + item.id))
       .catch(this.handleError);
   }
 
@@ -71,7 +72,6 @@ export class ItemService {
       .catch(this.handleError);
   }
 
-  private headers = new Headers({'Content-Type': 'application/json'});
   update(item: Item): Promise<Item> {
     const url = `${this.itemsUrl}/${item.id}`;
     return this.http

@@ -47,11 +47,16 @@ export class TypeDefViewComponent implements OnInit {
   }
 
   removeDefSelect(): void {
+    console.log("about to delete type");
     this.typeDefService.delete(this.typeDef)
     .then(() => {
-      console.log("Deleted: " + this.typeDef.name);
+      console.log("Deleted type: " + this.typeDef.name);
       // this.defSelect = undefined;
-      this.router.navigateByUrl("/defs");
+      this.typeDefService.getTypeDefs()
+        .then(typeDefs => {
+          console.log("Getting types again: " + typeDefs.length);
+          this.router.navigateByUrl("/defs");
+        });
     });
   }
 

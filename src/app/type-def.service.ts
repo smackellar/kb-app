@@ -62,12 +62,12 @@ export class TypeDefService {
     );
   }
 
-  delete(typeDef: TypeDef): Promise<void>{
+  delete(typeDef): Promise<void>{
     const url = `${this.typeDefsUrl}/${typeDef.id}`;
     return this.http
       .delete(url)
       .toPromise()
-      .then(() => console.log("Deleting: " + typeDef.id))
+      .then(() => console.log("Deleting def: " + typeDef.id))
       .catch(this.handleError);
   }
 
