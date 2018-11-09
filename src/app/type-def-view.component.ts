@@ -14,7 +14,7 @@ import { ActivatedRoute, Router, Params } from '@angular/router';
 export class TypeDefViewComponent implements OnInit {
 
   @Input() typeDef: TypeDef;
-  @Input() newFieldName: string = "";
+  @Input() newFieldName: string;
 
   constructor(
     private router: Router,
@@ -25,6 +25,10 @@ export class TypeDefViewComponent implements OnInit {
 
   ngOnInit(): void {
     this.defCurrentService.getSubject().subscribe(def => this.typeDef = def);
+    this.initNewFieldName();
+  }
+  initNewFieldName(): void {
+    this.newFieldName = "Field " + (this.typeDef.fields.length + 1);
   }
 
   toggleCatField(field): void {
@@ -43,12 +47,14 @@ export class TypeDefViewComponent implements OnInit {
   }
 
   addField(): void {
-    console.log(this.newFieldName);
     if (!this.newFieldName)
       return;
     this.typeDefService.addField(this.typeDef, this.newFieldName);
     this.typeDefService.update(this.typeDef);
-    this.newFieldName = "";
+    this.initNewFieldName();
+  }
+  removeField(field): void {
+    this.typeDefService.removeField(this.typeDef, field);
   }
 
   removeDefSelect(): void {

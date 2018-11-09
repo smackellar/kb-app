@@ -85,4 +85,8 @@ export class TypeDefService {
     typeDef.fields.push(newField);
   }
 
+  removeField(typeDef: TypeDef, fieldDef: FieldDef): void{
+    typeDef.fields.splice(typeDef.fields.indexOf(fieldDef),1);
+  }
+
 }
