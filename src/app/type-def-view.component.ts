@@ -32,6 +32,11 @@ export class TypeDefViewComponent implements OnInit {
     this.pushToService();
   }
 
+  toggleCardField(field): void {
+    field.isCardable = !field.isCardable;
+    this.pushToService();
+  }
+
   updateLabel(field, newName): void {
     field.name = newName;
     this.pushToService();
