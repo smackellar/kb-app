@@ -1,4 +1,5 @@
 <perspective-selector></perspective-selector>
+<div *ngIf="typeDef">
 <ul *ngFor="let field of typeDef.fields">
   <li>
     <input type="checkbox" [checked]="field.isListable" (change)="toggleCatField(field)">
@@ -6,6 +7,7 @@
     <input type="input" [(value)]="field.name" (change)="updateLabel(field,$event.target.value)">
   </li>
 </ul>
+</div>
 <input type="input" [(ngModel)]="newFieldName">
 <button (click)="addField()" class="btn btn-sm btn-success">Add field</button>
 <button class="btn btn-sm btn-danger" (click)="removeDefSelect()">Delete {{typeDef.name}}</button>

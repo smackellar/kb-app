@@ -16,9 +16,8 @@
 </style>
 
 <perspective-selector></perspective-selector>
-<div *ngIf="defSelect">
-Organise by:
 <div *ngIf="fieldSelect">
+  Organise by:
   <select [(ngModel)]="fieldSelect" (change)="setField()">
       <option *ngFor="let field of defSelect.fields | isListable" [ngValue]="field">{{field.name}}</option>
   </select>

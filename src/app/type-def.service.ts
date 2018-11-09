@@ -24,6 +24,7 @@ export class TypeDefService {
   }
 
   getTypeDefs(): Promise<TypeDef[]> {
+    this.initTypeDefs();
     return this.typeDefs;
   }
 
@@ -69,6 +70,7 @@ export class TypeDefService {
       .toPromise()
       .then(() => console.log("Deleting def: " + typeDef.id))
       .catch(this.handleError);
+
   }
 
   addField(typeDef: TypeDef, name: string): void{

@@ -7,7 +7,6 @@ import { ListValItems }         from './list-val-items';
 
 import { ListableFieldManager } from './listable-field-manager';
 import { ItemService } from './item.service';
-import { ActivatedRoute, Router, Params } from '@angular/router';
 import { DefCurrentService } from './def-current.service';
 
 @Component({
@@ -26,7 +25,6 @@ export class KanbanComponent implements OnInit {
   lists: ListValItems[];
 
   constructor(
-    private route: ActivatedRoute,
     private defCurrentService: DefCurrentService,
     private itemService: ItemService) { }
 
