@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { DefSelectorComponent } from './def-selector.component';
 import { DefCreatorComponent } from './def-creator.component';
 import { PerspectiveSelectorComponent } from './perspective-selector.component';
+import { ItemPasterComponent } from './item-paster.component';
 import { DashboardComponent } from './dashboard.component'
 import { KanbanComponent } from './kanban.component'
 import { KanbanListComponent } from './kanban-list.component'
@@ -42,6 +43,7 @@ import { InMemoryDataService }  from './in-memory-data.service';
   declarations: [
     AppComponent,
     PerspectiveSelectorComponent,
+    ItemPasterComponent,
     DefSelectorComponent,
     DefCreatorComponent,
     DashboardComponent,

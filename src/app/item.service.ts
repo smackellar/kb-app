@@ -34,21 +34,25 @@ export class ItemService {
     return Promise.reject(error.message || error);
   }
 
-  newItem(typeDef: TypeDef): Promise<Item>{
+  newItem(typeDef: TypeDef, values: string[]): Promise<Item>{
     let newItem: Item = new Item();
     newItem.type = typeDef.id;
-    let maxId = 0;
-    return this.getItems(typeDef)
-    .then(items => {
-      for (let item of items){
-        if (item.id > maxId) maxId = item.id;
+
+    // add values if they exist
+    if (values){
+      let fieldIndex = 0;
+      for (let value of values){
+
+        // check there is a field to populate
+        if (fieldIndex + 1 > typeDef.fields.length)
+          break;
+
+        newItem.values[typeDef.fields[fieldIndex].id] = value;
+        fieldIndex++;
       }
-    })
-    .then(response => {
-      newItem.id = maxId + 1;
-      console.log("adding item: " + newItem.id);
-      return this.update(newItem);
-    });
+    }
+
+    return this.insert(newItem);
   }
 
   delete(item): Promise<void> {
@@ -78,6 +82,16 @@ export class ItemService {
       .put(url, JSON.stringify(item), {headers: this.headers})
       .toPromise()
       .then(() => item)
+      .catch(this.handleError);
+  }
+
+  insert(items: Item): Promise<Item> {
+    const url = `${this.itemsUrl}`;
+    items.id = null;
+    return this.http
+      .post(url, JSON.stringify(items), {headers: this.headers})
+      .toPromise()
+      .then(() => items)
       .catch(this.handleError);
   }
 

@@ -70,7 +70,7 @@ export class DefSelectorComponent implements OnInit {
   }
 
   addItem(): void {
-    this.itemService.newItem(this.defSelect)
+    this.itemService.newItem(this.defSelect, null)
     .then(item => (this.router.navigateByUrl("/" + this.defSelect.id + "/detail/" + item.id)));
   }
 
