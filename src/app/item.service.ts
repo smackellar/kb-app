@@ -85,13 +85,13 @@ export class ItemService {
       .catch(this.handleError);
   }
 
-  insert(items: Item): Promise<Item> {
+  insert(item: Item): Promise<Item> {
     const url = `${this.itemsUrl}`;
-    items.id = null;
+    item.id = null;
     return this.http
-      .post(url, JSON.stringify(items), {headers: this.headers})
+      .post(url, JSON.stringify(item), {headers: this.headers})
       .toPromise()
-      .then(() => items)
+      .then(() => item)
       .catch(this.handleError);
   }
 
