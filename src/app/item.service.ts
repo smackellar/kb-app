@@ -15,9 +15,6 @@ import { TypeDef } from './type-def';
 export class ItemService {
 
   private itemsUrl = 'api/items';  // URL to web api
-  // items: Promise<Item[]>;
-
-
 
   constructor(private http: HttpClient) {
     this.initItems();
@@ -32,17 +29,15 @@ export class ItemService {
 
   }
 
-  // private handleError(error: any): Promise<any> {
-  //   console.error('An error occurred', error); // for demo purposes only
-  //   return Promise.reject(error.message || error);
-  // }
-
   newItem(typeDef: TypeDef, values: string[]): Observable<Item>{
     let newItem: Item = new Item();
     newItem.type = typeDef.id;
 
+
     // add values if they exist
     if (values){
+      console.log('typeDef id:' + newItem.type);
+      console.log(values.join('-'));
       let fieldIndex = 0;
       for (let value of values){
 
@@ -51,10 +46,12 @@ export class ItemService {
           break;
 
         newItem.values[typeDef.fields[fieldIndex].id] = value;
+        console.log('fieldIndex:' + fieldIndex);
         fieldIndex++;
       }
     }
 
+    console.log('adding item:' + newItem.values.toString());
     return this.insert(newItem);
   }
 
@@ -64,23 +61,13 @@ export class ItemService {
   }
 
   getItem(id: number): Observable<Item> {
-    // if (id == -1){ // assume new Item
-      const url: string = `${this.itemsUrl}/${id}`;
-      return this.http.get<Item>(url);
-      // return new Promise<Item>((resolve, reject) => {
-      //   resolve(new Item());
-      // });
-    // };
-    // const url = `${this.itemsUrl}/${id}`;
-    // return this.http.get(url)
-    //   .toPromise()
-    //   .then(response => response.json().data as Item)
-    //   .catch(this.handleError);
+    const url: string = `${this.itemsUrl}/${id}`;
+    return this.http.get<Item>(url);
   }
 
   update(item: Item): Observable<Item> {
     const url = `${this.itemsUrl}/${item.id}`;
-    return this.http.put<Item>(url, httpOptions);
+    return this.http.put<Item>(url, item, httpOptions);
   }
 
   insert(item: Item): Observable<Item> {
