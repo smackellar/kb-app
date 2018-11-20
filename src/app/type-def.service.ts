@@ -30,6 +30,7 @@ export class TypeDefService {
 
   getTypeDefs(): Observable<TypeDef[]> {
     // this.initTypeDefs();
+    console.log("get all types")
     return this.http.get<TypeDef[]>(this.typeDefsUrl);
   }
 
@@ -40,13 +41,12 @@ export class TypeDefService {
 
   update(typeDef: TypeDef): Observable<TypeDef> {
     const url = `${this.typeDefsUrl}/${typeDef.id}`;
-    return this.http.post<TypeDef>(url, typeDef, httpOptions);
+    return this.http.put<TypeDef>(url, typeDef, httpOptions);
   }
 
   insert(typeDef: TypeDef): Observable<TypeDef> {
     const url = `${this.typeDefsUrl}`;
-    typeDef.id = null;
-    return this.http.put<TypeDef>(url, typeDef, httpOptions);
+    return this.http.post<TypeDef>(url, typeDef, httpOptions);
   }
 
   add(newTypeDef: TypeDef): Observable<TypeDef>{
