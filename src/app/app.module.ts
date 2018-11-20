@@ -28,7 +28,7 @@ import { DraggableDirective } from './draggable.directive';
 import { DropTargetDirective } from './drop-target.directive';
 
 // Imports for loading & configuring the in-memory web api
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }  from './in-memory-data.service';
 
 @NgModule({
@@ -36,7 +36,8 @@ import { InMemoryDataService }  from './in-memory-data.service';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    InMemoryWebApiModule.forRoot(InMemoryDataService),
+    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }),
+    // InMemoryWebApiModule.forRoot(InMemoryDataService),
     AppRoutingModule
   ],
   declarations: [
