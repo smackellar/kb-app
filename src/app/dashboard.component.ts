@@ -27,7 +27,7 @@ export class DashboardComponent implements OnInit {
        if (def) {
          this.defSelect = def;
          this.itemService.getItems(def)
-             .then(items => (this.items = items));
+             .subscribe(items => (this.items = items));
        }
     });
 

@@ -1,76 +1,61 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http';
-import 'rxjs/add/operator/toPromise';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+// import 'rxjs/add/operator/toPromise';
+import { Observable } from 'rxjs';
 
 import { TypeDef } from './type-def';
 import { FieldDef } from './field-def';
 //import { typeDefS } from './mock-typeDefs';
 
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
+
 @Injectable()
 export class TypeDefService {
 
+  constructor(private http: HttpClient) { }
+
   private typeDefsUrl = 'api/typeDefs';  // URL to web api
-  typeDefs: Promise<TypeDef[]>;
+  typeDefs: Observable<TypeDef[]>;
 
-  constructor(private http: Http) {
-    this.initTypeDefs();
+  // private initTypeDefs(){
+  //   return this.http.get<TypeDef>(this.typeDefsUrl);
+  //   this.typeDefs = this.http.get(this.typeDefsUrl)
+  //              .toPromise()
+  //              .then(response => response.json().data as TypeDef[])
+  //              .catch(this.handleError);
+  // }
+
+  getTypeDefs(): Observable<TypeDef[]> {
+    // this.initTypeDefs();
+    return this.http.get<TypeDef[]>(this.typeDefsUrl);
   }
 
-  private initTypeDefs(){
-    this.typeDefs = this.http.get(this.typeDefsUrl)
-               .toPromise()
-               .then(response => response.json().data as TypeDef[])
-               .catch(this.handleError);
-  }
+  // private handleError(error: any): Promise<any> {
+  //   console.error('An error occurred', error); // for demo purposes only
+  //   return Promise.reject(error.message || error);
+  // }
 
-  getTypeDefs(): Promise<TypeDef[]> {
-    this.initTypeDefs();
-    return this.typeDefs;
-  }
-
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error); // for demo purposes only
-    return Promise.reject(error.message || error);
-  }
-
-  private headers = new Headers({'Content-Type': 'application/json'});
-  update(typeDef: TypeDef): Promise<TypeDef> {
+  update(typeDef: TypeDef): Observable<TypeDef> {
     const url = `${this.typeDefsUrl}/${typeDef.id}`;
-    return this.http
-      .put(url, JSON.stringify(typeDef), {headers: this.headers})
-      .toPromise()
-      .then(() => typeDef)
-      .catch(this.handleError);
+    return this.http.post<TypeDef>(url, typeDef, httpOptions);
   }
 
-  add(newTypeDef: TypeDef): Promise<TypeDef>{
-    let maxId:number = 0;
-    return this.getTypeDefs()
-    .then(response =>
-      {response.forEach(def => {
-        if (def.id > maxId) maxId = def.id;
-      });
-      // return this.update(newTypeDef)    .then(() => newTypeDef)
-      //     .catch(this.handleError);;
-      // this.initTypeDefs();
-    })
-    .then(response => {
-      newTypeDef.id = maxId + 1;
-      newTypeDef.fields = [];
-      console.log("Adding new type:" + newTypeDef.id);
-      return this.update(newTypeDef);
-    }
-    );
+  insert(typeDef: TypeDef): Observable<TypeDef> {
+    const url = `${this.typeDefsUrl}`;
+    typeDef.id = null;
+    return this.http.put<TypeDef>(url, typeDef, httpOptions);
   }
 
-  delete(typeDef): Promise<void>{
+  add(newTypeDef: TypeDef): Observable<TypeDef>{
+      return this.insert(newTypeDef);
+  }
+
+  delete(typeDef): Observable<TypeDef>{
     const url = `${this.typeDefsUrl}/${typeDef.id}`;
-    return this.http
-      .delete(url)
-      .toPromise()
-      .then(() => console.log("Deleting def: " + typeDef.id))
-      .catch(this.handleError);
-
+    return this.http.delete<TypeDef>(url);
   }
 
   addField(typeDef: TypeDef, name: string): void{
@@ -82,11 +67,11 @@ export class TypeDefService {
     newField.id = maxId + 1;
     newField.name = name;
     newField.isCardable = true;
-    typeDef.fields.push(newField);
+    (typeDef.fields as Array<FieldDef>).push(newField);
   }
 
   removeField(typeDef: TypeDef, fieldDef: FieldDef): void{
-    typeDef.fields.splice(typeDef.fields.indexOf(fieldDef),1);
+    (typeDef.fields as Array<FieldDef>).splice((typeDef.fields as Array<FieldDef>).indexOf(fieldDef),1);
   }
 
 }

@@ -3,7 +3,7 @@ import { TypeDef } from './type-def';
 import { TypeDefService } from './type-def.service';
 import { ItemService } from './item.service';
 import { DefCurrentService } from './def-current.service';
-import { ActivatedRoute, Router, Params } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'def-selector',
@@ -29,7 +29,7 @@ export class DefSelectorComponent implements OnInit {
 
   private initTypeDefs(): void{
     this.typeDefService.getTypeDefs()
-      .then(typeDefs => {
+      .subscribe(typeDefs => {
         console.log("Getting types: " + typeDefs.length);
         this.typeDefs = typeDefs;
         if (!this.defSelect){
@@ -59,9 +59,9 @@ export class DefSelectorComponent implements OnInit {
   }
 
   addDef(): void {
-    let newTypeDef = new TypeDef()
-    newTypeDef.name = "New Def";
-    this.typeDefService.add(newTypeDef).then(typeDef => {
+    let typeDef = new TypeDef()
+    typeDef.name = "New Def";
+    this.typeDefService.add(typeDef).subscribe(typeDef => {
       console.log("New def returned: " + typeDef.id);
       // this.initTypeDefs();
       this.typeDefs.push(typeDef);
@@ -71,13 +71,13 @@ export class DefSelectorComponent implements OnInit {
 
   addItem(): void {
     this.itemService.newItem(this.defSelect, null)
-    .then(item => (this.router.navigateByUrl("/" + this.defSelect.id + "/detail/" + item.id)));
+    .subscribe(item => (this.router.navigateByUrl("/" + this.defSelect.id + "/detail/" + item.id)));
   }
 
   // REFACTOR OUT to def selector
   updateName(name): void {
     this.defSelect.name = name;
-    this.typeDefService.update(this.defSelect).then(typeDef => {
+    this.typeDefService.update(this.defSelect).subscribe(() => {
 
     });
   }

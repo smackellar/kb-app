@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, ElementRef, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { Item } from './item';
 import { ListValItems } from './list-val-items';
@@ -6,8 +6,6 @@ import { ItemUtils } from './item-utils';
 import { ListableFieldManager } from './listable-field-manager';
 import { TypeDef } from './type-def';
 
-import { FormControl } from '@angular/forms';
-import { Observable } from 'rxjs/Rx';
 import { ItemService } from './item.service';
 import { DefCurrentService } from './def-current.service';
 
@@ -34,17 +32,8 @@ export class KanbanListComponent implements OnInit {
 
   constructor(
     private itemService: ItemService,
-    private defCurrentService: DefCurrentService,
-    private elementRef: ElementRef
-  ) {
-
-    const eventStream = Observable.fromEvent(elementRef.nativeElement, 'keyup')
-        .map(() => this.listName)
-        .debounceTime(500)
-        .distinctUntilChanged();
-
-    eventStream.subscribe(input => this.updateCat(input));
-  }
+    private defCurrentService: DefCurrentService
+  ) {};
 
   private updateCat(newCatName: string){
     console.log("update " + this.list.value + " to " + newCatName);
@@ -53,6 +42,10 @@ export class KanbanListComponent implements OnInit {
   }
   private initListName(){
     this.listName = this.list.value;
+  }
+
+  onListNameEnter(){
+    this.updateCat(this.listName);
   }
 
   removeList(list: ListValItems): void {
@@ -76,7 +69,7 @@ export class KanbanListComponent implements OnInit {
 
   updateItem(item: Item){
     this.itemService.update(item)
-      .then(() => this.itemService.getItems(this.defCurrentService.typeDef)
+      .subscribe(() => this.itemService.getItems(this.defCurrentService.typeDef)
         // .then(items => this.manager.setItems(items))
       );
   }

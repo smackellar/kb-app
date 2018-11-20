@@ -1,11 +1,9 @@
 import 'rxjs/add/operator/switchMap';
 import { Component, OnInit, Input }      from '@angular/core';
-import { Location }               from '@angular/common';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 import { TypeDef } from './type-def';
 import { Item }         from './item';
-import { ItemService }  from './item.service';
 import { DefCurrentService }  from './def-current.service';
 
 
@@ -21,11 +19,8 @@ export class ItemCardComponent implements OnInit {
   defSelect: TypeDef;
 
   constructor(
-    private itemService: ItemService,
     private defCurrentService: DefCurrentService,
-    private route: ActivatedRoute,
-    private location: Location
-
+    private route: ActivatedRoute
   ) {
   }
 

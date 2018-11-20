@@ -1,12 +1,11 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
 import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { TypeDef } from './type-def';
-import { TypeDefService } from './type-def.service'
 
 @Injectable()
 export class DefCurrentService {
 
-  constructor(private typeDefService: TypeDefService) { }
+  constructor() { }
 
   @Output() currentDef: EventEmitter <TypeDef> = new EventEmitter();
 

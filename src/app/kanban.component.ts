@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { Item } from './item';
 import { TypeDef } from './type-def';
@@ -43,7 +43,7 @@ export class KanbanComponent implements OnInit {
 
   initItems(){
     this.itemService.getItems(this.defSelect)
-        .then(items => this.initItemsForDef(items, this.defSelect));
+        .subscribe(items => this.initItemsForDef(items, this.defSelect));
   }
 
   private initItemsForDef(items: Item[], def: TypeDef){
@@ -71,7 +71,7 @@ export class KanbanComponent implements OnInit {
     //this.initItems();
     this.getLists();
   }
-  addList(value: any): void {
+  addList(): void {
     if (this.newList.length == 0){
       console.log("List name is blank");
       return;

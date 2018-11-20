@@ -1,9 +1,8 @@
-import { Component, Input, ElementRef, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { TypeDef } from './type-def';
 import { DefCurrentService } from './def-current.service';
 import { TypeDefService } from './type-def.service';
-import { ActivatedRoute, Router, Params } from '@angular/router';
 
 
 @Component({
@@ -17,7 +16,6 @@ export class TypeDefViewComponent implements OnInit {
   @Input() newFieldName: string;
 
   constructor(
-    private router: Router,
     private defCurrentService: DefCurrentService,
     private typeDefService: TypeDefService
   ) {
@@ -60,14 +58,14 @@ export class TypeDefViewComponent implements OnInit {
   removeDefSelect(): void {
     console.log("about to delete type");
     this.typeDefService.delete(this.typeDef)
-    .then(() => {
+    .subscribe(() => {
       console.log("Deleted type: " + this.typeDef.name);
       // this.defSelect = undefined;
-      this.typeDefService.getTypeDefs()
-        .then(typeDefs => {
-          console.log("Getting types again: " + typeDefs.length);
-          this.router.navigateByUrl("/defs");
-        });
+    //   this.typeDefService.getTypeDefs()
+    //     .then(typeDefs => {
+    //       console.log("Getting types again: " + typeDefs.length);
+    //       this.router.navigateByUrl("/defs");
+    //     });
     });
   }
 

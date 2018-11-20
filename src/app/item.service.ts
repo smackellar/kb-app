@@ -1,40 +1,43 @@
-import { Injectable, OnDestroy } from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/toPromise';
+import { Observable } from 'rxjs';
+
 import { Item } from './item';
 import { TypeDef } from './type-def';
+
+
+  const httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
 
 @Injectable()
 export class ItemService {
 
-  private headers = new Headers({'Content-Type': 'application/json'});
   private itemsUrl = 'api/items';  // URL to web api
-  items: Promise<Item[]>;
+  // items: Promise<Item[]>;
 
-  constructor(
-    private http: Http
-  ) {
+
+
+  constructor(private http: HttpClient) {
     this.initItems();
   }
 
-  getItems(typeDef: TypeDef): Promise<Item[]> {
+  getItems(typeDef: TypeDef): Observable<Item[]> {
     console.log("getting items");
-    return this.http.get(this.itemsUrl+'?type=' + typeDef.id)
-               .toPromise()
-               .then(response => response.json().data as Item[])
-               .catch(this.handleError);
+    return this.http.get<Item[]>(this.itemsUrl+'?type=' + typeDef.id);
   }
 
   private initItems(): void {
 
   }
 
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error); // for demo purposes only
-    return Promise.reject(error.message || error);
-  }
+  // private handleError(error: any): Promise<any> {
+  //   console.error('An error occurred', error); // for demo purposes only
+  //   return Promise.reject(error.message || error);
+  // }
 
-  newItem(typeDef: TypeDef, values: string[]): Promise<Item>{
+  newItem(typeDef: TypeDef, values: string[]): Observable<Item>{
     let newItem: Item = new Item();
     newItem.type = typeDef.id;
 
@@ -55,44 +58,35 @@ export class ItemService {
     return this.insert(newItem);
   }
 
-  delete(item): Promise<void> {
+  delete(item): Observable<Item> {
     const url = `${this.itemsUrl}/${item.id}`;
-    return this.http.delete(url)
-      .toPromise()
-      .then(() => console.log("Deleting item: " + item.id))
-      .catch(this.handleError);
+    return this.http.delete<Item>(url);
   }
 
-  getItem(id: number): Promise<Item> {
-    if (id == -1){ // assume new Item
-      return new Promise<Item>((resolve, reject) => {
-        resolve(new Item());
-      });
-    };
-    const url = `${this.itemsUrl}/${id}`;
-    return this.http.get(url)
-      .toPromise()
-      .then(response => response.json().data as Item)
-      .catch(this.handleError);
+  getItem(id: number): Observable<Item> {
+    // if (id == -1){ // assume new Item
+      const url: string = `${this.itemsUrl}/${id}`;
+      return this.http.get<Item>(url);
+      // return new Promise<Item>((resolve, reject) => {
+      //   resolve(new Item());
+      // });
+    // };
+    // const url = `${this.itemsUrl}/${id}`;
+    // return this.http.get(url)
+    //   .toPromise()
+    //   .then(response => response.json().data as Item)
+    //   .catch(this.handleError);
   }
 
-  update(item: Item): Promise<Item> {
+  update(item: Item): Observable<Item> {
     const url = `${this.itemsUrl}/${item.id}`;
-    return this.http
-      .put(url, JSON.stringify(item), {headers: this.headers})
-      .toPromise()
-      .then(() => item)
-      .catch(this.handleError);
+    return this.http.put<Item>(url, httpOptions);
   }
 
-  insert(item: Item): Promise<Item> {
+  insert(item: Item): Observable<Item> {
     const url = `${this.itemsUrl}`;
     item.id = null;
-    return this.http
-      .post(url, JSON.stringify(item), {headers: this.headers})
-      .toPromise()
-      .then(() => item)
-      .catch(this.handleError);
+    return this.http.post<Item>(url, item, httpOptions);
   }
 
   addLink(item: Item, id: number){

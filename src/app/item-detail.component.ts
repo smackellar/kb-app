@@ -1,6 +1,6 @@
 import 'rxjs/add/operator/switchMap';
 import { Component, OnInit }      from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Location }               from '@angular/common';
 
 import { Item }         from './item';
@@ -25,17 +25,19 @@ export class ItemDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.defSelect = this.defCurrentService.typeDef;
-    this.route.params
-      .switchMap((params: Params) => this.itemService.getItem(+params['id']))
-      .subscribe(item => this.item = item);
+
+  const id = +this.route.snapshot.paramMap.get('id');
+  this.itemService.getItem(id)
+    .subscribe(item => this.item = item);
+
   }
   save(): void {
     this.itemService.update(this.item)
-      .then(() => this.goBack());
+      .subscribe(() => this.goBack());
   }
   delete(): void {
     this.itemService.delete(this.item)
-    .then(() => this.location.back());
+    .subscribe(() => this.location.back());
 
   }
   updateField(value, fieldId): void {
