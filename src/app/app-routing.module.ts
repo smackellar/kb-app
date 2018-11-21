@@ -10,7 +10,7 @@ import { TypeDefViewComponent }  from './type-def-view.component';
 
 const routes: Routes = [
   { path: '',
-    redirectTo: '/defs',
+    redirectTo: '/home',
     pathMatch: 'full'
   },
   { path: 'defs',

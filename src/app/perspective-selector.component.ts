@@ -1,22 +1,12 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute, Router, Params } from '@angular/router';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'perspective-selector',
   templateUrl: './perspective-selector.component.html'
 })
 
-export class PerspectiveSelectorComponent implements OnInit {
+export class PerspectiveSelectorComponent {
 
-  private url: String;
-
-  constructor(
-    private route: ActivatedRoute) { }
-
-  ngOnInit(): void {
-    this.route.url.subscribe(url =>{
-     this.url = url.toString();
-    });
-  }
+  constructor() { }
 
 }

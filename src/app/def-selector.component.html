@@ -1,4 +1,4 @@
-<button routerLink="/defs" class="btn btn-sm btn-primary" style="margin-right:5px">Home</button>
+<button routerLink="/home" class="btn btn-sm btn-primary" style="margin-right:5px">Home</button>
 <button class="btn btn-sm btn-primary" *ngFor="let def of typeDefs" (click)="selectDef(def)" style="margin-right:5px">{{def.name}} ({{def.id}}) {{defSelect==def?"*":""}}</button>
 <button class="btn btn-sm btn-success" (click)="addDef()">Add type</button>
 <div *ngIf="defSelect">
