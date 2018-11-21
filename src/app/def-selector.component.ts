@@ -16,6 +16,7 @@ export class DefSelectorComponent implements OnInit {
   typeDefs: TypeDef[] = [];
   @Input() defSelect: TypeDef;
   editMode: boolean = false;
+  path: string
 
   constructor(
     private router: Router,
