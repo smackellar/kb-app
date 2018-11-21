@@ -3,6 +3,7 @@ import { TypeDef } from './type-def';
 import { TypeDefService } from './type-def.service';
 import { ItemService } from './item.service';
 import { DefCurrentService } from './def-current.service';
+import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -19,9 +20,14 @@ export class DefSelectorComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
+    private location: Location,
     private typeDefService: TypeDefService,
     private itemService: ItemService,
-    private defCurrentService: DefCurrentService) { }
+    private defCurrentService: DefCurrentService) {
+      router.events.subscribe(() => {
+        console.log(location.path());
+      });
+    }
 
   ngOnInit(): void {
     this.initTypeDefs();

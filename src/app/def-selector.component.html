@@ -1,6 +1,8 @@
-<button routerLink="/home" class="btn btn-sm btn-primary" style="margin-right:5px">Home</button>
-<button class="btn btn-sm btn-primary" *ngFor="let def of typeDefs" (click)="selectDef(def)" style="margin-right:5px">{{def.name}} ({{def.id}}) {{defSelect==def?"*":""}}</button>
-<button class="btn btn-sm btn-success" (click)="addDef()">Add type</button>
+<nav class="nav nav-pills nav-top">
+    <a routerLink="/home" [ngClass]="{'active': location.path() == '/home'}" class="nav-item nav-link active">Home</a>
+    <a *ngFor="let def of typeDefs" class="nav-item nav-link" [ngClass]="{'active': location.path() != '/home' && defSelect && defSelect.id==def.id}" (click)="selectDef(def)">{{def.name}} ({{def.id}}) {{defSelect==def?"*":""}}</a>
+    <a class="nav-item nav-link" (click)="addDef()">Add type</a>
+</nav>
 <div *ngIf="defSelect">
   <h2>
     {{defSelect.name}}

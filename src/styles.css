@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+a {
+  cursor: pointer;
+}
+
+nav a {
+  margin-right: 1em;
+}
+
+nav.nav-top {
+  margin-top: 1em;
+}
