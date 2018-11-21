@@ -5,15 +5,9 @@
 </nav>
 <div *ngIf="defSelect">
   <h2>
-    {{defSelect.name}}
+    {{defSelect.name}} <a (click)="editMode=!editMode">Edit</a>
+    <input *ngIf="editMode" type="input" value="{{defSelect.name}}" (change)="updateName($event.target.value)"><button *ngIf="editMode"  class="btn btn-sm btn-primary" (click)="editMode = !editMode">Update</button>
   </h2>
-  <button *ngIf="!editMode" class="btn btn-sm btn-primary" (click)="editMode=!editMode">Change name</button>
-  <input *ngIf="editMode" type="input" value="{{defSelect.name}}" (change)="updateName($event.target.value)"><button *ngIf="editMode"  class="btn btn-sm btn-primary" (click)="editMode = !editMode">Update</button>
   <button class="btn btn-sm btn-success" (click)="addItem()">Add item</button>
 </div>
-<nav *ngIf="defSelect">
-  <span *ngFor="let field of defSelect.fields">
-    <span *ngIf="field.isListable">{{field.name}}</span>
-  </span>
-</nav>
 <router-outlet></router-outlet>
