@@ -96,7 +96,7 @@ export class ListableFieldManager {
     list.value = newValue;
     for (let item of list.items){
       item.values[this.field.id] = newValue;
-      this.itemService.update(item).subscribe((item) => {});
+      this.itemService.update(item).subscribe(() => {});
     }
   }
 }

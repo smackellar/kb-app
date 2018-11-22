@@ -27,6 +27,7 @@ export class DefSelectorComponent implements OnInit {
 
   ngOnInit(): void {
     this.initTypeDefs();
+    this.path = this.location.path();
   }
 
   private initTypeDefs(): void{
