@@ -31,6 +31,7 @@ import { DropTargetDirective } from './drop-target.directive';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }  from './in-memory-data.service';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { ItemAppenderComponent } from './item-appender/item-appender.component';
 
 @NgModule({
   imports: [
@@ -57,7 +58,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     KanbanListComponent,
     DraggableDirective,
     DropTargetDirective,
-    FieldListablePipe
+    FieldListablePipe,
+    ItemAppenderComponent
   ],
   providers: [ ItemService, DragService, TypeDefService, DefCurrentService ],
   bootstrap: [ AppComponent ]

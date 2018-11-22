@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { TypeDef } from './type-def';
 import { TypeDefService } from './type-def.service';
-import { ItemService } from './item.service';
 import { DefCurrentService } from './def-current.service';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -23,11 +22,7 @@ export class DefSelectorComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private typeDefService: TypeDefService,
-    private itemService: ItemService,
     private defCurrentService: DefCurrentService) {
-      router.events.subscribe(() => {
-        console.log(location.path());
-      });
     }
 
   ngOnInit(): void {
@@ -76,16 +71,11 @@ export class DefSelectorComponent implements OnInit {
     // this.ngOnInit(); // will have timing issues
   }
 
-  addItem(): void {
-    this.itemService.newItem(this.defSelect, null)
-    .subscribe(item => (this.router.navigateByUrl("/" + this.defSelect.id + "/detail/" + item.id)));
-  }
-
   // REFACTOR OUT to def selector
   updateName(name): void {
     this.defSelect.name = name;
     this.typeDefService.update(this.defSelect).subscribe(() => {
-
+      console.log("updated current def name to: " + name);
     });
   }
 

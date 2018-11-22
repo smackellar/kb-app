@@ -1,4 +1,3 @@
-<perspective-selector></perspective-selector>
 <div *ngIf="typeDef">
 <div class="row" *ngFor="let field of typeDef.fields">
   <div class="col-sm-1">
@@ -20,4 +19,5 @@
 </div>
 <input type="input" [(ngModel)]="newFieldName" value>
 <button (click)="addField()" class="btn btn-sm btn-success">Add field</button>
+<button class="btn btn-sm btn-outline-secondary" (click)="goBack()">Cancel</button>
 <button class="btn btn-sm btn-danger" (click)="removeDefSelect()">Delete {{typeDef.name}}</button>

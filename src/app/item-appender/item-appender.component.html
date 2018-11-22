@@ -1,0 +1,7 @@
+<div>
+  <button class="btn btn-sm btn-secondary" (click)="addItem()"><span class="oi oi-plus" title="Add item" aria-hidden="true"></span> Add item</button>
+  <button class="ml-3 btn btn-sm btn-link" (click)="pasteItemsToggle()">{{pasteMode ? 'Cancel paste' : 'Paste Items'}}</button>
+</div>
+<div *ngIf="pasteMode">
+  <item-paster></item-paster>
+</div>
