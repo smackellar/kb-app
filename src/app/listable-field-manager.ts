@@ -11,6 +11,7 @@ import { ItemService } from './item.service';
 ** represents a categorisable (listable) field and the values
 ** and does all the management stuff
 */
+@Injectable()
 export class ListableFieldManager {
   def: TypeDef;
   field: FieldDef; // the field that is categorised
@@ -95,7 +96,7 @@ export class ListableFieldManager {
     list.value = newValue;
     for (let item of list.items){
       item.values[this.field.id] = newValue;
-      this.itemService.update(item);
+      this.itemService.update(item).subscribe((item) => {});
     }
   }
 }

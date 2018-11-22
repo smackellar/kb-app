@@ -1,23 +1,23 @@
 <div *ngIf="typeDef">
-<div class="row" *ngFor="let field of typeDef.fields">
+<div class="row mb-1" *ngFor="let field of typeDef.fields">
   <div class="col-sm-1">
     {{field.id}}
   </div>
   <div class="col-sm-2">
-    Kanban:<input type="checkbox" [checked]="field.isListable" (change)="toggleCatField(field)">
+    Kanban: <input type="checkbox" [checked]="field.isListable" (change)="toggleCatField(field)">
   </div>
   <div class="col-sm-2">
-    Card:<input type="checkbox" [checked]="field.isCardable" (change)="toggleCardField(field)">
+    Card: <input type="checkbox" [checked]="field.isCardable" (change)="toggleCardField(field)">
   </div>
   <div class="col-sm-3">
     <input type="input" [(value)]="field.name" (change)="updateLabel(field,$event.target.value)">
   </div>
   <div class="col-sm-1">
-    <button class="btn btn-sm btn-danger" (click)="removeField(field)">Del</button>
+    <button class="btn btn-sm btn-outline-danger" (click)="removeField(field)"><span class="oi oi-x" title="Delete field" aria-hidden="true"></span></button>
   </div>
 </div>
 </div>
-<input type="input" [(ngModel)]="newFieldName" value>
-<button (click)="addField()" class="btn btn-sm btn-success">Add field</button>
-<button class="btn btn-sm btn-outline-secondary" (click)="goBack()">Cancel</button>
-<button class="btn btn-sm btn-danger" (click)="removeDefSelect()">Delete {{typeDef.name}}</button>
+<input type="input" [(ngModel)]="newFieldName" value class="mr-1">
+<button (click)="addField()" class="btn btn-sm btn-success mr-3">Add field</button>
+<button class="btn btn-sm btn-outline-secondary mr-2" (click)="goBack()"><span class="oi oi-arrow-left" title="Back" aria-hidden="true"></span> Go back</button>
+<button class="btn btn-sm btn-link mr-2" (click)="removeDefSelect()">Delete {{typeDef.name}}</button>

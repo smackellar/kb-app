@@ -12,5 +12,7 @@
   <div *ngFor="let field of defSelect.fields">
     <span *ngIf="field.isCardable">{{field.name}} <b>{{item.values[field.id]}}</b></span>
   </div>
-  <a *ngIf="editable" [routerLink]="['/', defCurrentService.typeDef.id, 'detail', item.id]">Edit</a>
+  <div class="text-right">
+    <a *ngIf="editable" [routerLink]="['/', defCurrentService.typeDef.id, 'detail', item.id]">Edit</a>
+  </div>
 </div>
