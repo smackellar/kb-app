@@ -8,7 +8,7 @@
 }
 
 .drop-target {
-  border: 1px dashed #ebebeb;
+  border: 1px dotted #aaa;
   margin: 1rem;
   padding: 1rem;
   width: 6rem;
@@ -19,11 +19,12 @@
 <app-item-appender></app-item-appender>
 <div *ngIf="fieldSelect">
   <div class="mt-2 mb-2">
-    Organise by:
+    Driver:
     <select [(ngModel)]="fieldSelect" (change)="setField()" class="mr-3">
         <option *ngFor="let field of defSelect.fields | isListable" [ngValue]="field">{{field.name}}</option>
     </select>
-    <input placeholder="New {{fieldSelect.name}}" [(ngModel)]="newList"> <button class="btn btn-sm btn-light ml-1" (click)="addList()">Add</button>
+    <button *ngIf="!addCatMode" class="btn btn-sm btn-link" (click)="toggleAddCat()">Add {{fieldSelect.name}}</button>
+    <span *ngIf="addCatMode"><input placeholder="New {{fieldSelect.name}}" [(ngModel)]="newList"> <button class="btn btn-sm btn-light ml-1" (click)="addList()">Add</button><button class="btn btn-sm btn-link ml-1" (click)="toggleAddCat()">Cancel</button></span>
   </div>
   <div class="cat-container">
     <kanban-list *ngFor="let list of lists" (listUpdater)="updateList($event)" [(manager)]="listManager" [list]="list" [defSelect]="defSelect"></kanban-list>

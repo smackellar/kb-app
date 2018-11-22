@@ -23,6 +23,7 @@ export class KanbanComponent implements OnInit {
   defSelect: TypeDef;
   listManager: ListableFieldManager;
   lists: ListValItems[];
+  addCatMode: boolean;
 
   constructor(
     private defCurrentService: DefCurrentService,
@@ -78,6 +79,10 @@ export class KanbanComponent implements OnInit {
     }
     this.listManager.addList(this.newList);
     this.newList = ""; // reset input field
+    this.toggleAddCat();
+  }
+  toggleAddCat(): void{
+    this.addCatMode = !this.addCatMode;
   }
 
 }

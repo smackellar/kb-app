@@ -25,6 +25,7 @@ export class KanbanListComponent implements OnInit {
   listName: string;
   itemUtils: ItemUtils;
   origListValue: any;
+  editNameMode: boolean;
 
   ngOnInit(): void {
     this.initListName();
@@ -46,6 +47,7 @@ export class KanbanListComponent implements OnInit {
 
   onListNameEnter(){
     this.updateCat(this.listName);
+    this.toggleEditName();
   }
 
   removeList(list: ListValItems): void {
@@ -69,9 +71,15 @@ export class KanbanListComponent implements OnInit {
 
   updateItem(item: Item){
     this.itemService.update(item)
-      .subscribe(() => this.itemService.getItems(this.defCurrentService.typeDef)
-        // .then(items => this.manager.setItems(items))
+      .subscribe(() => {
+          this.itemService.getItems(this.defCurrentService.typeDef);
+          // .then(items => this.manager.setItems(items))
+        }
       );
+  }
+
+  toggleEditName(){
+    this.editNameMode = !this.editNameMode;
   }
 
 }

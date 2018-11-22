@@ -1,8 +1,7 @@
 
 .item-card {
-  border-radius: 6px;
-  border: 1px solid #eee;
-  background-color: #f3f3f3;
+  border: 1px solid #ddd;
+  background-color: #fff;
   display: inline-block;
   width: 200px;
   margin-top:5px;

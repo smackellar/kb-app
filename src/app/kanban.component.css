@@ -2,10 +2,12 @@
   display:flex;
 }
 .cat-area {
-  background-color:aliceblue;
-  display:inline-block;
-  border: 2px dashed navy;
-  padding:5px
+  background-color: #ececec;
+  display: inline-block;
+  border: 3px solid #aaa;
+  padding: 5px;
+  border-radius: 6px;
+  margin-right: 5px;
 }
 .cat-area:hover {
   background-color:#fff;

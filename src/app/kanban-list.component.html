@@ -1,7 +1,7 @@
 <div class="cat-area"  myDropTarget (myDrop)="onDrop($event, list.value)">
-<input [(ngModel)]="listName" (keyup.enter)="onListNameEnter()">
-<button (click)="removeList(list)" *ngIf="list.items.length==0">Remove</button>
-<h3>{{list.value}}</h3>
+<h3 *ngIf="!editNameMode" (dblclick)="toggleEditName()">{{list.value}}</h3>
+<input *ngIf="editNameMode" [(ngModel)]="listName" (keyup.enter)="onListNameEnter()">
+<button class="btn btn-sm btn-outline-secondary" (click)="removeList(list)" *ngIf="list.items.length==0">Remove</button>
 <div *ngFor="let item of list.items">
   <item-card [item]="item"></item-card>
 </div>
