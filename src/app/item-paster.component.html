@@ -1,2 +1,7 @@
-<textarea name="name" rows="8" cols="80" [(ngModel)]="itemText"></textarea>
-<button class="btn btn-sm btn-success" (click)="addItems()">Add items</button>
+<div class="row">
+  <div class="col-md-6">
+    <textarea style="width:100%" class="mt-2 mb-2" name="name" rows="5" [(ngModel)]="itemText"></textarea>
+    <button class="btn btn-sm btn-success" (click)="addItems()">Add items</button>
+    <hr>
+  </div>
+</div>

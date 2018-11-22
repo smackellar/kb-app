@@ -1,12 +1,15 @@
 <div *ngIf="item">
-  <h3>{{item.name}} edit</h3>
-  <item-card [item]="item"></item-card>
-  <!--item-linker [item]="item"></item-linker-->
-  <div *ngFor="let field of defSelect.fields">{{field.name}}
-    <input value="{{item.values[field.id]}}" (change)="updateField($event.target.value, field.id)">
-  </div>
+  <h3>Modify{{item.name}}</h3>
+  <div class="row mt-3">
+    <div class="col-md-6">
+      <div *ngFor="let field of defSelect.fields" class="form-group">
+        <label for="field_{{field.id}}">{{field.name}}</label>
+        <input id="field_{{field.id}}" class="form-control" value="{{item.values[field.id]}}" (change)="updateField($event.target.value, field.id)">
+      </div>
 
-  <button class="btn btn-sm btn-outline-secondary" (click)="goBack()">Cancel</button>
-  <button  class="btn btn-sm btn-success"(click)="save()">Save</button>
-  <button class="btn btn-sm btn-danger" (click)="delete()">Delete</button>
+      <button class="btn btn-sm btn-outline-secondary mr-2" (click)="goBack()"><span class="oi oi-arrow-left" title="Go back" aria-hidden="true"></span> Back</button>
+      <button  class="btn btn-sm btn-success mr-2"(click)="save()">Save</button>
+      <button class="btn btn-sm btn-link" (click)="delete()">Delete</button>
+    </div>
+  </div>
 </div>

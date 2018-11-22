@@ -1,12 +1,12 @@
 <nav class="nav nav-pills nav-top">
     <a routerLink="/home" [ngClass]="{'active': location.path() == '/home'}" class="nav-item nav-link active">Home</a>
     <a *ngFor="let def of typeDefs" class="nav-item nav-link" [ngClass]="{'active': location.path() != '/home' && defSelect && defSelect.id==def.id}" (click)="selectDef(def)">{{def.name}} ({{def.id}}) {{defSelect==def?"*":""}}</a>
-    <a class="nav-item nav-link" (click)="addDef()">Add type</a>
+    <a class="nav-item nav-link" (click)="addDef()"><span class="oi oi-cog small" title="Add new type" aria-hidden="true"></span> Add type</a>
 </nav>
 <div *ngIf="defSelect">
   <h1 class="display-4" (dblclick)="editMode=!editMode"><span *ngIf="!editMode">{{defSelect.name}}</span>
     <input *ngIf="editMode" type="input" value="{{defSelect.name}}" (blur)="editMode=false" (change)="updateName($event.target.value)">
-    <a *ngIf="!editMode" class="ml-3" routerLink="/{{defSelect.id}}/def" routerLinkActive="active"><span class="oi oi-cog small" title="cog" aria-hidden="true"></span></a>
+    <a *ngIf="!editMode" class="ml-3" routerLink="/{{defSelect.id}}/def" routerLinkActive="active"><span class="oi oi-cog small" title="Modify {{defSelect.name}} structure" aria-hidden="true"></span></a>
   </h1>
 </div>
 <router-outlet></router-outlet>

@@ -18,12 +18,14 @@
 <perspective-selector></perspective-selector>
 <app-item-appender></app-item-appender>
 <div *ngIf="fieldSelect">
-  Organise by:
-  <select [(ngModel)]="fieldSelect" (change)="setField()">
-      <option *ngFor="let field of defSelect.fields | isListable" [ngValue]="field">{{field.name}}</option>
-  </select>
-  <input placeholder="New {{fieldSelect.name}}" [(ngModel)]="newList"> <button (click)="addList()">Add</button>
+  <div class="mt-2 mb-2">
+    Organise by:
+    <select [(ngModel)]="fieldSelect" (change)="setField()" class="mr-3">
+        <option *ngFor="let field of defSelect.fields | isListable" [ngValue]="field">{{field.name}}</option>
+    </select>
+    <input placeholder="New {{fieldSelect.name}}" [(ngModel)]="newList"> <button class="btn btn-sm btn-light ml-1" (click)="addList()">Add</button>
+  </div>
   <div class="cat-container">
-      <kanban-list *ngFor="let list of lists" (listUpdater)="updateList($event)" [(manager)]="listManager" [list]="list" [defSelect]="defSelect"></kanban-list>
+    <kanban-list *ngFor="let list of lists" (listUpdater)="updateList($event)" [(manager)]="listManager" [list]="list" [defSelect]="defSelect"></kanban-list>
   </div>
 </div>

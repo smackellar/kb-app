@@ -29,8 +29,12 @@ export class ItemPasterComponent implements OnInit {
     let rows: string[] = this.itemText.split('\n');
     for (let rowText of rows){
       this.itemService.newItem(this.defSelect, rowText.split(','))
-      .subscribe(item => {console.log("item added: " + item.id)});
+      .subscribe(item => {
+        console.log("item added: " + item.id);
+        this.itemText = "";
+      });
     }
+
   }
 
 }
