@@ -1,5 +1,5 @@
 <div class="cat-area"  myDropTarget (myDrop)="onDrop($event, list.value)">
-<h3 *ngIf="!editNameMode" (dblclick)="toggleEditName()">{{list.value}}</h3>
+<h3 *ngIf="!editNameMode" class="px-1" (dblclick)="toggleEditName()">{{list.value}}</h3>
 <input *ngIf="editNameMode" [(ngModel)]="listName" (keyup.enter)="onListNameEnter()">
 <div *ngIf="!list.items.length"><i>Drag an item to add</i></div>
 <button class="btn btn-sm btn-outline-secondary" (click)="removeList(list)" *ngIf="list.items.length==0">Remove</button>

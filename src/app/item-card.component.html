@@ -1,9 +1,12 @@
 <div *ngIf="item" class="item-card draggable" [myDraggable]="{data: item}">
-  <div><i>{{item.id}}</i></div>
   <div *ngFor="let field of defSelect.fields">
-    <span *ngIf="field.isCardable">{{field.name}} <b>{{item.values[field.id]}}</b></span>
+    <div *ngIf="field.isCardable">
+      <div class="small opacity-50"><strong>{{field.name}}</strong></div>
+      <div class="small mb-1">{{item.values[field.id]}}</div>
+    </div>
   </div>
-  <div class="text-right">
+  <div class="d-flex justify-content-between align-items-center">
+    <div class="small opacity-50">{{item.id}}</div>
     <a *ngIf="editable" [routerLink]="['/', defCurrentService.typeDef.id, 'detail', item.id]">Edit</a>
   </div>
 </div>
