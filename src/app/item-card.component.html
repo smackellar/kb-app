@@ -1,12 +1,3 @@
-<style>
-.draggable {
-  /* border: 1px dotted #ccc; */
-  cursor: move;
-  padding: 5px;
-}
-
-</style>
-
 <div *ngIf="item" class="item-card draggable" [myDraggable]="{data: item}">
   <div><i>{{item.id}}</i></div>
   <div *ngFor="let field of defSelect.fields">

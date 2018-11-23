@@ -1,10 +1,13 @@
-
+.draggable {
+  cursor: move;
+}
 .item-card {
-  border: 1px solid #ddd;
+  border: 2px solid #ddd;
   background-color: #fff;
   display: inline-block;
   width: 200px;
-  margin-top:5px;
+  margin:5px;
+  padding:5px 10px;
 }
 .taglinks ul {
   display:inline-block;
