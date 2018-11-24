@@ -40,6 +40,13 @@ export class KanbanComponent implements OnInit {
          }
        }
     });
+
+    // get inserted items
+    this.itemService.getSubject().subscribe(item => {
+      if (item && this.listManager){
+        this.listManager.refreshItem(item);
+      }
+    });
   }
 
   initItems(){

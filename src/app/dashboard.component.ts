@@ -31,6 +31,14 @@ export class DashboardComponent implements OnInit {
        }
     });
 
+    // get inserted items
+    this.itemService.getSubject().subscribe(item => {
+      if (item){
+        console.log("item insert received: " + item.id);
+        this.items.push(item);
+      }
+    });
+
   }
 
 }

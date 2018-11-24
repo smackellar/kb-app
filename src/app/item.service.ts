@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
+import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import 'rxjs/add/operator/toPromise';
-import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 import { Item } from './item';
 import { TypeDef } from './type-def';
@@ -15,6 +15,10 @@ import { TypeDef } from './type-def';
 export class ItemService {
 
   private itemsUrl = 'api/items';  // URL to web api
+
+  private subject:Subject<Item> = new BehaviorSubject<Item>(null);
+
+  subject$ = this.subject.asObservable();
 
   constructor(private http: HttpClient) {
     this.initItems();
@@ -73,7 +77,10 @@ export class ItemService {
   insert(item: Item): Observable<Item> {
     const url = `${this.itemsUrl}`;
     item.id = null;
-    return this.http.post<Item>(url, item, httpOptions);
+    return this.http.post<Item>(url, item, httpOptions).pipe(tap(item => {
+      console.log("Tapped item: " + item.id);
+      this.broadcast(item);
+    }));
   }
 
   addLink(item: Item, id: number){
@@ -86,4 +93,11 @@ export class ItemService {
     item.links.push(id);
   }
 
+  broadcast(item: Item){
+    this.subject.next(item);
+  }
+
+  getSubject(): Observable<Item>{
+    return this.subject$;
+  }
 }
