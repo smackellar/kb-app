@@ -35,7 +35,7 @@ export class ListableFieldManager {
     }
   }
 
-  private getList(value: any){
+  getList(value: any){
     let list: ListValItems = this.findList(value);
     if (!list){
       list = new ListValItems(value);
@@ -51,9 +51,13 @@ export class ListableFieldManager {
   // Check if any items are not where they should be
   refreshItem(item: Item){
     let itemVal = this.itemUtils.getValueByField(item, this.field);
-    console.log("refreshing item: " + itemVal)
+    console.log("refreshing item: " + item.id + " with value " + itemVal)
     // find items
+    let listFound: boolean;
     for (let list of this.lists){
+      console.log("checking list: " + list.value);
+      // track if a list is found at all
+      listFound = listFound || list.findItem(item) != null;
       if (list.findItem(item) && list.value != itemVal){
         // remove from this list where no longer matches
         list.removeItem(item);
@@ -63,6 +67,11 @@ export class ListableFieldManager {
         list.addItem(item);
       }
     }
+    // if no list found, then create one and add this item to it
+    if (!listFound){
+      this.getList(itemVal).addItem(item);
+    }
+
   }
 
   // remove empty lists
@@ -70,15 +79,6 @@ export class ListableFieldManager {
     if (list && list.items.length == 0){
       this.lists.splice(this.lists.indexOf(list),1);
     }
-  }
-
-  addList(value: any){
-    // check if exists
-    if (this.getList(value)){
-      console.log("List already exists: " + value);
-      return;
-    }
-    this.lists.push(new ListValItems(value));
   }
 
   updateListName(oldValue: any, newValue: any){

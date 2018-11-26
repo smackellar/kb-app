@@ -84,7 +84,7 @@ export class KanbanComponent implements OnInit {
       console.log("List name is blank");
       return;
     }
-    this.listManager.addList(this.newList);
+    this.listManager.getList(this.newList);
     this.newList = ""; // reset input field
     this.toggleAddCat();
   }

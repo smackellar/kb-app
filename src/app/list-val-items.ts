@@ -10,10 +10,11 @@ export class ListValItems {
   }
 
   // do this by id
-  addItem(item: Item){
+  addItem(item: Item): ListValItems {
     if (!this.findItem(item)){
       this.items.push(item);
     }
+    return this;
   }
 
   findItem(item: Item){
