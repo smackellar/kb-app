@@ -17,16 +17,17 @@
 
 <perspective-selector></perspective-selector>
 <app-item-appender></app-item-appender>
-<div *ngIf="fieldSelect">
-  <div class="mt-2 mb-2">
-    Driver:
-    <select [(ngModel)]="fieldSelect" (change)="setField()" class="mr-3">
-        <option *ngFor="let field of defSelect.fields | isListable" [ngValue]="field">{{field.name}}</option>
-    </select>
-    <button *ngIf="!addCatMode" class="btn btn-sm btn-link" (click)="toggleAddCat()">Add {{fieldSelect.name}}</button>
-    <span *ngIf="addCatMode"><input placeholder="New {{fieldSelect.name}}" [(ngModel)]="newList" (keyup.enter)="addList()"> <button class="btn btn-sm btn-light ml-1" (click)="addList()">Add</button><button class="btn btn-sm btn-link ml-1" (click)="toggleAddCat()">Cancel</button></span>
-  </div>
-  <div class="cat-container">
-    <kanban-list *ngFor="let list of lists" (listUpdater)="updateList($event)" [(manager)]="listManager" [list]="list" [defSelect]="defSelect"></kanban-list>
-  </div>
+<div *ngIf="(defSelect.fields | isListable).length>0" class="mt-2 mb-2">
+  Driver:
+  <select [(ngModel)]="fieldSelect" (change)="setField()" class="mr-3">
+      <option *ngFor="let field of defSelect.fields | isListable" [ngValue]="field">{{field.name}}</option>
+  </select>
+  <button *ngIf="!addCatMode" class="btn btn-sm btn-link" (click)="toggleAddCat()">Add {{fieldSelect.name}}</button>
+  <span *ngIf="addCatMode"><input placeholder="New {{fieldSelect.name}}" [(ngModel)]="newList" (keyup.enter)="addList()"> <button class="btn btn-sm btn-light ml-1" (click)="addList()">Add</button><button class="btn btn-sm btn-link ml-1" (click)="toggleAddCat()">Cancel</button></span>
+</div>
+<div *ngIf="(defSelect.fields | isListable).length==0" class="mt-2 mb-2">
+  <i>No driving fields configured</i>
+</div>
+<div class="cat-container mt-2">
+  <kanban-list *ngFor="let list of lists" (listUpdater)="updateList($event)" [(manager)]="listManager" [list]="list" [defSelect]="defSelect"></kanban-list>
 </div>
