@@ -13,7 +13,7 @@ const routes: Routes = [
     redirectTo: '/home',
     pathMatch: 'full'
   },
-  { path: 'defs',
+  { path: 'home',
     component: DefSelectorComponent,
     children: [
       { path: 'new', component: DefCreatorComponent },
