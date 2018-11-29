@@ -1,18 +1,17 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-import { Item } from './item';
-import { ListValItems } from './list-val-items';
-import { ItemUtils } from './item-utils';
-import { ListableFieldManager } from './listable-field-manager';
-import { TypeDef } from './type-def';
+import { Item } from '../item';
+import { ListValItems } from '../list-val-items';
+import { ItemUtils } from '../item-utils';
+import { ListableFieldManager } from '../listable-field-manager';
+import { TypeDef } from '../type-def';
 
-import { ItemService } from './item.service';
-import { DefCurrentService } from './def-current.service';
+import { ItemService } from '../item.service';
+import { DefCurrentService } from '../def-current.service';
 
 @Component({
   selector: 'kanban-list',
-  templateUrl: './kanban-list.component.html',
-  styleUrls: [ './kanban.component.css' ]
+  templateUrl: './kanban-list.component.html'
 })
 
 export class KanbanListComponent implements OnInit {

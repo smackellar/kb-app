@@ -1,7 +1,7 @@
 
 import { Component, OnInit, Input } from '@angular/core';
-import { TypeDef } from './type-def';
-import { TypeDefService } from './type-def.service';
+import { TypeDef } from '../type-def';
+import { TypeDefService } from '../type-def.service';
 import { Router } from '@angular/router';
 
 @Component({

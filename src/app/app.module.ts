@@ -4,16 +4,16 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { DefSelectorComponent } from './def-selector.component';
-import { DefCreatorComponent } from './def-creator.component';
-import { PerspectiveSelectorComponent } from './perspective-selector.component';
+import { DefSelectorComponent } from './def-selector/def-selector.component';
+import { DefCreatorComponent } from './def-creator/def-creator.component';
+import { PerspectiveSelectorComponent } from './perspective-selector/perspective-selector.component';
 import { ItemPasterComponent } from './item-paster/item-paster.component';
-import { DashboardComponent } from './dashboard.component'
-import { KanbanComponent } from './kanban.component'
-import { KanbanListComponent } from './kanban-list.component'
+import { DashboardComponent } from './dashboard/dashboard.component'
+import { KanbanComponent } from './kanban/kanban.component'
+import { KanbanListComponent } from './kanban-list/kanban-list.component'
 import { ItemDetailComponent }  from './item-detail/item-detail.component';
 import { ItemCardComponent }  from './item-card/item-card.component';
-import { TypeDefViewComponent } from './type-def-view.component';
+import { TypeDefViewComponent } from './type-def-view/type-def-view.component';
 import { FieldListablePipe } from './field-listable.pipe';
 
 import { AppRoutingModule }     from './app-routing.module';

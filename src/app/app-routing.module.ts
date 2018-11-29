@@ -1,12 +1,12 @@
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { DashboardComponent }   from './dashboard.component';
-import { KanbanComponent }   from './kanban.component';
+import { DashboardComponent }   from './dashboard/dashboard.component';
+import { KanbanComponent }   from './kanban/kanban.component';
 import { ItemDetailComponent }  from './item-detail/item-detail.component';
-import { DefSelectorComponent }  from './def-selector.component';
-import { DefCreatorComponent }  from './def-creator.component';
-import { TypeDefViewComponent }  from './type-def-view.component';
+import { DefSelectorComponent }  from './def-selector/def-selector.component';
+import { DefCreatorComponent }  from './def-creator/def-creator.component';
+import { TypeDefViewComponent }  from './type-def-view/type-def-view.component';
 
 const routes: Routes = [
   { path: '',

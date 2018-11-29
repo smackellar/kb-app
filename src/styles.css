@@ -14,3 +14,19 @@ nav.nav-top {
 .opacity-50 {
   opacity:0.5;
 }
+
+.cat-container {
+  display:flex;
+}
+.cat-area {
+  background-color: #ececec;
+  display: inline-block;
+  border: 3px solid #aaa;
+  padding: 5px;
+  border-radius: 6px;
+  margin-right: 5px;
+}
+.cat-area:hover {
+  background-color:#fff;
+  border-style: solid;
+}

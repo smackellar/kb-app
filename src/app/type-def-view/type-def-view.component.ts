@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { TypeDef } from './type-def';
-import { DefCurrentService } from './def-current.service';
-import { TypeDefService } from './type-def.service';
+import { TypeDef } from '../type-def';
+import { DefCurrentService } from '../def-current.service';
+import { TypeDefService } from '../type-def.service';
 import { Location } from '@angular/common';
 
 
