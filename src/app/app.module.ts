@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { DefSelectorComponent } from './def-selector.component';
 import { DefCreatorComponent } from './def-creator.component';
 import { PerspectiveSelectorComponent } from './perspective-selector.component';
-import { ItemPasterComponent } from './item-paster.component';
+import { ItemPasterComponent } from './item-paster/item-paster.component';
 import { DashboardComponent } from './dashboard.component'
 import { KanbanComponent } from './kanban.component'
 import { KanbanListComponent } from './kanban-list.component'
@@ -46,7 +46,6 @@ import { ItemAppenderComponent } from './item-appender/item-appender.component';
   declarations: [
     AppComponent,
     PerspectiveSelectorComponent,
-    ItemPasterComponent,
     DefSelectorComponent,
     DefCreatorComponent,
     DashboardComponent,
@@ -54,6 +53,7 @@ import { ItemAppenderComponent } from './item-appender/item-appender.component';
     ItemDetailComponent,
     ItemCardComponent,
     ItemLinkerComponent,
+    ItemPasterComponent,
     TypeDefViewComponent,
     KanbanListComponent,
     DraggableDirective,
