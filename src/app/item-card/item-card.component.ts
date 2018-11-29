@@ -2,9 +2,9 @@ import 'rxjs/add/operator/switchMap';
 import { Component, OnInit, Input }      from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { TypeDef } from './type-def';
-import { Item }         from './item';
-import { DefCurrentService }  from './def-current.service';
+import { TypeDef } from '../type-def';
+import { Item }         from '../item';
+import { DefCurrentService }  from '../def-current.service';
 
 
 @Component({

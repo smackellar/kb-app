@@ -11,9 +11,8 @@ import { ItemPasterComponent } from './item-paster/item-paster.component';
 import { DashboardComponent } from './dashboard.component'
 import { KanbanComponent } from './kanban.component'
 import { KanbanListComponent } from './kanban-list.component'
-import { ItemDetailComponent }  from './item-detail.component';
-import { ItemCardComponent }  from './item-card.component';
-import { ItemLinkerComponent }  from './item-linker.component';
+import { ItemDetailComponent }  from './item-detail/item-detail.component';
+import { ItemCardComponent }  from './item-card/item-card.component';
 import { TypeDefViewComponent } from './type-def-view.component';
 import { FieldListablePipe } from './field-listable.pipe';
 
@@ -52,7 +51,6 @@ import { ItemAppenderComponent } from './item-appender/item-appender.component';
     KanbanComponent,
     ItemDetailComponent,
     ItemCardComponent,
-    ItemLinkerComponent,
     ItemPasterComponent,
     TypeDefViewComponent,
     KanbanListComponent,

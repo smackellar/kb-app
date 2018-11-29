@@ -3,10 +3,10 @@ import { Component, OnInit }      from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location }               from '@angular/common';
 
-import { Item }         from './item';
-import { TypeDef }  from './type-def';
-import { ItemService }  from './item.service';
-import { DefCurrentService }  from './def-current.service';
+import { Item }         from '../item';
+import { TypeDef }  from '../type-def';
+import { ItemService }  from '../item.service';
+import { DefCurrentService }  from '../def-current.service';
 
 @Component({
   selector: 'item-detail',
