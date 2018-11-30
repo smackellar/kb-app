@@ -3,10 +3,6 @@ a {
   cursor: pointer;
 }
 
-nav a {
-  margin-right: 1em;
-}
-
 nav.nav-top {
   margin-top: 1em;
 }
@@ -29,4 +25,15 @@ nav.nav-top {
 .cat-area:hover {
   background-color:#fff;
   border-style: solid;
+}
+
+/* Bootstrap overrides */
+nav a {
+    margin-right: 1px;
+}
+.nav-pills .nav-link {
+    border-radius: 0!important;
+}
+.nav-link {
+  background-color: #eee;
 }

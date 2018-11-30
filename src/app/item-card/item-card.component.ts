@@ -1,6 +1,6 @@
 import 'rxjs/add/operator/switchMap';
 import { Component, OnInit, Input }      from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { TypeDef } from '../type-def';
 import { Item }         from '../item';
@@ -20,13 +20,18 @@ export class ItemCardComponent implements OnInit {
 
   constructor(
     private defCurrentService: DefCurrentService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {
   }
 
   ngOnInit(): void {
     this.editable = this.route.snapshot.url[0].path!="detail";
     this.defSelect = this.defCurrentService.typeDef;
+  }
+
+  edit(): void {
+    this.router.navigateByUrl('/' + this.defCurrentService.typeDef.id  + '/detail/' + this.item.id);
   }
 
 }

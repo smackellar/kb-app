@@ -4,7 +4,7 @@
     <a class="nav-item nav-link" (click)="addDef()"><span class="oi oi-plus small" title="Add new type" aria-hidden="true"></span> Add type</a>
 </nav>
 <div *ngIf="defSelect">
-  <h1 class="display-4" (dblclick)="editMode=!editMode"><span *ngIf="!editMode">{{defSelect.name}}</span>
+  <h1 (dblclick)="editMode=!editMode"><span *ngIf="!editMode">{{defSelect.name}}</span>
     <input *ngIf="editMode" type="input" value="{{defSelect.name}}" (blur)="editMode=false" (change)="updateName($event.target.value)">
     <a *ngIf="!editMode" class="ml-3" routerLink="/{{defSelect.id}}/def" routerLinkActive="active"><span class="oi oi-cog small" title="Modify {{defSelect.name}} structure" aria-hidden="true"></span></a>
   </h1>
