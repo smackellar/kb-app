@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-import { AppComponent } from './app.component';
+import { AppComponent } from './app/app.component';
 import { DefSelectorComponent } from './def-selector/def-selector.component';
 import { DefCreatorComponent } from './def-creator/def-creator.component';
 import { PerspectiveSelectorComponent } from './perspective-selector/perspective-selector.component';
