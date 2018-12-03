@@ -4,7 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { TypeDef } from '../type-def';
 import { Item }         from '../item';
+
 import { DefCurrentService }  from '../def-current.service';
+import { ItemService }  from '../item.service';
 
 
 @Component({
@@ -20,6 +22,7 @@ export class ItemCardComponent implements OnInit {
 
   constructor(
     private defCurrentService: DefCurrentService,
+    private itemService: ItemService,
     private route: ActivatedRoute,
     private router: Router
   ) {
@@ -32,6 +35,11 @@ export class ItemCardComponent implements OnInit {
 
   edit(): void {
     this.router.navigateByUrl('/' + this.defCurrentService.typeDef.id  + '/detail/' + this.item.id);
+  }
+
+  delete(): void {
+    this.itemService.delete(this.item)
+    .subscribe(() => {});
   }
 
 }

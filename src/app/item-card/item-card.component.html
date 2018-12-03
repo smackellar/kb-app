@@ -7,6 +7,9 @@
   </div>
   <div class="d-flex justify-content-between align-items-center">
     <div class="small opacity-50">{{item.id}}</div>
-    <a *ngIf="editable" (click)="edit()"><span class="oi oi-pencil small" title="Edit" aria-hidden="true"></span></a>
+    <div>
+      <a *ngIf="editable" (click)="delete()" class="mr-2"><span class="oi oi-trash small" title="Delete" aria-hidden="true"></span></a>
+      <a *ngIf="editable" (click)="edit()"><span class="oi oi-pencil small" title="Edit" aria-hidden="true"></span></a>
+    </div>
   </div>
 </div>
