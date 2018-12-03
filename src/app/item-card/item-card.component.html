@@ -1,4 +1,4 @@
-<div *ngIf="item" class="item-card draggable" [myDraggable]="{data: item}" (dblclick)="edit()">
+<div *ngIf="item" class="item-card draggable" [ngClass]="{'deleted': item.deleted}" [myDraggable]="{data: item}" (dblclick)="edit()">
   <div *ngFor="let field of defSelect.fields">
     <div *ngIf="field.isCardable">
       <div class="small opacity-50"><strong>{{field.name}}</strong></div>
@@ -8,7 +8,8 @@
   <div class="d-flex justify-content-between align-items-center">
     <div class="small opacity-50">{{item.id}}</div>
     <div>
-      <a *ngIf="editable" (click)="delete()" class="mr-2"><span class="oi oi-trash small" title="Delete" aria-hidden="true"></span></a>
+      <a *ngIf="editable && !item.deleted" (click)="delete()" class="mr-2"><span class="oi oi-trash small" title="Delete" aria-hidden="true"></span></a>
+      <a *ngIf="editable && item.deleted" (click)="undelete()" class="mr-2"><span class="oi oi-reload small" title="Undo Delete" aria-hidden="true"></span></a>
       <a *ngIf="editable" (click)="edit()"><span class="oi oi-pencil small" title="Edit" aria-hidden="true"></span></a>
     </div>
   </div>

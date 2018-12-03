@@ -26,7 +26,7 @@ export class ItemService {
 
   getItems(typeDef: TypeDef): Observable<Item[]> {
     console.log("getting items");
-    return this.http.get<Item[]>(this.itemsUrl+'?type=' + typeDef.id);
+    return this.http.get<Item[]>(this.itemsUrl+'?deleted=false&type=' + typeDef.id);
   }
 
   private initItems(): void {
@@ -60,8 +60,13 @@ export class ItemService {
   }
 
   delete(item): Observable<Item> {
-    const url = `${this.itemsUrl}/${item.id}`;
-    return this.http.delete<Item>(url);
+    item.deleted = true;
+    return this.update(item);
+  }
+
+  undelete(item): Observable<Item> {
+    item.deleted = false;
+    return this.update(item);
   }
 
   getItem(id: number): Observable<Item> {

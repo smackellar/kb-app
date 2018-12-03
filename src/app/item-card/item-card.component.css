@@ -9,6 +9,10 @@
   margin:5px;
   padding:5px 10px;
 }
+.item-card.deleted {
+  background-color: #ffeeee;
+  border-color: #D76E6E;
+}
 .taglinks ul {
   display:inline-block;
   padding:0px;

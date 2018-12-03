@@ -42,4 +42,9 @@ export class ItemCardComponent implements OnInit {
     .subscribe(() => {});
   }
 
+  undelete(): void {
+    this.itemService.undelete(this.item)
+    .subscribe(() => {});
+  }
+
 }
