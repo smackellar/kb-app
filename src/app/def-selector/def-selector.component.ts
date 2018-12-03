@@ -68,8 +68,9 @@ export class DefSelectorComponent implements OnInit {
       console.log("New def returned: " + typeDef.id);
       // this.initTypeDefs();
       this.typeDefs.push(typeDef);
+      this.defSelect = typeDef;
+      this.updateSelectedDef();
     });
-    // this.ngOnInit(); // will have timing issues
   }
 
   // REFACTOR OUT to def selector
