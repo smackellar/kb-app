@@ -34,7 +34,7 @@ export class ItemCardComponent implements OnInit {
   }
 
   edit(): void {
-    this.router.navigateByUrl('/' + this.defCurrentService.typeDef.id  + '/detail/' + this.item.id);
+    this.router.navigateByUrl('/home/' + this.defCurrentService.typeDef.id  + '/detail/' + this.item.id);
   }
 
   delete(): void {
