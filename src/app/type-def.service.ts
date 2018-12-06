@@ -20,24 +20,13 @@ export class TypeDefService {
   private typeDefsUrl = 'api/typeDefs';  // URL to web api
   typeDefs: Observable<TypeDef[]>;
 
-  // private initTypeDefs(){
-  //   return this.http.get<TypeDef>(this.typeDefsUrl);
-  //   this.typeDefs = this.http.get(this.typeDefsUrl)
-  //              .toPromise()
-  //              .then(response => response.json().data as TypeDef[])
-  //              .catch(this.handleError);
-  // }
-
   getTypeDefs(): Observable<TypeDef[]> {
-    // this.initTypeDefs();
-    console.log("get all types")
     return this.http.get<TypeDef[]>(this.typeDefsUrl);
   }
 
-  // private handleError(error: any): Promise<any> {
-  //   console.error('An error occurred', error); // for demo purposes only
-  //   return Promise.reject(error.message || error);
-  // }
+  getTypeDef(id: number): Observable<TypeDef> {
+    return this.http.get<TypeDef>(this.typeDefsUrl + "/" + id);
+  }
 
   update(typeDef: TypeDef): Observable<TypeDef> {
     const url = `${this.typeDefsUrl}/${typeDef.id}`;

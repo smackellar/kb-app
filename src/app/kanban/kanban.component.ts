@@ -31,6 +31,7 @@ export class KanbanComponent implements OnInit {
 
   ngOnInit(): void {
     this.defCurrentService.getSubject().subscribe(def => {
+      console.log("def event");
        if (def) {
          this.defSelect = def;
          this.initItems();
@@ -50,6 +51,7 @@ export class KanbanComponent implements OnInit {
   }
 
   initItems(){
+    console.log("initItems");
     this.itemService.getItems(this.defSelect)
         .subscribe(items => this.initItemsForDef(items, this.defSelect));
   }

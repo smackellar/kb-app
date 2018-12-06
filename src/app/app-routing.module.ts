@@ -16,18 +16,20 @@ const routes: Routes = [
   { path: 'home',
     component: DefSelectorComponent,
     children: [
-      { path: 'new', component: DefCreatorComponent },
+      { path: 'new', component: DefCreatorComponent }
     ]
   },
-  { path: ':defType',
+  { path: 'home/:defId',
     component: DefSelectorComponent,
-    children: [
-      { path: 'detail/:id', component: ItemDetailComponent },
-      { path: 'def',  component: TypeDefViewComponent },
-      { path: 'dashboard',  component: DashboardComponent },
-      { path: 'kanban',  component: KanbanComponent }
-    ]
-  }];
+      children: [
+        { path: 'detail/:id', component: ItemDetailComponent },
+        { path: 'def',  component: TypeDefViewComponent },
+        { path: 'dashboard',  component: DashboardComponent },
+        { path: 'kanban',  component: KanbanComponent }
+      ]
+  }
+
+];
 
 @NgModule({
   imports: [ RouterModule.forRoot(routes) ],

@@ -2,8 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { TypeDef } from '../type-def';
 import { TypeDefService } from '../type-def.service';
 import { DefCurrentService } from '../def-current.service';
-import { Location } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'def-selector',
@@ -18,47 +17,27 @@ export class DefSelectorComponent implements OnInit {
   path: string
 
   constructor(
-    private router: Router,
     private route: ActivatedRoute,
-    private location: Location,
     private typeDefService: TypeDefService,
     private defCurrentService: DefCurrentService) {
     }
 
   ngOnInit(): void {
-    this.initTypeDefs();
-    this.path = this.location.path();
-  }
-
-  private initTypeDefs(): void{
-    this.typeDefService.getTypeDefs()
-      .subscribe(typeDefs => {
-        console.log("Getting types: " + typeDefs.length);
+    // load all definitions
+    this.typeDefService.getTypeDefs().subscribe(typeDefs => {
         this.typeDefs = typeDefs;
-        if (!this.defSelect){
-          let defId = this.route.snapshot.params['defType'];
-          if (defId){
-            this.defSelect = this.typeDefs.find(def => (def.id == defId));
-          }
-          // if (!this.defSelect){
-          //   this.defSelect = this.typeDefs[0];
-          // }
-        }
-        if (this.defSelect)
-          this.updateSelectedDef();
       }
     );
-  }
-
-  selectDef(defSelect: TypeDef): void {
-    // use the current def service
-    this.defSelect = defSelect;
-    this.updateSelectedDef();
-  }
-  updateSelectedDef(): void {
-    // use the current def service
-    this.defCurrentService.typeDef = this.defSelect;
-    this.router.navigateByUrl("/" + this.defSelect.id + "/" + (this.route.snapshot.url.toString().indexOf("kanban") ? "kanban" : "dashboard" ));
+    // get selected def from param
+    this.route.paramMap.subscribe(map => {
+      let defId: number = +map.get("defId");
+      if (defId){
+        this.typeDefService.getTypeDef(defId).subscribe(typeDef => {
+          this.defSelect = typeDef;
+          this.defCurrentService.typeDef = this.defSelect;
+        });
+      }
+    });
   }
 
   addDef(): void {
@@ -66,14 +45,12 @@ export class DefSelectorComponent implements OnInit {
     typeDef.name = "New Def";
     this.typeDefService.add(typeDef).subscribe(typeDef => {
       console.log("New def returned: " + typeDef.id);
-      // this.initTypeDefs();
       this.typeDefs.push(typeDef);
       this.defSelect = typeDef;
-      this.updateSelectedDef();
+      this.defCurrentService.typeDef = this.defSelect;
     });
   }
 
-  // REFACTOR OUT to def selector
   updateName(name): void {
     this.defSelect.name = name;
     this.typeDefService.update(this.defSelect).subscribe(() => {

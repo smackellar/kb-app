@@ -24,6 +24,7 @@ export class DefCurrentService {
 
   set typeDef(typeDef: TypeDef){
     this._currentTypeDef = typeDef;
+    console.log("setting def to: " + typeDef.name);
     this.subject.next(typeDef);
   }
 
