@@ -1,0 +1,4 @@
+<div *ngFor="let def of typeDefs">
+  <a href="javascript:void()" [routerLink]="['/home',def.id,'dashboard']">{{def.name}} ({{def.id}})</a>
+  <a href="javascript:void()" [routerLink]="['/home',def.id,'def']">Modify</a>
+</div>

@@ -32,6 +32,7 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }  from './in-memory-data.service';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ItemAppenderComponent } from './item-appender/item-appender.component';
+import { HomeListComponent } from './home-list/home-list.component';
 
 @NgModule({
   imports: [
@@ -59,7 +60,8 @@ import { ItemAppenderComponent } from './item-appender/item-appender.component';
     DraggableDirective,
     DropTargetDirective,
     FieldListablePipe,
-    ItemAppenderComponent
+    ItemAppenderComponent,
+    HomeListComponent
   ],
   providers: [ ItemService, DragService, TypeDefService, DefCurrentService ],
   bootstrap: [ AppComponent ]

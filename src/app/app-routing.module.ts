@@ -7,6 +7,7 @@ import { ItemDetailComponent }  from './item-detail/item-detail.component';
 import { DefSelectorComponent }  from './def-selector/def-selector.component';
 import { DefCreatorComponent }  from './def-creator/def-creator.component';
 import { TypeDefViewComponent }  from './type-def-view/type-def-view.component';
+import { HomeListComponent }  from './home-list/home-list.component';
 
 const routes: Routes = [
   { path: '',
@@ -14,7 +15,7 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   { path: 'home',
-    component: DefSelectorComponent,
+    component: HomeListComponent,
     children: [
       { path: 'new', component: DefCreatorComponent }
     ]

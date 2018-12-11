@@ -1,7 +1,7 @@
 <nav class="nav nav-pills nav-top">
     <a routerLink="/home" [ngClass]="{'active': !defSelect}" class="nav-item nav-link active">Home</a>
     <a *ngFor="let def of typeDefs" class="nav-item nav-link" [ngClass]="{'active': defSelect && defSelect.id==def.id}" [routerLink]="['/home',def.id,'dashboard']" [@fadeInOut]>{{def.name}} ({{def.id}}) {{defSelect && defSelect.id==def.id?"*":""}}</a>
-    <a class="nav-item nav-link" (click)="addDef()"><span class="oi oi-plus small" title="Add new type" aria-hidden="true"></span> Add type</a>
+    <a class="nav-item nav-link" (click)="addDef()" href="javascript:void()"><span class="oi oi-plus small" title="Add new type" aria-hidden="true"></span> Add type</a>
 </nav>
 <div *ngIf="defSelect">
   <h1 (dblclick)="editMode=!editMode"><span *ngIf="!editMode">{{defSelect.name}}</span>

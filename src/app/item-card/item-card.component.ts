@@ -20,16 +20,16 @@ import {
   templateUrl: './item-card.component.html',
   styleUrls: [ './item-card.component.css' ],
   animations: [
-  trigger('fadeInOut', [
-    transition(':enter', [   // :enter is alias to 'void => *'
-      style({opacity:0}),
-      animate(500, style({opacity:1}))
-    ]),
-    transition(':leave', [   // :leave is alias to '* => void'
-      animate(500, style({opacity:0}))
+    trigger('fadeInOut', [
+      transition(':enter', [   // :enter is alias to 'void => *'
+        style({opacity:0}),
+        animate(500, style({opacity:1}))
+      ]),
+      transition(':leave', [   // :leave is alias to '* => void'
+        animate(500, style({opacity:0}))
+      ])
     ])
-  ])
-]
+  ]
 })
 export class ItemCardComponent implements OnInit {
   @Input() item: Item;

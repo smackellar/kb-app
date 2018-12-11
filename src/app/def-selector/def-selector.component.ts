@@ -56,6 +56,9 @@ export class DefSelectorComponent implements OnInit {
           this.defCurrentService.typeDef = this.defSelect;
         });
       }
+      else {
+        console.log("Home");
+      }
     });
   }
 
