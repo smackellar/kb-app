@@ -26,18 +26,25 @@ export class DashboardComponent implements OnInit {
     this.defCurrentService.getSubject().subscribe(def => {
        if (def) {
          this.defSelect = def;
-         this.itemService.getItems(def)
-             .subscribe(items => (this.items = items));
+         this.loadItems();
        }
     });
 
-    // get inserted items
+    // get inserted items as they are added
     this.itemService.getSubject().subscribe(item => {
       if (item){
+        console.log("received item");
         this.items.push(item);
       }
     });
 
+  }
+
+  private loadItems(): void {
+    this.itemService.getItems(this.defSelect)
+        .subscribe(items => {
+          this.items = items;
+        });
   }
 
 }

@@ -27,7 +27,9 @@ export class ItemAppenderComponent implements OnInit {
 
   addItem(): void {
     this.itemService.newItem(this.defSelect, null)
-    .subscribe(item => {console.log("item added: " + item.id);});
+    .subscribe(item => {
+      console.log("item added: " + item.id);
+    });
   }
 
   pasteItemsToggle(): void {

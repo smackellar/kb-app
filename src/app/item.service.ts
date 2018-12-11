@@ -88,16 +88,6 @@ export class ItemService {
     }));
   }
 
-  addLink(item: Item, id: number){
-    console.log("Adding link for : " + id);
-    if (!item.links)
-      item.links = [];
-      console.log("Index : " + item.links.indexOf(id));
-    if (item.links.indexOf(id) >= 0 || id == item.id)
-      return;
-    item.links.push(id);
-  }
-
   broadcast(item: Item){
     this.subject.next(item);
   }

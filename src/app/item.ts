@@ -4,7 +4,7 @@ export class Item {
   values: {};
   tagList: string[];
   links: number[];
-  deleted: boolean;
+  deleted: boolean = false;
 
   constructor(){
     this.values = {};
