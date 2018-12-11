@@ -3,10 +3,29 @@ import { TypeDef } from '../type-def';
 import { TypeDefService } from '../type-def.service';
 import { DefCurrentService } from '../def-current.service';
 import { ActivatedRoute } from '@angular/router';
+import {
+  trigger,
+  style,
+  animate,
+  transition,
+  // ...
+} from '@angular/animations';
 
 @Component({
   selector: 'def-selector',
-  templateUrl: './def-selector.component.html'
+  templateUrl: './def-selector.component.html',
+  animations: [
+    trigger('fadeInOut', [
+      transition(':enter', [   // :enter is alias to 'void => *'
+        style({opacity:0}),
+        animate(500, style({opacity:1}))
+      ]),
+      transition(':leave', [   // :leave is alias to '* => void'
+        animate(500, style({opacity:0}))
+      ])
+    ])
+  ]
+
 })
 
 export class DefSelectorComponent implements OnInit {

@@ -1,4 +1,4 @@
-<div *ngIf="item" class="item-card draggable" [ngClass]="{'deleted': item.deleted}" [myDraggable]="{data: item}" (dblclick)="edit()">
+<div *ngIf="item" class="item-card draggable" [ngClass]="{'deleted': item.deleted}" [myDraggable]="{data: item}" (dblclick)="edit()" [@fadeInOut]>
 <h2>{{defSelect.id}}</h2>
   <div *ngFor="let field of defSelect.fields">
     <div *ngIf="field.isCardable">

@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app/app.component';
 import { DefSelectorComponent } from './def-selector/def-selector.component';
@@ -40,7 +41,8 @@ import { ItemAppenderComponent } from './item-appender/item-appender.component';
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }),
     // InMemoryWebApiModule.forRoot(InMemoryDataService),
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    BrowserAnimationsModule
   ],
   declarations: [
     AppComponent,

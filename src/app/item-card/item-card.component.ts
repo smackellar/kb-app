@@ -7,12 +7,29 @@ import { Item }         from '../item';
 
 import { DefCurrentService }  from '../def-current.service';
 import { ItemService }  from '../item.service';
-
+import {
+  trigger,
+  style,
+  animate,
+  transition,
+  // ...
+} from '@angular/animations';
 
 @Component({
   selector: 'item-card',
   templateUrl: './item-card.component.html',
-  styleUrls: [ './item-card.component.css' ]
+  styleUrls: [ './item-card.component.css' ],
+  animations: [
+  trigger('fadeInOut', [
+    transition(':enter', [   // :enter is alias to 'void => *'
+      style({opacity:0}),
+      animate(500, style({opacity:1}))
+    ]),
+    transition(':leave', [   // :leave is alias to '* => void'
+      animate(500, style({opacity:0}))
+    ])
+  ])
+]
 })
 export class ItemCardComponent implements OnInit {
   @Input() item: Item;
