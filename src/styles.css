@@ -28,9 +28,6 @@ nav.nav-top {
 }
 
 /* Bootstrap overrides */
-nav a {
-    margin-right: 1px;
-}
 .nav-pills .nav-link {
     border-radius: 0!important;
 }

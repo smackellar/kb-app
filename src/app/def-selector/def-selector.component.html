@@ -1,21 +1,25 @@
 <nav *ngIf="!defSelect" class="nav nav-pills nav-top">
     <a routerLink="/home" class="nav-item nav-link active">Home</a>
-    <a class="nav-item nav-link" (click)="addDef()" href="javascript:void()"><span class="oi oi-plus small" title="Add new type" aria-hidden="true"></span></a>
+    <a class="nav-item nav-link ml-1" (click)="addDef()" href="javascript:void()"><span class="oi oi-plus small" title="Add new type" aria-hidden="true"></span></a>
 </nav>
 <nav *ngIf="defSelect" class="nav nav-pills nav-top">
     <li class="nav-item"><a class="nav-link" routerLink="/home">Home</a></li>
-    <li class="nav-item dropdown">
+    <li class="nav-item dropdown ml-1">
       <a class="nav-link dropdown-toggle active" data-toggle="dropdown" [@fadeInOut]>{{defSelect.name}}</a>
       <div class="dropdown-menu">
         <a *ngFor="let def of typeDefs" class="dropdown-item" [routerLink]="['/home',def.id,'dashboard']">{{def.name}} ({{def.id}})<span *ngIf="defSelect.id==def.id" class="ml-1">*</span></a>
       </div>
     </li>
-    <li class="nav-item"><a class="nav-link" (click)="addDef()" href="javascript:void()"><span class="oi oi-plus small" title="Add new type" aria-hidden="true"></span></a></li>
+    <li class="nav-item">
+      <a [ngClass]="{'active': configMode}" class="nav-link" [routerLink]="['/home',defSelect.id,'config']" routerLinkActive="active"><span class="oi oi-cog small" title="Modify {{defSelect.name}} structure" aria-hidden="true"></span></a>
+    </li>
+    <li class="nav-item ml-1">
+      <a class="nav-link" (click)="addDef()" href="javascript:void()"><span class="oi oi-plus small" title="Add new type" aria-hidden="true"></span></a>
+    </li>
 </nav>
-<div *ngIf="defSelect">
+<div *ngIf="configMode">
   <h1 (dblclick)="editMode=!editMode"><span *ngIf="!editMode">{{defSelect.name}}</span>
     <input *ngIf="editMode" type="input" value="{{defSelect.name}}" (blur)="editMode=false" (change)="updateName($event.target.value)">
-    <a *ngIf="!editMode" class="ml-3" [routerLink]="['/home',defSelect.id,'def']" routerLinkActive="active"><span class="oi oi-cog small" title="Modify {{defSelect.name}} structure" aria-hidden="true"></span></a>
   </h1>
 </div>
 <router-outlet></router-outlet>

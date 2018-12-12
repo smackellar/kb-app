@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { TypeDef } from '../type-def';
 import { TypeDefService } from '../type-def.service';
 import { DefCurrentService } from '../def-current.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   trigger,
   style,
@@ -34,9 +34,11 @@ export class DefSelectorComponent implements OnInit {
   @Input() defSelect: TypeDef;
   editMode: boolean = false;
   path: string
+  configMode: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private typeDefService: TypeDefService,
     private defCurrentService: DefCurrentService) {
     }
@@ -59,6 +61,7 @@ export class DefSelectorComponent implements OnInit {
       else {
         console.log("Home");
       }
+      this.configMode = this.router.url.indexOf("config")>-1;
     });
   }
 

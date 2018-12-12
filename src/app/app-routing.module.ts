@@ -24,7 +24,7 @@ const routes: Routes = [
     component: DefSelectorComponent,
       children: [
         { path: 'detail/:id', component: ItemDetailComponent },
-        { path: 'def',  component: TypeDefViewComponent },
+        { path: 'config',  component: TypeDefViewComponent },
         { path: 'dashboard',  component: DashboardComponent },
         { path: 'kanban',  component: KanbanComponent }
       ]
