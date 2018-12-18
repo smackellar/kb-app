@@ -17,7 +17,7 @@
       <a class="nav-link" (click)="addDef()" href="javascript:void()"><span class="oi oi-plus small" title="Add new type" aria-hidden="true"></span></a>
     </li>
 </nav>
-<div *ngIf="configMode">
+<div *ngIf=" defSelect configMode">
   <h1 (dblclick)="editMode=!editMode"><span *ngIf="!editMode">{{defSelect.name}}</span>
     <input *ngIf="editMode" type="input" value="{{defSelect.name}}" (blur)="editMode=false" (change)="updateName($event.target.value)">
   </h1>
