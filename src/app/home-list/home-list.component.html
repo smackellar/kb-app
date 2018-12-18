@@ -1,5 +1,6 @@
 <def-selector></def-selector>
 <div class="d-flex nav nav-pills mt-1" *ngFor="let def of typeDefs">
   <a href="javascript:void()" class="flex-grow-1 nav-item nav-link" [routerLink]="['/home',def.id,'dashboard']">{{def.name}} ({{def.id}})</a>
+  <a href="javascript:void()" class="nav-item nav-link ml-1" (click)="deleteDef(def)">Delete</a>
   <a href="javascript:void()" class="nav-item nav-link ml-1" [routerLink]="['/home',def.id,'config']">Modify</a>
 </div>

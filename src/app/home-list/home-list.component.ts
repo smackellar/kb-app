@@ -16,6 +16,17 @@ export class HomeListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loadDefs();
+  }
+
+  deleteDef(def: TypeDef) {
+    this.typeDefService.delete(def).subscribe(() => {
+        this.loadDefs();
+      }
+    );
+  }
+
+  loadDefs() {
     // load all definitions
     this.typeDefService.getTypeDefs().subscribe(typeDefs => {
         this.typeDefs = typeDefs;
