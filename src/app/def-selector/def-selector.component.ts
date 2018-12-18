@@ -47,6 +47,8 @@ export class DefSelectorComponent implements OnInit {
     // load all definitions
     this.typeDefService.getTypeDefs().subscribe(typeDefs => {
         this.typeDefs = typeDefs;
+        console.log("Type defs updated");
+        this.checkConfigMode();
       }
     );
     // get selected def from param
@@ -61,17 +63,23 @@ export class DefSelectorComponent implements OnInit {
       else {
         console.log("Home");
       }
-      this.configMode = this.router.url.indexOf("config")>-1;
+    });
+    this.router.events.subscribe(() => {
+      // might be a more efficient way to do this as gets fired several times
+      this.checkConfigMode();
     });
   }
 
+  private checkConfigMode(): void {
+    this.configMode = this.router.url.indexOf("config")>-1;
+  }
+
   addDef(): void {
-    let typeDef = new TypeDef()
+    let typeDef = new TypeDef();
     typeDef.name = "New Def";
     this.typeDefService.add(typeDef).subscribe(typeDef => {
       console.log("New def returned: " + typeDef.id);
-      this.typeDefs.push(typeDef);
-      this.defSelect = typeDef;
+      this.typeDefs.push(typeDef); // shouldn't need this
       this.defCurrentService.typeDef = this.defSelect;
     });
   }
