@@ -33,6 +33,7 @@ import { InMemoryDataService }  from './in-memory-data.service';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ItemAppenderComponent } from './item-appender/item-appender.component';
 import { HomeListComponent } from './home-list/home-list.component';
+import { ExportComponent } from './export/export.component';
 
 @NgModule({
   imports: [
@@ -61,7 +62,8 @@ import { HomeListComponent } from './home-list/home-list.component';
     DropTargetDirective,
     FieldListablePipe,
     ItemAppenderComponent,
-    HomeListComponent
+    HomeListComponent,
+    ExportComponent
   ],
   providers: [ ItemService, DragService, TypeDefService, DefCurrentService ],
   bootstrap: [ AppComponent ]

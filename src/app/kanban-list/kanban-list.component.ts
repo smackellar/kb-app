@@ -71,7 +71,7 @@ export class KanbanListComponent implements OnInit {
   updateItem(item: Item){
     this.itemService.update(item)
       .subscribe(() => {
-          this.itemService.getItems(this.defCurrentService.typeDef);
+          // this.itemService.getItems(this.defCurrentService.typeDef);
           // .then(items => this.manager.setItems(items))
         }
       );
