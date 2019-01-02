@@ -4,6 +4,7 @@ import { TypeDef } from '../type-def';
 import { DefCurrentService } from '../def-current.service';
 import { TypeDefService } from '../type-def.service';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class TypeDefViewComponent implements OnInit {
   constructor(
     private defCurrentService: DefCurrentService,
     private location: Location,
+    private router: Router,
     private typeDefService: TypeDefService
   ) {
   }
@@ -62,6 +64,7 @@ export class TypeDefViewComponent implements OnInit {
     this.typeDefService.delete(this.typeDef)
     .subscribe(() => {
       console.log("Deleted type: " + this.typeDef.name);
+      this.router.navigateByUrl("/");
     });
   }
 
