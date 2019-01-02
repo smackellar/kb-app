@@ -21,7 +21,7 @@ export class TypeDefService {
   typeDefs: Observable<TypeDef[]>;
 
   getTypeDefs(): Observable<TypeDef[]> {
-    return this.http.get<TypeDef[]>(this.typeDefsUrl);
+    return this.http.get<TypeDef[]>(this.typeDefsUrl + "?deleted=false");
   }
 
   getTypeDef(id: number): Observable<TypeDef> {
@@ -43,8 +43,8 @@ export class TypeDefService {
   }
 
   delete(typeDef): Observable<TypeDef>{
-    const url = `${this.typeDefsUrl}/${typeDef.id}`;
-    return this.http.delete<TypeDef>(url);
+    typeDef.deleted = true;
+    return this.update(typeDef);
   }
 
   addField(typeDef: TypeDef, name: string): void{

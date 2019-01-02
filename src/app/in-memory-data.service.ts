@@ -24,12 +24,12 @@ export class InMemoryDataService implements InMemoryDbService {
         {id: 3, name: "colour", isCardable: true, isListable: true},
         {id: 4, name: "tags"},
         {id: 5, name: "link"}
-      ]},
+      ], deleted: false},
       {id: 2, name: 'hero', fields: [
         {id: 1, name: "name", isCardable: true},
         {id: 2, name: "status", isCardable: true, isListable: true},
         {id: 3, name: "colour", isCardable: true, isListable: true}
-      ]}];
+      ], deleted: false}];
 
     return {items, typeDefs};
   }

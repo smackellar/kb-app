@@ -4,4 +4,5 @@ export class TypeDef {
   id: number;
   name: string;
   fields: FieldDef[] = [];
+  deleted: boolean = false;
 }
