@@ -1,11 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-// import 'rxjs/add/operator/toPromise';
-import { Observable } from 'rxjs';
+import { Observable, Subject, BehaviorSubject } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 import { TypeDef } from './type-def';
 import { FieldDef } from './field-def';
-//import { typeDefS } from './mock-typeDefs';
 
 
 const httpOptions = {
@@ -13,15 +12,31 @@ const httpOptions = {
 };
 
 @Injectable()
-export class TypeDefService {
+export class TypeDefService implements OnInit {
+
+  ngOnInit(): void {
+  }
 
   constructor(private http: HttpClient) { }
 
+  private typeDefs:Subject<TypeDef[]> = new BehaviorSubject<TypeDef[]>(null);
+
+  subject$ = this.typeDefs.asObservable();
+
   private typeDefsUrl = 'api/typeDefs';  // URL to web api
-  typeDefs: Observable<TypeDef[]>;
+  // typeDefs: Observable<TypeDef[]>;
 
   getTypeDefs(): Observable<TypeDef[]> {
-    return this.http.get<TypeDef[]>(this.typeDefsUrl + "?deleted=false");
+    this.updateTypeDefs(); // could be done OnInit
+    return this.typeDefs;
+  }
+
+  private updateTypeDefs(){
+    this.http.get<TypeDef[]>(this.typeDefsUrl + "?deleted=false").subscribe(
+      typeDefs => {
+        this.typeDefs.next(typeDefs);
+      }
+    );
   }
 
   getTypeDef(id: number): Observable<TypeDef> {
@@ -39,12 +54,16 @@ export class TypeDefService {
   }
 
   add(newTypeDef: TypeDef): Observable<TypeDef>{
-      return this.insert(newTypeDef);
+    return this.insert(newTypeDef).pipe(tap(() => {
+      this.updateTypeDefs();
+    }));
   }
 
   delete(typeDef): Observable<TypeDef>{
     typeDef.deleted = true;
-    return this.update(typeDef);
+    return this.update(typeDef).pipe(tap(() => {
+      this.updateTypeDefs();
+    }));
   }
 
   addField(typeDef: TypeDef, name: string): void{
