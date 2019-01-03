@@ -46,8 +46,7 @@ export class DefSelectorComponent implements OnInit {
   ngOnInit(): void {
     // load all definitions
     this.typeDefService.getTypeDefs().subscribe(typeDefs => {
-        this.typeDefs = typeDefs;
-        console.log("Type defs updated");
+        this.typeDefs = typeDefs; // this will stay up to date
         this.checkConfigMode();
       }
     );
@@ -77,9 +76,10 @@ export class DefSelectorComponent implements OnInit {
   addDef(): void {
     let typeDef = new TypeDef();
     typeDef.name = "New Def";
-    this.typeDefService.add(typeDef).subscribe(typeDef => {
-      console.log("New def returned: " + typeDef.id);
-      this.typeDefs.push(typeDef); // shouldn't need this
+    this.typeDefService.add(typeDef).subscribe(() => {
+      // console.log("New def returned: " + typeDef.id);
+      // this.typeDefs.push(typeDef); // shouldn't need this
+      // switch currently selected
       this.defCurrentService.typeDef = this.defSelect;
     });
   }

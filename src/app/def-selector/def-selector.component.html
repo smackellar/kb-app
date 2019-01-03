@@ -11,7 +11,7 @@
       </div>
     </li>
     <li class="nav-item">
-      <a [ngClass]="{'active': configMode}" class="nav-link" [routerLink]="['/home',defSelect.id,'config']" routerLinkActive="active"><span class="oi oi-cog small" title="Modify {{defSelect.name}} structure" aria-hidden="true"></span></a>
+      <a [ngClass]="{'active': configMode}" class="nav-link" [routerLink]="['/home',defSelect.id, (configMode ? 'dashboard' : 'config')]" routerLinkActive="active"><span class="oi oi-cog small" title="Modify {{defSelect.name}} structure" aria-hidden="true"></span></a>
     </li>
     <li class="nav-item ml-1">
       <a class="nav-link" (click)="addDef()" href="javascript:void()"><span class="oi oi-plus small" title="Add new type" aria-hidden="true"></span></a>
