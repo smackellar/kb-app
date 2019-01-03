@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ItemService }  from '../item.service';
-import { TypeDef } from '../type-def';
-import { DefCurrentService } from '../def-current.service';
-import { TypeDefService } from '../type-def.service';
+import { ItemService }  from '../items/item.service';
+import { TypeDef } from '../type-defs/type-def';
+import { DefCurrentService } from '../type-defs/def-current.service';
+import { TypeDefService } from '../type-defs/type-def.service';
 
 @Component({
   selector: 'item-paster',

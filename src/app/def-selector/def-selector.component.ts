@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { TypeDef } from '../type-def';
-import { TypeDefService } from '../type-def.service';
-import { DefCurrentService } from '../def-current.service';
+import { TypeDef } from '../type-defs/type-def';
+import { TypeDefService } from '../type-defs/type-def.service';
+import { DefCurrentService } from '../type-defs/def-current.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   trigger,

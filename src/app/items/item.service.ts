@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 
 import { Item } from './item';
-import { TypeDef } from './type-def';
+import { TypeDef } from './../type-defs/type-def';
 
 
   const httpOptions = {

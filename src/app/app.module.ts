@@ -15,17 +15,17 @@ import { KanbanListComponent } from './kanban-list/kanban-list.component'
 import { ItemDetailComponent }  from './item-detail/item-detail.component';
 import { ItemCardComponent }  from './item-card/item-card.component';
 import { TypeDefViewComponent } from './type-def-view/type-def-view.component';
-import { FieldListablePipe } from './field-listable.pipe';
+import { FieldListablePipe } from './fields/field-listable.pipe';
 
 import { AppRoutingModule }     from './app-routing.module';
 
-import { ItemService } from './item.service'
-import { DragService } from './drag.service';
-import { TypeDefService } from './type-def.service';
-import { DefCurrentService } from './def-current.service';
+import { ItemService } from './items/item.service'
+import { DragService } from './directives/drag.service';
+import { TypeDefService } from './type-defs/type-def.service';
+import { DefCurrentService } from './type-defs/def-current.service';
 
-import { DraggableDirective } from './draggable.directive';
-import { DropTargetDirective } from './drop-target.directive';
+import { DraggableDirective } from './directives/draggable.directive';
+import { DropTargetDirective } from './directives/drop-target.directive';
 import { IconDirective } from './directives/icon.directive';
 
 // Imports for loading & configuring the in-memory web api

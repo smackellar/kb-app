@@ -1,13 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { Item } from '../item';
-import { TypeDef } from '../type-def';
-import { FieldDef } from '../field-def';
-import { ListValItems }         from '../list-val-items';
+import { Item } from '../items/item';
+import { TypeDef } from '../type-defs/type-def';
+import { FieldDef } from '../fields/field-def';
+import { ListValItems }         from '../items/list-val-items';
 
-import { ListableFieldManager } from '../listable-field-manager';
-import { ItemService } from '../item.service';
-import { DefCurrentService } from '../def-current.service';
+import { ListableFieldManager } from '../fields/listable-field-manager';
+import { ItemService } from '../items/item.service';
+import { DefCurrentService } from '../type-defs/def-current.service';
 
 @Component({
   selector: 'my-kanban',

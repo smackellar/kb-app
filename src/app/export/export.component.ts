@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { TypeDef } from '../type-def';
-import { Item } from '../item';
-import { DefCurrentService } from '../def-current.service';
-import { ItemService } from '../item.service';
-import { ItemUtils } from '../item-utils';
+import { TypeDef } from '../type-defs/type-def';
+import { Item } from '../items/item';
+import { DefCurrentService } from '../type-defs/def-current.service';
+import { ItemService } from '../items/item.service';
+import { ItemUtils } from '../items/item-utils';
 import { saveAs } from 'file-saver';
 
 @Component({

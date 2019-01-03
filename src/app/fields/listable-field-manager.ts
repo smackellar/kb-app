@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Item }         from './item';
-import { ListValItems }         from './list-val-items';
-import { ItemUtils }         from './item-utils';
-import { TypeDef }         from './type-def';
+import { Item }         from '../items/item';
+import { ListValItems }         from '../items/list-val-items';
+import { ItemUtils }         from '../items/item-utils';
+import { TypeDef }         from '../type-defs/type-def';
 import { FieldDef }         from './field-def';
 
-import { ItemService } from './item.service';
+import { ItemService } from '../items/item.service';
 
 /*
 ** represents a categorisable (listable) field and the values

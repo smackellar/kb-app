@@ -4,7 +4,7 @@ import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 import { TypeDef } from './type-def';
-import { FieldDef } from './field-def';
+import { FieldDef } from './../fields/field-def';
 
 
 const httpOptions = {

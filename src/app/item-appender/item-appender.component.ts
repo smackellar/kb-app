@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ItemService } from '../item.service';
-import { TypeDef } from '../type-def';
-import { DefCurrentService } from '../def-current.service';
+import { ItemService } from '../items/item.service';
+import { TypeDef } from '../type-defs/type-def';
+import { DefCurrentService } from '../type-defs/def-current.service';
 
 @Component({
   selector: 'app-item-appender',

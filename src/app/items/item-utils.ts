@@ -1,4 +1,4 @@
-import { FieldDef } from './field-def';
+import { FieldDef } from './../fields/field-def';
 import { Item } from './item';
 
 /*
