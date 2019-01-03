@@ -7,7 +7,7 @@
         <input id="field_{{field.id}}" class="form-control" value="{{item.values[field.id]}}" (change)="updateField($event.target.value, field.id)">
       </div>
 
-      <button class="btn btn-sm btn-outline-secondary mr-2" (click)="goBack()"><span class="oi oi-arrow-left" title="Go back" aria-hidden="true"></span> Back</button>
+      <button class="btn btn-sm btn-outline-secondary mr-2" (click)="goBack()"><icon name="arrow-left" title="Go back"></icon> Back</button>
       <button  class="btn btn-sm btn-success mr-2"(click)="save()">Save</button>
       <button class="btn btn-sm btn-link" (click)="delete()">Delete</button>
     </div>

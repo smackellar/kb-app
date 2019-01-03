@@ -8,9 +8,9 @@
   <div class="d-flex justify-content-between align-items-center">
     <div class="small opacity-50">{{item.id}}</div>
     <div>
-      <a *ngIf="editable && !item.deleted" (click)="delete()"><span class="oi oi-trash small" title="Delete" aria-hidden="true"></span></a>
-      <a *ngIf="editable && item.deleted" (click)="undelete()"><span class="oi oi-reload small" title="Undo Delete" aria-hidden="true"></span></a>
-      <a *ngIf="editable && !item.deleted" (click)="edit()" class="ml-2"><span class="oi oi-pencil small" title="Edit" aria-hidden="true"></span></a>
+      <a *ngIf="editable && !item.deleted" (click)="delete()"><icon name="trash" title="Delete"></icon></a>
+      <a *ngIf="editable && item.deleted" (click)="undelete()"><icon name="reload" title="Undo delete"></icon></a>
+      <a *ngIf="editable && !item.deleted" (click)="edit()" class="ml-2"><icon name="pencil" title="Edit"></icon></a>
     </div>
   </div>
 </div>

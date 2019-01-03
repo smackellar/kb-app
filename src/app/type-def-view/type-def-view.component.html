@@ -13,11 +13,11 @@
     <input type="input" [(value)]="field.name" (change)="updateLabel(field,$event.target.value)">
   </div>
   <div class="col-sm-1">
-    <button class="btn btn-sm btn-outline-danger" (click)="removeField(field)"><span class="oi oi-x" title="Delete field" aria-hidden="true"></span></button>
+    <button class="btn btn-sm btn-outline-danger" (click)="removeField(field)"><icon name="x" title="Delete field"></icon></button>
   </div>
 </div>
 </div>
 <input type="input" [(ngModel)]="newFieldName" value class="mr-1">
 <button (click)="addField()" class="btn btn-sm btn-success mr-3">Add field</button>
-<button class="btn btn-sm btn-outline-secondary mr-2" (click)="goBack()"><span class="oi oi-arrow-left" title="Back" aria-hidden="true"></span> Go back</button>
+<button class="btn btn-sm btn-outline-secondary mr-2" (click)="goBack()"><icon name="arrow-left" title="Back"></icon> Go back</button>
 <button class="btn btn-sm btn-link mr-2" (click)="removeDefSelect()">Delete {{typeDef.name}}</button>

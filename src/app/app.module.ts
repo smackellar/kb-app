@@ -26,11 +26,12 @@ import { DefCurrentService } from './def-current.service';
 
 import { DraggableDirective } from './draggable.directive';
 import { DropTargetDirective } from './drop-target.directive';
+import { IconDirective } from './directives/icon.directive';
 
 // Imports for loading & configuring the in-memory web api
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }  from './in-memory-data.service';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ItemAppenderComponent } from './item-appender/item-appender.component';
 import { HomeListComponent } from './home-list/home-list.component';
 import { ExportComponent } from './export/export.component';
@@ -60,6 +61,7 @@ import { ExportComponent } from './export/export.component';
     KanbanListComponent,
     DraggableDirective,
     DropTargetDirective,
+    IconDirective,
     FieldListablePipe,
     ItemAppenderComponent,
     HomeListComponent,
