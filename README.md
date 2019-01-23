@@ -11,6 +11,14 @@ Everything currently runs *client side* so no back end is needed. A configuratio
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.2. It is currently in development mode.
 
+## Screen shots
+
+### Home page
+![Home page](http://stuartmackellar.com/images/kb_ss_home.png)
+
+### Kanban perspective
+![Kanban perspective](http://stuartmackellar.com/images/kb_ss_kanban.png)
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
