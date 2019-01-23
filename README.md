@@ -1,6 +1,15 @@
 # KbApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.2.
+A lightweight Kanban-style data management application to
+* load data
+* move it around
+* export data
+
+Currently it loads up with some very basic structures to give you some idea of what it does.
+
+Everything currently runs *client side* so no back end is needed. A configuration will be added at some point to allow connection and persistence.
+
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.2. It is currently in development mode.
 
 ## Development server
 
