@@ -77,9 +77,6 @@ export class DefSelectorComponent implements OnInit {
     let typeDef = new TypeDef();
     typeDef.name = "New Def";
     this.typeDefService.add(typeDef).subscribe(() => {
-      // console.log("New def returned: " + typeDef.id);
-      // this.typeDefs.push(typeDef); // shouldn't need this
-      // switch currently selected
       this.defCurrentService.typeDef = this.defSelect;
     });
   }

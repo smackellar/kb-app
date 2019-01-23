@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { TypeDef } from '../type-defs/type-def';
 import { Item } from '../items/item';
+import { ItemService } from '../items/item.service'
 import { DefCurrentService } from '../type-defs/def-current.service';
-import { ItemService } from '../items/item.service';
 import { ItemUtils } from '../items/item-utils';
+import { ExportService } from './export.service';
 import { saveAs } from 'file-saver';
 
 @Component({
@@ -20,6 +21,7 @@ export class ExportComponent implements OnInit {
 
   constructor(
     private defCurrentService: DefCurrentService,
+    private exportService: ExportService,
     private itemService: ItemService
   ) {}
 
@@ -31,17 +33,8 @@ export class ExportComponent implements OnInit {
   }
 
   doExport(){
-    let header = this.defSelect.fields.map((field) => {return field.name;}).join(",");
     this.itemService.getItems(this.defSelect).subscribe(items => {
-      let text = header + "\n" + items.map((item) => {
-        let t = this.defSelect.fields.map((field) => {
-          return this.itemUtils.getValueByField(item, field);
-        }).join(",");
-        return t;
-      }).join("\n");
-      // this.items = itemService.
-      var blob = new Blob([text], {type: 'text/csv' })
-      saveAs(blob, "myFile.csv");
+      saveAs(this.exportService.doExportItems(this.defSelect, items), this.defSelect.name + ".csv");
     });
   }
 

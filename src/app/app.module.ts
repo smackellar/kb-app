@@ -23,6 +23,7 @@ import { ItemService } from './items/item.service'
 import { DragService } from './directives/drag.service';
 import { TypeDefService } from './type-defs/type-def.service';
 import { DefCurrentService } from './type-defs/def-current.service';
+import { ExportService } from './export/export.service';
 
 import { DraggableDirective } from './directives/draggable.directive';
 import { DropTargetDirective } from './directives/drop-target.directive';
@@ -67,7 +68,7 @@ import { ExportComponent } from './export/export.component';
     HomeListComponent,
     ExportComponent
   ],
-  providers: [ ItemService, DragService, TypeDefService, DefCurrentService ],
+  providers: [ ItemService, DragService, TypeDefService, DefCurrentService, ExportService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
